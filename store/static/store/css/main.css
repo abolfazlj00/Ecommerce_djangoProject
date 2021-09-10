@@ -114,13 +114,13 @@
     display: none;
 }
 
-@media screen and (max-width: 1030px){
+@media screen and (max-width: 1050px){
     .header nav .icon{
         display: none;
     }
 }
 
-@media screen and (max-width: 905px) {
+@media screen and (max-width: 937px) {
     .header nav {
         display: block;
         padding: 0;
