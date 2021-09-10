@@ -2,13 +2,16 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
+from django.utils.translation import gettext_lazy as _
+
 from account.models import CustomUser
 
 User = get_user_model()
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255, db_index=True)
+    name = models.CharField(max_length=255, db_index=True, verbose_name=_('name'))
+    parent = models.ForeignKey(to='self', on_delete=models.CASCADE, blank=True, null=True)
     slug = models.CharField(max_length=255, unique=True)
 
     class Meta:
@@ -44,3 +47,8 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+
+class discount(models.Model):
+    title = models.CharField(max_length=255)
+    amount = models.PositiveIntegerField(help_text='per cent')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
