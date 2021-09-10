@@ -2,40 +2,42 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins',sans-serif !important;
 }
-
-nav {
+.header{
     position: sticky;
     top: 0;
-    /*position: relative;*/
+    z-index: 20;
+}
+.header nav {
+    position: relative;
     display: flex;
     width: 100%;
     justify-content: space-between;
-    background-color: #0a5071;
+    background-color: #FF5126;
     box-shadow: 0 10px 5px rgba(0, 0, 0, 0.3);
     text-align: center;
     padding: 15px 30px;
 }
 
-nav .icon {
+.header nav .icon {
     font-size: 35px;
     font-weight: 800;
     cursor: pointer;
     color: white;
 }
 
-nav ol {
+.header nav ol {
     display: flex;
     list-style: none;
     margin: auto 0;
 }
 
-nav ol li {
+.header nav ol li {
     margin: 0 2px;
 }
 
-nav ol li a {
+.header nav ol li a {
     color: white;
     font-size: 20px;
     text-decoration: none;
@@ -44,19 +46,19 @@ nav ol li a {
     padding: 5px 10px;
 }
 
-nav ol li:hover a {
+.header nav ol li:hover a {
     background: white;
-    color: #0a5071;
+    color: #FF5126;
 }
 
-nav .search_box {
+.header nav .search_box {
     display: flex;
     margin: auto 0;
     height: 35px;
     line-height: 35px;
 }
 
-nav .search_box input {
+.header nav .search_box input {
     border: none;
     outline: none;
     background: white;
@@ -66,8 +68,8 @@ nav .search_box input {
     width: 350px;
 }
 
-nav .search_box span {
-    color: #0a5071;
+.header nav .search_box span {
+    color: #FF5126;
     font-size: 20px;
     background: white;
     height: 100%;
@@ -76,10 +78,10 @@ nav .search_box span {
     cursor: pointer;
     z-index: 1;
 }
-nav .search_box span:hover{
+.header nav .search_box span:hover{
     color: white;
 }
-nav .search_box span::after {
+.header nav .search_box span::after {
     height: 100%;
     width: 0;
     content: '';
@@ -91,52 +93,54 @@ nav .search_box span::after {
     transition: 0.3s;
 }
 
-nav .search_box span:hover::after {
+.header nav .search_box span:hover::after {
     width: 100%;
 }
 
-nav .bar {
+.header nav .bar {
     position: relative;
     margin: auto;
     display: none;
 }
 
-nav .bar span {
+.header nav .bar span {
     position: absolute;
     color: white;
     font-size: 35px;
 }
 
-input[type="checkbox"] {
+.header input[type="checkbox"] {
     -webkit-appearance: none;
     display: none;
 }
+
 @media screen and (max-width: 1030px){
-    nav .icon{
+    .header nav .icon{
         display: none;
     }
 }
+
 @media screen and (max-width: 905px) {
-    nav {
+    .header nav {
         display: block;
         padding: 0;
     }
-    nav .icon{
+    .header nav .icon{
         display: inline-block;
         padding: 15px 30px;
     }
-    nav .search_box {
+    .header nav .search_box {
         width: 100%;
         display: inline-flex;
         justify-content: center;
         margin-bottom: 15px;
     }
 
-    nav .search_box input {
+    .header nav .search_box input {
         width: 90%;
     }
 
-    nav ol {
+    .header nav ol {
         display: flex;
         flex-direction: column;
         background: white;
@@ -145,41 +149,41 @@ input[type="checkbox"] {
         transition: 0.3s;
     }
 
-    nav ol li {
+    .header nav ol li {
         text-align: center;
         transition: 0.3s 0.1s all;
         opacity: 0;
     }
 
-    nav ol li a {
+    .header nav ol li a {
         color: #000;
         font-size: 28px;
         padding: 25px;
         display: block;
     }
-    nav ol li:nth-child(1) {
+    .header nav ol li:nth-child(1) {
         transform: translateX(-150);
     }
 
-    nav ol li:nth-child(2) {
+    .header nav ol li:nth-child(2) {
         transform: translateX(-200);
     }
 
-    nav ol li:nth-child(3) {
+    .header nav ol li:nth-child(3) {
         transform: translateX(-250);
     }
 
-    nav ol li:nth-child(4) {
+    .header nav ol li:nth-child(4) {
         transform: translateX(-300);
     }
-    nav .bar {
+    .header nav .bar {
         display: block;
         position: absolute;
         top: 20px;
-        right: 45px;
+        right: 8%;
         cursor: pointer;
     }
-    nav .bar #times{
+    .header nav .bar #times{
         display: none;
     }
     #check:checked ~ nav .bar #bars{
@@ -188,20 +192,20 @@ input[type="checkbox"] {
     #check:checked ~ nav .bar #times{
         display: block;
     }
-    #check:checked ~ nav ol {
+    #check:checked ~  nav ol {
         visibility: visible;
         height: 465px;
     }
-    #check:checked ~ nav ol li:nth-child(1),
-    #check:checked ~ nav ol li:nth-child(2),
-    #check:checked ~ nav ol li:nth-child(3),
-    #check:checked ~ nav ol li:nth-child(4){
+    #check:checked ~  nav ol li:nth-child(1),
+    #check:checked ~  nav ol li:nth-child(2),
+    #check:checked ~  nav ol li:nth-child(3),
+    #check:checked ~  nav ol li:nth-child(4){
         transform: translateX(0);
         opacity: 1;
     }
 }
 
-section {
+.header section {
     height: 100%;
     width: 100%;
     position: absolute;
