@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
 from account.models import CustomUser
+
+User = get_user_model()
 
 
 class Category(models.Model):
@@ -26,7 +29,7 @@ class Product(models.Model):
     createdTime = models.DateTimeField(auto_now_add=True)
     updatedTime = models.DateTimeField(auto_now=True)
     stock = models.PositiveIntegerField()
-    likes = models.PositiveIntegerField(default=0)
+    likes = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'products'
@@ -40,3 +43,4 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
