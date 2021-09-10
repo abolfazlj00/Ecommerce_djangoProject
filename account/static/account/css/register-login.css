@@ -55,6 +55,21 @@
   margin-bottom: 10px;
 }
 
+.for_error {
+  max-width: 380px;
+  width: 100%;
+  background-color: #efd2d2;
+  color: #ff0000;
+  margin: 10px 0;
+  height: 85px;
+  border-radius: 20px;
+  display: flex;
+  padding: 0.3rem 0.8rem;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
 .register_login .input-field {
   max-width: 380px;
   width: 100%;
@@ -285,7 +300,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-end ;
-    padding: 2.5rem 20% 2.5rem 0;
+    padding: 2.5rem 0 ;
     grid-column: 1 / 2;
   }
 
@@ -330,7 +345,7 @@
     height: 1500px;
     transform: translateX(-50%);
     left: 30%;
-    bottom: 65%;
+    bottom: 70%;
     right: initial;
     top: initial;
     transition: 2s ease-in-out;
