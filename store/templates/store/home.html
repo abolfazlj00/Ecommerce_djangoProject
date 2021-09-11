@@ -5,9 +5,6 @@
 {% endblock %}
 {% block title %}home{% endblock %}
 {% block sidebar %}
-    {% if user.is_authenticated %}
-        <input type="checkbox" id="userState" value="{{ user.username }}" checked style="display: none">
-    {% endif %}
     {% for product in popular_products %}
         {{ product.title }}<br>
     {% endfor %}

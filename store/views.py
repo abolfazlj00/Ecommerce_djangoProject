@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import response
 from django.shortcuts import render
 
@@ -17,4 +18,3 @@ def baseView(request):
     all_products = getProducts()
     return render(request, 'store/home.html',
                   context={'popular_products': popular_products, 'all_products': all_products})
-    # return render(request, 'store/base.html')

@@ -1,5 +1,6 @@
 import re
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import response, HttpResponse
 from django.shortcuts import render, redirect
 from string import ascii_letters
@@ -89,3 +90,9 @@ def rgisterLogin(request):
             return registerUser(request, request.POST['username'], request.POST['password'], request.POST['phone'],
                                 request.POST['email'])
     return render(request, 'account/register-login.html')
+
+
+@login_required
+def logoutUser(request):
+    logout(request)
+    return redirect('store:home')
