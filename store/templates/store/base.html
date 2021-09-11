@@ -3,57 +3,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'store/css/main.css' %}">
-    {% block loadStatic %}{% endblock %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kama-{% block title %}{% endblock %}</title>
 
-    <title>Shop_{% block title %}{% endblock %}</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'store/css/main.css' %}">
+    {% block loadCss %}{% endblock %}
 </head>
 <body>
+
+
 <header>
-    <nav class="navbar">
-        <ul class="branding">
-            <li class="logo">
-                <a href="#" class="branding-logo"><b style="color: #FDD052FF">K</b>AMA</a>
-            </li>
-        </ul>
-        <div class="search_box">
-            <input type="search" placeholder="Search here...">
-            <span class="fa fa-search"></span>
-        </div>
-        <label for="input-hamburger" class="hamburger"></label>
-        <input type="checkbox" id="input-hamburger" hidden>
-        <ul class="menu">
 
-            {% if user.is_authenticated %}
-                <li class="has-dropdown">
-                    <a href="#" class="menu-link">
-                        {{ user.username }}
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="#" class="menu-link">profile</a></li>
-                        <li><a href="{% url 'account:logout' %}" class="menu-link">Logout</a></li>
-                    </ul>
-                </li>
-            {% else %}
-                <li><a href="#" class="menu-link">Login Here</a></li>
-            {% endif %}
+    <a href="#" class="logo"><b id="k">K</b>ama<span>.</span></a>
 
-            <li><a href="#" class="menu-link">Category</a></li>
-            <li><a href="#" class="menu-link">Home</a></li>
-        </ul>
-    </nav>
+    <form action="">
+        <input type="search" id="search-bar">
+        <label for="search-bar" class="fas fa-search"></label>
+    </form>
+
+    <div class="icons">
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <div id="theme-toggler" class="fas fa-moon"></div>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
+        <a href="#" class="fas fa-user"></a>
+    </div>
+
 </header>
+
+<!-- header section ends -->
+
+<!-- navbar section  -->
+
+<nav class="navbar">
+
+    <div class="user">
+        <img src="" alt="">
+        <h3>shaikh anas</h3>
+    </div>
+
+    <div class="links">
+        <a href="#">home</a>
+        <a href="#">products</a>
+        <a href="#">featured</a>
+        <a href="#">deal</a>
+        <a href="#">review</a>
+    </div>
+
+    <div id="close" class="fas fa-times"></div>
+
+</nav>
+
+
+
+
+
+
+
+
+
+
+
 <div class="main-content container-fluid p-0">
     {% block sidebar %}{% endblock %}
     {% block content %}{% endblock %}
