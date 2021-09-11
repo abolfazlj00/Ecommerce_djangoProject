@@ -3,7 +3,11 @@
 {% block loadStatic %}
     <link rel="stylesheet" type="text/css" href="{% static 'store/css/home.css' %}">
 {% endblock %}
+{% block title %}home{% endblock %}
 {% block sidebar %}
+    {% if user.is_authenticated %}
+        <input type="checkbox" id="userState" value="{{ user.username }}" checked style="display: none">
+    {% endif %}
     {% for product in popular_products %}
         {{ product.title }}<br>
     {% endfor %}
@@ -13,12 +17,14 @@
         <div class="row">
             {% for product in all_products %}
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    {{ product.title }}
+                    {{ product.title }}<br>
+                    {{ product.updatedTime }}
                 </div>
             {% endfor %}
         </div>
-
     </div>
 {% endblock %}
 {% block loadJs %}
+    <script src="{% static 'store/js/home.js'%}">
+    </script>
 {% endblock %}

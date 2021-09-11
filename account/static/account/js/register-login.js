@@ -13,7 +13,6 @@ sign_in_btn.addEventListener("click", () => {
 if (document.getElementById('registerState')){
     registerState = document.getElementById('registerState')
     if (registerState.checked === true) {
-        console.log('dsvkbdsbhvb')
         sign_up_btn.click()
     }
 }
