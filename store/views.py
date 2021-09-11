@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.http import response
 from django.shortcuts import render
 
@@ -13,7 +12,6 @@ def getProducts():
     return Product.objects.all()
 
 
-@login_required
 def baseView(request):
     popular_products = popularProduct()
     all_products = getProducts()
