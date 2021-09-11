@@ -1,7 +1,7 @@
 import re
-from django.contrib.auth import authenticate
-from django.http import response
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.http import response, HttpResponse
+from django.shortcuts import render, redirect
 from string import ascii_letters
 
 
@@ -58,7 +58,7 @@ def registerValidation(username, password, phone, email=None):
     return 'True'
 
 
-def register(request, username, password, phone, email=None):
+def registerUser(request, username, password, phone, email=None):
     validation_response = registerValidation(username, password, phone, email=email)
     if validation_response == 'True':
         return 'True'
@@ -67,11 +67,14 @@ def register(request, username, password, phone, email=None):
         return render(request, 'account/register-login.html', context={'reg_error': error, 'register': 'True'})
 
 
-def login(request, username, password):
-    if authenticate(username=username, password=password) or authenticate(phone=username, password=password):
+def loginUser(request, username, password):
+    print(username,password)
+    user = authenticate(phone=username, password=password) or authenticate(username=username, password=password)
+    if user:
+        login(request, user)
         if 'next' in request.GET:
-            return request.GET['next']
-        return render(request, 'store/home.html')
+            return redirect(request.GET['next'])
+        return redirect('store:home')
     else:
         return render(request, 'account/register-login.html', context={
             'log_error': 'incorrect username or password'
@@ -81,8 +84,8 @@ def login(request, username, password):
 def rgisterLogin(request):
     if request.method == 'POST':
         if request.POST['type'] == 'login':
-            return login(request, request.POST['username'], request.POST['password'])
+            return loginUser(request, request.POST['username'], request.POST['password'])
         if request.POST['type'] == 'register':
-            return register(request, request.POST['username'], request.POST['password'], request.POST['phone'],
-                            request.POST['email'])
+            return registerUser(request, request.POST['username'], request.POST['password'], request.POST['phone'],
+                                request.POST['email'])
     return render(request, 'account/register-login.html')
