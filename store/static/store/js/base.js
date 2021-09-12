@@ -1,25 +1,20 @@
-// var hamburger = document.querySelector('.hamburger')
-// hamburger.addEventListener('click', function (){
-//     this.classList.toggle('close')
-// })
-
 let navbar = document.querySelector('.navbar')
-
-document.querySelector('#menu-bar').onclick = () =>{
+document.querySelector('#menu-bar').onclick = () => {
     navbar.classList.toggle('active');
 }
 
-document.querySelector('#close').onclick = () =>{
+document.querySelector('#close').onclick = () => {
     navbar.classList.remove('active');
 }
+    console.log(window.scrollY)
 
-window.onscroll = () =>{
-
+window.onscroll = () => {
+    console.log(window.scrollY)
     navbar.classList.remove('active');
+    if (window.scrollY > 0) {
 
-    if(window.scrollY > 100){
         document.querySelector('header').classList.add('active');
-    }else{
+    } else {
         document.querySelector('header').classList.remove('active');
     }
 
@@ -27,11 +22,11 @@ window.onscroll = () =>{
 
 let themeToggler = document.querySelector('#theme-toggler');
 
-themeToggler.onclick = () =>{
+themeToggler.onclick = () => {
     themeToggler.classList.toggle('fa-sun');
-    if(themeToggler.classList.contains('fa-sun')){
+    if (themeToggler.classList.contains('fa-sun')) {
         document.querySelector('body').classList.add('active');
-    }else{
+    } else {
         document.querySelector('body').classList.remove('active');
     }
 }

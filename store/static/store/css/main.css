@@ -5,6 +5,8 @@
     --white-color:#fff;
     --black-color:#333;
     --light-color:rgba(0,0,0,.3);
+    --dark-blue: #161F4A;
+    --btn-orange: #ff9500
 }
 
 *{
@@ -42,49 +44,59 @@ body{
 }
 
 body.active{
+    --btn-orange: #161F4A;
+    --dark-blue: #ff9500;
     --white-color:#111;
     --black-color:#fff;
     --light-color:rgba(255,255,255,.3);
     background:#222;
 }
 
-section{
-    padding:1rem 9%;
-}
+/*!*section{*!*/
+/*!*    padding:1rem 9%;*!*/
+/*!*}*!*/
 
-.heading{
-    padding:1rem 0;
-    margin-bottom: 2rem;
-    border-bottom: .1rem solid var(--light-color);
-    font-size: 3rem;
-    color:var(--black-color);
-    text-transform: uppercase;
-}
+/*!*.heading{*!*/
+/*!*    padding:1rem 0;*!*/
+/*!*    margin-bottom: 2rem;*!*/
+/*!*    border-bottom: .1rem solid var(--light-color);*!*/
+/*!*    font-size: 3rem;*!*/
+/*!*    color:var(--black-color);*!*/
+/*!*    text-transform: uppercase;*!*/
+/*!*}*!*/
 
-.heading span{
-    color:var(--orange);
-    text-transform: uppercase;
+/*.heading span{*/
+/*    color:var(--orange);*/
+/*    text-transform: uppercase;*/
+/*}*/
+.footer{
+    color: var(--black-color);
+    text-align: center;
+    bottom: 0;
+    padding: 0.2em;
 }
-
-#k{
+.footer>p{
+    font-size: 1.2rem;
+}
+header #k{
     color: var(--orange);
 }
 
-.btn{
-    display: inline-block;
-    margin-top: 1rem;
-    border-radius: 5rem;
-    background: var(--black-color);
-    color:var(--white-color);
-    font-size: 1.8rem;
-    padding:.9rem 3.5rem;
-    cursor: pointer;
-}
+/*.btn{*/
+/*    display: inline-block;*/
+/*    margin-top: 1rem;*/
+/*    border-radius: 5rem;*/
+/*    background: var(--black-color);*/
+/*    color:var(--white-color);*/
+/*    font-size: 1.8rem;*/
+/*    padding:.9rem 3.5rem;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.btn:hover{
-    background:var(--orange);
-    color:#fff;
-}
+/*.btn:hover{*/
+/*    background:var(--orange);*/
+/*    color:#fff;*/
+/*}*/
 
 header{
     width: 100%;
@@ -94,6 +106,7 @@ header{
     background: var(--white-color);
     border-bottom: .1rem solid var(--light-color);
     padding:1.5rem 9%;
+
 }
 
 header .logo{
@@ -229,4 +242,72 @@ header.active{
 
 .navbar #close:hover{
     color: var(--orange);
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+
+    header{
+        padding:1.5rem;
+    }
+
+    /*section{*/
+    /*    padding:1.5rem;*/
+    /*}*/
+
+    /*.home .content h3{*/
+    /*    font-size: 5rem;*/
+    /*}*/
+
+}
+
+@media (max-width:768px){
+
+    header{
+        flex-flow: column;
+    }
+
+    header form{
+        width:100%;
+        margin:2rem 0;
+    }
+
+    header.active{
+        transform: translateY(-12.5rem);
+    }
+
+    /*.home .content{*/
+    /*    text-align: center;*/
+    /*}*/
+
+    /*.home .image img{*/
+    /*    width: 100%;*/
+    /*}*/
+
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+
+    /*.heading{*/
+    /*    text-align: center;*/
+    /*    font-size: 2.5rem;*/
+    /*    border-bottom: none;*/
+    /*}*/
+
 }

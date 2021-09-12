@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kama-{% block title %}{% endblock %}</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -19,67 +19,71 @@
 <body>
 
 
-<header>
+<div class="base">
+    <header>
 
-    <a href="#" class="logo"><b id="k">K</b>ama<span>.</span></a>
+        <a href="#" class="logo"><b id="k">K</b>ama<span>.</span></a>
 
-    <form action="">
-        <input type="search" id="search-bar">
-        <label for="search-bar" class="fas fa-search"></label>
-    </form>
+        <form action="">
+            <input type="search" id="search-bar">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
 
-    <div class="icons">
-        <div id="menu-bar" class="fas fa-bars"></div>
-        <div id="theme-toggler" class="fas fa-moon"></div>
-        <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-shopping-cart"></a>
-        <a href="#" class="fas fa-user"></a>
-    </div>
+        <div class="icons">
+            <div id="menu-bar" class="fas fa-bars"></div>
+            <div id="theme-toggler" class="fas fa-moon"></div>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'account:logout' %}" class="fas fa-sign-out-alt"></a>
+            {% else %}
+                <a href="{% url 'account:login' %}" class="fas fa-user"></a>
+            {% endif %}
 
-</header>
+        </div>
 
-<!-- header section ends -->
+    </header>
 
-<!-- navbar section  -->
+    <!-- header section ends -->
 
-<nav class="navbar">
+    <!-- navbar section  -->
 
-    <div class="user">
-        <img src="" alt="">
-        <h3>shaikh anas</h3>
-    </div>
+    <nav class="navbar">
 
-    <div class="links">
-        <a href="#">home</a>
-        <a href="#">products</a>
-        <a href="#">featured</a>
-        <a href="#">deal</a>
-        <a href="#">review</a>
-    </div>
+        <div class="user">
+            {% if user.is_authenticated %}
+                <img src="" alt="">
+                <h3>{{ user.first_name }}  {{ user.last_name }}</h3>
+            {% else %}
+                <img src="" alt="">
+                <h3></h3>
+            {% endif %}
 
-    <div id="close" class="fas fa-times"></div>
+        </div>
 
-</nav>
+        <div class="links">
+            <a href="{% url 'store:home' %}">home</a>
+            <a href="#">products</a>
+            <a href="#">featured</a>
+            <a href="#">deal</a>
+            <a href="#">review</a>
+        </div>
 
+        <div id="close" class="fas fa-times"></div>
 
-
-
-
-
-
-
-
+    </nav>
+</div>
 
 
 <div class="main-content container-fluid p-0">
     {% block sidebar %}{% endblock %}
     {% block content %}{% endblock %}
 </div>
-<div class="container-fluid footer bg-warning">
-    <p class="text-center mb-0 text-white">
-        هرگونه کپی برداری پیگرد قاونی دارد
+<div class="container-fluid footer">
+    <p class="text-center mb-0">
+        Copyright @2017 | Designed With by abolfazlj00
     </p>
-</div>
+    </div>
 <script src="{% static 'store/js/base.js' %}"></script>
 {% block loadJs %}
 {% endblock %}
