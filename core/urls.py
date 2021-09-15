@@ -22,4 +22,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('account/', include('account.urls')),
                   path('store/', include('store.urls')),
+
+                  # REST API
+                  path('api/account/', include('account.api.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
