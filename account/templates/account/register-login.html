@@ -42,7 +42,7 @@
                         </a>
                     </div>
                 </form>
-                <form action="{% url 'account:login' %}" class="sign-up-form" method="post">
+                <form action="{% url 'api_account:registration' %}" class="sign-up-form" method="post">
                     {% csrf_token %}
                     {% if reg_error %}
                         <div class="for_error">
@@ -62,6 +62,14 @@
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
                         <input type="email" id="email" name="email" placeholder="Email (optional)"/>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="first_name" name="first_name" placeholder="Firstname" required/>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="last_name" name="last_name" placeholder="Lastname" required/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>

@@ -313,8 +313,8 @@
     .register-login .panel {
         flex-direction: row;
         justify-content: space-around;
-        align-items: center;
-        padding: 2.5rem 8%;
+        align-items: flex-end;
+        padding: 4rem 8%;
         grid-column: 1 / 2;
     }
 
@@ -351,14 +351,14 @@
     .register-login .btn.transparent {
         width: 110px;
         height: 35px;
-        font-size: 1.6rem;
+        font-size: 1.2rem;
     }
 
     .register-login:before {
         width: 1500px;
         height: 1500px;
         transform: translateX(-50%);
-        left: 30%;
+        left: 10%;
         bottom: 68%;
         right: initial;
         top: initial;
@@ -367,7 +367,7 @@
 
     .register-login.sign-up-mode:before {
         transform: translate(-50%, 100%);
-        bottom: 32%;
+        bottom: 17%;
         right: initial;
     }
 
@@ -415,7 +415,7 @@
     }
 
     .register-login.sign-up-mode:before {
-        bottom: 20%;
+        bottom: 15%;
         left: 50%;
     }
 }
