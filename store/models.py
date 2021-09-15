@@ -1,3 +1,6 @@
+from datetime import datetime
+from random import random, randint
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -18,7 +21,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
     def __str__(self):
-        return self.name
+        return self.slug
 
 
 class Product(models.Model):
@@ -32,7 +35,6 @@ class Product(models.Model):
     createdTime = models.DateTimeField(auto_now_add=True)
     updatedTime = models.DateTimeField(auto_now=True)
     stock = models.PositiveIntegerField()
-    likes = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'products'
@@ -41,14 +43,22 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         if self.stock == 0:
             self.in_stock = False
-
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.slug
 
 
-class discount(models.Model):
+class Discount(models.Model):
     title = models.CharField(max_length=255)
     amount = models.PositiveIntegerField(help_text='per cent')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+
+class Staff(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    staff_code = models.PositiveIntegerField(default=0, unique=True)
+
+    def save(self, *args, **kwargs):
+        self.staff_code = int(f'{datetime.now().year}{datetime.now().month}{datetime.now().day}{randint(1000, 9999)}')
+        super(Staff, self).save(*args, **kwargs)
