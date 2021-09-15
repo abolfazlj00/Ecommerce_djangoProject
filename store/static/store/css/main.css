@@ -15,7 +15,7 @@
     box-sizing: border-box;
     outline: none; border:none;
     text-decoration: none;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     transition:.2s linear;
 }
 
@@ -52,25 +52,26 @@ body.active{
     background:#222;
 }
 
-/*!*section{*!*/
-/*!*    padding:1rem 9%;*!*/
-/*!*}*!*/
+section{
+    padding:1rem 9%;
+}
 
-/*!*.heading{*!*/
-/*!*    padding:1rem 0;*!*/
-/*!*    margin-bottom: 2rem;*!*/
-/*!*    border-bottom: .1rem solid var(--light-color);*!*/
-/*!*    font-size: 3rem;*!*/
-/*!*    color:var(--black-color);*!*/
-/*!*    text-transform: uppercase;*!*/
-/*!*}*!*/
+.heading{
+    padding:1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: .1rem solid var(--light-color);
+    font-size: 3rem;
+    color:var(--black-color);
+    text-transform: uppercase;
+}
 
-/*.heading span{*/
-/*    color:var(--orange);*/
-/*    text-transform: uppercase;*/
-/*}*/
+.heading span{
+    color:var(--orange);
+    text-transform: uppercase;
+}
 .footer{
-    color: var(--black-color);
+    background-color: var(--black-color);
+    color: var(--white-color);
     text-align: center;
     bottom: 0;
     padding: 0.2em;
@@ -82,21 +83,21 @@ header #k{
     color: var(--orange);
 }
 
-/*.btn{*/
-/*    display: inline-block;*/
-/*    margin-top: 1rem;*/
-/*    border-radius: 5rem;*/
-/*    background: var(--black-color);*/
-/*    color:var(--white-color);*/
-/*    font-size: 1.8rem;*/
-/*    padding:.9rem 3.5rem;*/
-/*    cursor: pointer;*/
-/*}*/
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background: var(--black-color);
+    color:var(--white-color);
+    font-size: 1.8rem;
+    padding:.9rem 3.5rem;
+    cursor: pointer;
+}
 
-/*.btn:hover{*/
-/*    background:var(--orange);*/
-/*    color:#fff;*/
-/*}*/
+.btn:hover{
+    background:var(--orange);
+    color:#fff;
+}
 
 header{
     width: 100%;
@@ -263,13 +264,13 @@ header.active{
         padding:1.5rem;
     }
 
-    /*section{*/
-    /*    padding:1.5rem;*/
-    /*}*/
+    section{
+        padding:1.5rem;
+    }
 
-    /*.home .content h3{*/
-    /*    font-size: 5rem;*/
-    /*}*/
+    .home .content h3{
+        font-size: 5rem;
+    }
 
 }
 
@@ -288,13 +289,13 @@ header.active{
         transform: translateY(-12.5rem);
     }
 
-    /*.home .content{*/
-    /*    text-align: center;*/
-    /*}*/
+    .home .content{
+        text-align: center;
+    }
 
-    /*.home .image img{*/
-    /*    width: 100%;*/
-    /*}*/
+    .home .image img{
+        width: 100%;
+    }
 
 }
 

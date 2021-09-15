@@ -19,72 +19,69 @@
 <body>
 
 
-<div class="base">
-    <header>
+<header>
 
-        <a href="#" class="logo"><b id="k">K</b>ama<span>.</span></a>
+    <a href="#" class="logo"><b id="k">K</b>ama<span>.</span></a>
 
-        <form action="">
-            <input type="search" id="search-bar">
-            <label for="search-bar" class="fas fa-search"></label>
-        </form>
+    <form action="">
+        <input type="search" id="search-bar">
+        <label for="search-bar" class="fas fa-search"></label>
+    </form>
 
-        <div class="icons">
-            <div id="menu-bar" class="fas fa-bars"></div>
-            <div id="theme-toggler" class="fas fa-moon"></div>
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-shopping-cart"></a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'account:logout' %}" class="fas fa-sign-out-alt"></a>
-            {% else %}
-                <a href="{% url 'account:login' %}" class="fas fa-user"></a>
-            {% endif %}
+    <div class="icons">
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <div id="theme-toggler" class="fas fa-moon"></div>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'account:logout' %}" class="fas fa-sign-out-alt"></a>
+        {% else %}
+            <a href="{% url 'account:login' %}" class="fas fa-user"></a>
+        {% endif %}
 
-        </div>
+    </div>
 
-    </header>
+</header>
 
-    <!-- header section ends -->
+<!-- header section ends -->
 
-    <!-- navbar section  -->
+<!-- navbar section  -->
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <div class="user">
-            {% if user.is_authenticated %}
-                <img src="" alt="">
-                <h3>{{ user.first_name }}  {{ user.last_name }}</h3>
-            {% else %}
-                <img src="" alt="">
-                <h3></h3>
-            {% endif %}
+    <div class="user">
+        {% if user.is_authenticated %}
+            <img src="" alt="">
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        {% else %}
+            <img src="" alt="">
+            <h3></h3>
+        {% endif %}
 
-        </div>
+    </div>
 
-        <div class="links">
-            <a href="{% url 'store:home' %}">home</a>
-            <a href="#">products</a>
-            <a href="#">featured</a>
-            <a href="#">deal</a>
-            <a href="#">review</a>
-        </div>
+    <div class="links">
+        <a href="{% url 'store:home' %}">home</a>
+        <a href="{% url 'account:profile' %}">profile</a>
+        <a href="#">featured</a>
+        <a href="#">deal</a>
+        <a href="#">review</a>
+    </div>
 
-        <div id="close" class="fas fa-times"></div>
+    <div id="close" class="fas fa-times"></div>
 
-    </nav>
-</div>
+</nav>
 
+{% block sidebar %}{% endblock %}
+{% block content %}{% endblock %}
 
-<div class="main-content container-fluid p-0">
-    {% block sidebar %}{% endblock %}
-    {% block content %}{% endblock %}
-</div>
 <div class="container-fluid footer">
     <p class="text-center mb-0">
         Copyright @2017 | Designed With by abolfazlj00
     </p>
-    </div>
+</div>
 <script src="{% static 'store/js/base.js' %}"></script>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 {% block loadJs %}
 {% endblock %}
 </body>
