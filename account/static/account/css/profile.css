@@ -12,7 +12,7 @@
     /*min-width: 38px;*/
     /*text-align: center;*/
     /*height: 370px;*/
-    background: var(--black-color);
+    background: #333;
     box-shadow: 3px 3px 10px rgba(119,119,119,0.5);
     border: 0.3em solid #fff;
 }
@@ -27,7 +27,7 @@
     text-align: center;
     list-style: none;
     padding: 35px 0;
-    color: var(--white-color);
+    color: #fff;
     font-size: 1.7rem;
     transition: all 0.3s ease-in-out;
 }
