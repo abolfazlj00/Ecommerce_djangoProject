@@ -1,0 +1,89 @@
+.profile-div {
+    width: 100%;
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    min-height: 800px;
+}
+
+.profile-div .leftbox{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /*min-width: 38px;*/
+    /*text-align: center;*/
+    /*height: 370px;*/
+    background: var(--black-color);
+    box-shadow: 3px 3px 10px rgba(119,119,119,0.5);
+    border: 0.3em solid #fff;
+}
+.profile-div nav{
+    margin: auto 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.profile-div nav a{
+    text-align: center;
+    list-style: none;
+    padding: 35px 0;
+    color: var(--white-color);
+    font-size: 1.7rem;
+    transition: all 0.3s ease-in-out;
+}
+.profile-div nav a:hover{
+    color: var(--orange);
+    cursor: pointer;
+    transform: scale(1.2);
+}
+.profile-div nav a.active{
+    color: var(--orange);
+}
+.profile-div .rightbox{
+    height: 100%;
+    padding-top: 17px;
+    padding-left: 7px;
+    width: 100%;
+}
+.profile-div .tabShow {
+    transition: all 0.5s ease-in;
+    width: 100%;
+}
+.profile-div h1 {
+    color: var(--orange);
+    font-size: 2.1rem;
+    margin-bottom: 35px;
+}
+.profile-div h2{
+    color: #777;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+    margin-left: 2px;
+    margin-top: 20px;
+    margin-bottom: 2px;
+}
+.profile-div .input, .profile-div p, .profile-div select{
+    border: 0;
+    border-bottom: 1px solid var(--border-blue);
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 7px;
+    color: #070707;
+    outline: none;
+}
+.profile-div .btn {
+    font-family: "roboto", sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    border: 0;
+    color: #fff;
+    background: #7ed386;
+    padding: 7px 15px;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+    margin-top: 15px;
+}
+.profile-div .tabShow {
+    display: none;
+}
