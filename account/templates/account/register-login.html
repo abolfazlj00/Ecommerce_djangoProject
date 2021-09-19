@@ -19,12 +19,15 @@
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" name="username" id="username" placeholder="Username" required/>
+                        <input type="text" name="username" id="log-username" placeholder="Username" required/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="password" id="password" placeholder="Password" required/>
+                        <input type="password" name="password" id="log-password" placeholder="Password" required/>
                     </div>
+                    {% if log_error %}
+                        <p>Forget password?? <a href="">send email</a></p>
+                    {% endif %}
                     <input type="submit" value="Login" class="btn solid"/>
                     <p class="social-text">Or Sign in with social platforms</p>
                     <div class="social-media">
@@ -42,7 +45,8 @@
                         </a>
                     </div>
                 </form>
-                <form action="{% url 'api_account:registration' %}" class="sign-up-form" method="post">
+                <form action="{% url 'api_account:registration' %}" class="sign-up-form" id="register_form"
+                      method="post">
                     {% csrf_token %}
                     {% if reg_error %}
                         <div class="for_error">
@@ -75,7 +79,7 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" id="password" name="password" placeholder="Password" required/>
                     </div>
-                    <input type="submit" class="btn" value="Sign up"/>
+                    <input type="submit" class="btn" id="register-btn" value="Sign up"/>
                     <p class="social-text">Or Sign up with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">

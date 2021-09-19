@@ -3,13 +3,13 @@ const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 
 sign_up_btn.addEventListener("click", () => {
-  container.classList.add("sign-up-mode");
+    container.classList.add("sign-up-mode");
 });
 sign_in_btn.addEventListener("click", () => {
-  container.classList.remove("sign-up-mode");
+    container.classList.remove("sign-up-mode");
 });
 
-if (document.getElementById('registerState')){
+if (document.getElementById('registerState')) {
     registerState = document.getElementById('registerState')
     if (registerState.checked === true) {
         sign_up_btn.click()
@@ -17,3 +17,37 @@ if (document.getElementById('registerState')){
 }
 
 
+var registerForm = document.querySelector('#register_form')
+const csrftoken = registerForm.getElementsByTagName("input")[0].value
+registerForm.addEventListener('submit', async function (e) {
+    e.preventDefault() // avoid to execute the actual submit of the form.
+    var url = this.getAttribute('action')
+    const formData = new FormData(registerForm)
+    const formDataSerialized = Object.fromEntries(formData)
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(formDataSerialized),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            }
+        })
+        const json = await response.json()
+        if (json['username']) {
+            const signInBtn = document.getElementById('sign-in-btn')
+            signInBtn.click()
+            const username = document.getElementById('log-username')
+            const password = document.getElementById('log-password')
+            username.value = json['username']
+            password.value = json['password']
+        } else {
+            alert(json['resp'])
+        }
+    } catch (e) {
+        console.log(e)
+        alert('something wrong, try again')
+    }
+
+
+})
