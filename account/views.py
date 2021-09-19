@@ -35,3 +35,8 @@ def logoutUser(request):
 @login_required
 def profile(request):
     return render(request, 'account/profile.html')
+
+@login_required
+def editProfile(request):
+    if request.method == 'POST':
+        return 'hi'
