@@ -1,14 +1,10 @@
 import re
 from string import ascii_letters
-
-from django.shortcuts import render, redirect
-from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from account.api.serializers import RegistrationSerializer
 from account.models import CustomUser
-from account.views import loginUser
 from customer.models import Customer
 
 
@@ -26,6 +22,9 @@ def usernameValidation(username):
 
 
 def passwordValidation(password):
+    if len(password) < 8:
+        error = 'password is too short. It must be at least 8 characters'
+        return error
     for letter in password:
         if letter not in ascii_letters and letter not in '0123456789':
             error = 'please use only letters (a-z,A-Z), numbers for password'
@@ -86,19 +85,27 @@ def registerUser(request, username, password, phone, email=None):
 
 @api_view(['POST', ])
 def registrationView(request):
+    data = {}
     if request.method == 'POST':
-        serializer = RegistrationSerializer(data=request.data)
-        serializer.is_valid(raise_exception=False)
-        username = request.data['username']
-        password = request.data['password']
-        phone = request.data['phone']
-        email = request.data['email']
-        resp = registerUser(request, username, password, phone, email)
-        if resp == 'True':
-            user = serializer.save()
-            createCustomer(user)
-            return loginUser(request, username, password)
-        return render(request, 'account/register-login.html', context={'reg_error': resp, 'register': 'True'})
+        try:
+            serializer = RegistrationSerializer(data=request.data)
+            serializer.is_valid(raise_exception=False)
+            username = request.data['username']
+            password = request.data['password']
+            phone = request.data['phone']
+            email = request.data['email']
+            resp = registerUser(request, username, password, phone, email)
+            if resp == 'True':
+                user = serializer.save()
+                createCustomer(user)
+                data['username'] = username
+                data['password'] = password
+                # return loginUser(request, username, password)
+            data['resp'] = resp
+            return Response(data)
+        except:
+            data['wrong input'] = 'Wrong Input'
+            return Response(data)
 
 
 def createCustomer(user):
