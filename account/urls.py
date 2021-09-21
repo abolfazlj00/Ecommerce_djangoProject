@@ -1,10 +1,13 @@
 from django.urls import path
 
-from account.views import rgisterLogin, logoutUser, profile
+from account.views import rgisterLogin, logoutUser, profile, editProfilePersonalInfo, changePassword, sendEmail
 
 app_name = 'account'
 urlpatterns = [
     path('sign-in/', rgisterLogin, name='login'),
     path('logout/', logoutUser, name='logout'),
     path('profile/', profile, name='profile'),
+    path('edit-personal-info/', editProfilePersonalInfo, name='edit-information'),
+    path('change-password/', changePassword, name='change-password'),
+    path('send-email/<str:username>/', sendEmail, name='send-email'),
 ]
