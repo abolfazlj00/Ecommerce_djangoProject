@@ -51,3 +51,25 @@ registerForm.addEventListener('submit', async function (e) {
 
 
 })
+
+// forget pass and send email
+if (document.getElementById('send_email_link')) {
+
+    const sendEmailBtn = document.getElementById('send_email_link')
+    sendEmailBtn.addEventListener('click', async function () {
+        var inputUsername = document.getElementById('log-username').value
+        if (inputUsername === '') {
+            alert('Enter your username to send you email')
+        } else {
+            var url = 'http://127.0.0.1:8000/account/send-email/' + inputUsername + '/'
+            var response = await fetch(url)
+            var javab = await response.text()
+            if (javab === 'False') {
+                alert('This username is not exist !!!')
+            }
+            else {
+                alert('A message has been send to your email')
+            }
+        }
+    })
+}
