@@ -4,8 +4,6 @@ from .models import CustomUser
 
 
 class CustomUserAdmin(UserAdmin):
-    # add_form = CustomUserCreationForm
-    # form = CustomUserChangeForm
     model = CustomUser
     list_display = ('username', 'phone', 'first_name', 'last_name', 'is_staff', 'is_active', 'is_superuser')
     list_filter = ('phone', 'is_staff', 'is_active',)
