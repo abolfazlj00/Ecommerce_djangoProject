@@ -17,7 +17,7 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_superuser(self,username, phone, password, **extra_fields):
+    def create_superuser(self, username, phone, password, **extra_fields):
         """
         Create and save a SuperUser with the given phone and password.
         """
@@ -31,10 +31,18 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
+    gender_list = [
+        ('None', 'None'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other')
+    ]
     username = models.CharField(max_length=50, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=13, unique=True)
+    gender = models.CharField(choices=gender_list, max_length=6, blank=True, null=True)
+    age = models.PositiveIntegerField(null=True, blank=True)
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone']
