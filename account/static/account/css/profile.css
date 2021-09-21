@@ -4,7 +4,22 @@
     /*flex-direction: row;*/
     min-height: 800px;
 }
-
+.profile-div .for_error {
+    padding: 0 25%;
+    text-align: center;
+}
+.profile-div .for_error>p {
+    color: var(--white-text-error);!important;
+    background: var(--red-error);
+}
+.profile-div .for_edited{
+    padding: 0 25%;
+    text-align: center;
+}
+.profile-div .for_edited>p {
+    color: var(--white-text-success);!important;
+    background: var(--green-success);
+}
 .profile-div .leftbox{
     display: flex;
     flex-direction: row;

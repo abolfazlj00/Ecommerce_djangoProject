@@ -30,6 +30,11 @@
 .for_error>p{
     font-size: 1.9rem;
 }
+
+.forget {
+    margin: 6px auto;
+    font-size: 1.4rem;
+}
 .register-login .forms-container {
     position: absolute;
     width: 100%;

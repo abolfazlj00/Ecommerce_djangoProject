@@ -8,6 +8,10 @@
     --dark-blue: #161F4A;
     --btn-orange: #ff9500;
     --border-blue: #3fb6a8;
+    --red-error : #ff0000;
+    --green-success: #2eb324;
+    --white-text-error: #fff;
+    --white-text-success: #fff;
 }
 
 *{
@@ -51,6 +55,10 @@ body.active{
     --black-color:#fff;
     --light-color:rgba(255,255,255,.3);
     --border-blue: #ff9500;
+    --red-error: #fff;
+    --green-success: #fff;
+    --white-text-error: #ff0000;
+    --white-text-success: #2eb324;
     background:#222;
 }
 
