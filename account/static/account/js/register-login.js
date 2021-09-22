@@ -63,13 +63,8 @@ if (document.getElementById('send_email_link')) {
         } else {
             var url = 'http://127.0.0.1:8000/account/send-email/' + inputUsername + '/'
             var response = await fetch(url)
-            var javab = await response.text()
-            if (javab === 'False') {
-                alert('This username is not exist !!!')
-            }
-            else {
-                alert('A message has been send to your email')
-            }
+            let javab = await response.text()
+            alert(javab)
         }
     })
 }
