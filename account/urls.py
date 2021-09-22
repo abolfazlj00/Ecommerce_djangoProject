@@ -1,6 +1,7 @@
 from django.urls import path
 
-from account.views import rgisterLogin, logoutUser, profile, editProfilePersonalInfo, changePassword, sendEmail
+from account.views import rgisterLogin, logoutUser, profile, editProfilePersonalInfo, changePassword, sendEmail, \
+    resetPassword
 
 app_name = 'account'
 urlpatterns = [
@@ -10,4 +11,5 @@ urlpatterns = [
     path('edit-personal-info/', editProfilePersonalInfo, name='edit-information'),
     path('change-password/', changePassword, name='change-password'),
     path('send-email/<str:username>/', sendEmail, name='send-email'),
+    path('reset-password/<str:token>/', resetPassword, name='reset-password'),
 ]
