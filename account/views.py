@@ -1,11 +1,15 @@
 import re
+import uuid
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.http import response, HttpResponse
 from django.shortcuts import render, redirect
 from string import ascii_letters
 from account.api.views import emailValidation
 from account.models import CustomUser
+from django.conf import settings
 
 
 def loginUser(request, username, password):
@@ -80,10 +84,49 @@ def changePassword(request):
         return HttpResponse('alooooo')
 
 
+def secretEmail(email):
+    for i in range(len(email)):
+        if email[i] == '@':
+            j = i - 4
+            secret_email = email[:4] + '*' * j + email[i:]
+            return secret_email
+
+
+def sendForgetPassMail(email, token):
+    subject = 'Your reset password link'
+    message = f'Hi, click on the link to reset your password http://127.0.0.1:8000/account/reset-password/{token}/'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+    return True
+
+
 def sendEmail(request, username):
     try:
         user = CustomUser.objects.get(username=username)
-        print(user)
-        return HttpResponse('True')
+        username = user.username
+        secret_user_email = secretEmail(user.email)
+        if user.email == '':
+            return HttpResponse('There is not any email for this username !!!')
+        else:
+            token = str(uuid.uuid4())
+            user.forget_pass_token = token
+            user.save()
+            sendForgetPassMail(user.email, token)
+            return HttpResponse(f'An email sent to {secret_user_email}')
+    except Exception as e:
+        print(e)
+        return HttpResponse('This username is not exist !!!')
+
+
+def resetPassword(request, token):
+    if request.method == 'POST':
+        return HttpResponse('post')
+    try:
+        user_obj = CustomUser.objects.get(forget_pass_token=token)
+        context = {
+            'user_obj': user_obj
+        }
+        return render(request, 'account/reset_password.html', context)
     except:
-        return HttpResponse('False')
+        return HttpResponse('Not user found !!!')
