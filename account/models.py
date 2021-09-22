@@ -43,6 +43,7 @@ class CustomUser(AbstractUser):
     phone = models.CharField(max_length=13, unique=True)
     gender = models.CharField(choices=gender_list, max_length=6, blank=True, null=True)
     age = models.PositiveIntegerField(null=True, blank=True)
+    forget_pass_token = models.CharField(max_length=225, blank=True, null=True)
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone']
