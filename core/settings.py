@@ -91,6 +91,14 @@ DATABASES = {
     #     'HOST': '127.0.0.1',
     #     'PORT': '5432',
     # },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'Ecommerce',
+    #     'USER': 'admin',
+    #     'PASSWORD': '123456',
+    #     'HOST': '0.0.0.0',
+    #     'PORT': '5432',
+    # }
 }
 
 DATABASES['default'] = DATABASES['dev' if DEBUG else 'production']
@@ -141,3 +149,8 @@ LOGIN_URL = '/account/sign-in/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'djangomail10@gmail.com'
