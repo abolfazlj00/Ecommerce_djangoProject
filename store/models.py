@@ -1,15 +1,11 @@
 from datetime import datetime
 from random import random, randint
-
-from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
 from django.utils.translation import gettext_lazy as _
 
 from account.models import CustomUser
-
-User = get_user_model()
 
 
 class Category(models.Model):
@@ -56,9 +52,10 @@ class Discount(models.Model):
 
 
 class Staff(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     staff_code = models.PositiveIntegerField(default=0, unique=True)
 
     def save(self, *args, **kwargs):
         self.staff_code = int(f'{datetime.now().year}{datetime.now().month}{datetime.now().day}{randint(1000, 9999)}')
+        self.user.is_staff = True
         super(Staff, self).save(*args, **kwargs)
