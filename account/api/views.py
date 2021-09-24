@@ -1,9 +1,13 @@
 import re
 from string import ascii_letters
+
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from account.api.serializers import RegistrationSerializer
+from account.api.serializers import RegistrationSerializer, ChangePassSerializer
 from account.models import CustomUser
 from customer.models import Customer
 
@@ -83,6 +87,12 @@ def registerUser(request, username, password, phone, email=None):
         return error
 
 
+def createCustomer(user):
+    new_customer = Customer(user=user)
+    new_customer.save()
+    print(Customer.objects.all())
+
+
 @api_view(['POST', ])
 def registrationView(request):
     data = {}
@@ -100,7 +110,6 @@ def registrationView(request):
                 createCustomer(user)
                 data['username'] = username
                 data['password'] = password
-                # return loginUser(request, username, password)
             data['resp'] = resp
             return Response(data)
         except:
@@ -108,7 +117,19 @@ def registrationView(request):
             return Response(data)
 
 
-def createCustomer(user):
-    new_customer = Customer(user=user)
-    new_customer.save()
-    print(Customer.objects.all())
+@login_required
+@api_view(['PUT', ])
+def changePassword(request, username):
+    data = {}
+    if request.method == 'PUT':
+        serializer = ChangePassSerializer(data=request.data)
+        serializer.is_valid(raise_exception=False)
+        password = request.data['password']
+        resp = passwordValidation(password)
+        data['resp'] = resp
+        if resp == 'True':
+            user = CustomUser.objects.get(username=username)
+            user.set_password(password)
+            user.save()
+            login(request, user)
+        return Response(data)

@@ -43,33 +43,53 @@ tabBtn.forEach(function (icon) {
 
 
 // change password without reloading
-const pass1 = document.getElementById('password').value
-const pass2 = document.getElementById('confirm_password').value
 const changePassForm = document.getElementById('change_pass')
 changePassForm.addEventListener('submit', async function (e) {
-    console.log(pass2, pass1)
     e.preventDefault() // avoid to execute the actual submit of the form.
+    const username = document.getElementById('pass_username').value
+    const pass1 = document.getElementById('password').value
+    const pass2 = document.getElementById('confirm_password').value
+    const url = 'http://127.0.0.1:8000/api/account/change-password/' + username + '/'
     const changePassFormData = new FormData(changePassForm)
-    const url = changePassForm.getAttribute('action')
-    const formDataSerialized = Object.fromEntries(changePassFormData)
-    const csrf_token = changePassForm.getElementsByTagName("input")[0].value
+    const passFormDataSerialized = Object.fromEntries(changePassFormData)
+    const csrfToken = changePassForm.getElementsByTagName("input")[0].value
     if (pass1 === pass2) {
         try {
             const response = await fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(formDataSerialized),
+                method: 'PUT',
+                body: JSON.stringify(passFormDataSerialized),
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': csrf_token
+                    'X-CSRFToken': csrfToken
                 }
             })
             const json = await response.json()
-            console.log(json)
+            if (json['resp'] === 'True') {
+                const messageDiv = document.getElementById('resp_true')
+                if (document.getElementById('resp_error')) {
+                    document.getElementById('resp_error').style.display = 'none'
+                }
+                messageDiv.style.display = 'block'
+            } else {
+                const errorDiv = document.getElementById('resp_error')
+                const errorP = document.getElementById('resp_error_p')
+                errorP.innerHTML = json['resp']
+                if (document.getElementById('resp_true')) {
+                    document.getElementById('resp_true').style.display = 'none'
+                }
+                errorDiv.style.display = 'block'
+            }
         } catch (e) {
             console.log(e)
             alert('something wrong, try again')
         }
     } else {
-        alert('The password and its confirm do not match')
+        const errorDiv = document.getElementById('resp_error')
+        const errorP = document.getElementById('resp_error_p')
+        errorP.innerHTML = 'The password and its confirm do not match'
+        if (document.getElementById('resp_true')) {
+            document.getElementById('resp_true').style.display = 'none'
+        }
+        errorDiv.style.display = 'block'
     }
 })

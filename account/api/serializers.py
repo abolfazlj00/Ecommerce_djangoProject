@@ -19,3 +19,14 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+
+class ChangePassSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+    confirm_password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['password', 'confirm_password']
+        extra_kwargs = {'password': {'write_only': True}, 'confirm_password': {'write_only': True}}
+

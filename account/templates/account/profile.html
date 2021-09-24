@@ -91,15 +91,22 @@
                     </div>
                 </form>
 
-                <form id="change_pass" action="{% url 'account:change-password' %}" method="post">
+                <form id="change_pass" action="#" method="post">
                     {% csrf_token %}
                     <div class="Privacy tabShow">
                         <h1>Security Info</h1>
+                        <div class="for_edited" id="resp_true" style="display: none">
+                            <p>Your personal information edited successfully</p>
+                        </div>
+                        <div class="for_error" id="resp_error" style="display: none">
+                            <p id="resp_error_p"></p>
+                        </div>
                         <h2>Password</h2>
-                        <input type="password" class="input" id="password" value="somepass">
+                        <input type="hidden" name="username" id="pass_username" value="{{ user.username }}">
+                        <input type="password" class="input" name="password" id="password" required>
                         <h2>Confirm Password</h2>
-                        <input type="password" class="input" id="confirm-password" value="somepass"><br>
-                        <input type="submit" class="btn" value="Update">
+                        <input type="password" class="input" name="confirm_password" id="confirm_password" required><br>
+                        <input type="submit" id="pass_btn" class="btn" value="Update">
                     </div>
                 </form>
                 <form action="">
