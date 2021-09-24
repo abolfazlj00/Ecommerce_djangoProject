@@ -166,7 +166,7 @@ header .icons div,
 header .icons a{
     height: 4rem;
     width: 4rem;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     line-height: 4rem;
     background: var(--black-color);
     color:var(--white-color);
@@ -175,7 +175,12 @@ header .icons a{
     cursor: pointer;
     margin-right: .7rem;
 }
-
+header #total_cart {
+    margin: 0;
+    margin-left: 2px;
+    padding: 0;
+    color: var(--white-text-error);
+}
 header .icons div:hover,
 header .icons a:hover{
     background: var(--orange);
