@@ -22,6 +22,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('account/', include('account.urls')),
                   path('store/', include('store.urls')),
+                  path('order/', include('order.urls')),
 
                   # REST API
                   path('api/account/', include('account.api.urls')),
