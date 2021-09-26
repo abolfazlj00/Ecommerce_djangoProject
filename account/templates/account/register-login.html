@@ -15,6 +15,9 @@
                             <p>{{ log_error }}</p>
                         </div>
                     {% endif %}
+                    {% if request.GET.next %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    {% endif %}
                     <input type="text" name="type" id="type" value="login" hidden>
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
@@ -27,7 +30,7 @@
                     </div>
                     {% if log_error %}
                         <div class="forget">
-                        <p>Forget password?? <a id="send_email_link" >Send email</a></p>
+                            <p>Forget password?? <a id="send_email_link">Send email</a></p>
                         </div>
                     {% endif %}
                     <input type="submit" value="Login" class="btn solid"/>
