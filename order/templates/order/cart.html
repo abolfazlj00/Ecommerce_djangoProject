@@ -1,0 +1,55 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block loadCss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order/css/cart.css' %}">
+{% endblock %}
+{% block title %}cart{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+    <section class="cart_section bg-primary" id="cart_items">
+
+        <div class="wrap cf">
+            <div class="heading cf">
+                <h1>My Cart</h1>
+                <a href="{% url 'store:home' %}" class="continue">Continue Shopping</a>
+            </div>
+            <div class="cart">
+                <ul class="cartWrap" id="user_product_list">
+
+                </ul>
+            </div>
+
+            <div class="promoCode"><label for="promo">
+                Have A Promo Code?
+            </label>
+                {% if user.is_authenticated %}
+                    <input type="text" name="promo"
+                           id="promo"
+                           placeholder="Enter Code..."/>
+                    <a href="#" class="btn"></a>
+                {% else %}
+                    <input type="text" name="promo"
+                           id="promo" disabled
+                           value="Login First..."/>
+                {% endif %}
+            </div>
+
+            <div class="subtotal cf">
+                <ul>
+                    <li class="totalRow"><span class="label">Subtotal</span><span id="total_products_price" class="value"></span></li>
+
+                    <li class="totalRow"><span class="label">Shipping</span><span id="shipping_price" class="value"></span></li>
+
+                    <li class="totalRow"><span class="label">Tax</span><span id="tax_price" class="value"></span></li>
+                    <li class="totalRow final"><span class="label">Total</span><span id="total_price" class="value"></span></li>
+                    <li class="totalRow"><a href="#" id="checkout" class="btn continue">Checkout</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+{% block loadJs %}
+    <script src="{% static 'order/js/order.js' %}"></script>
+{% endblock %}
