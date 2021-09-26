@@ -15,8 +15,8 @@ def loginUser(request, username, password):
     user = authenticate(phone=username, password=password) or authenticate(username=username, password=password)
     if user:
         login(request, user)
-        if 'next' in request.GET:
-            return redirect(request.GET['next'])
+        if 'next' in request.POST:
+            return redirect(request.POST['next'])
         return redirect('store:home')
     else:
         return render(request, 'account/register-login.html', context={
