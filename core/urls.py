@@ -26,4 +26,5 @@ urlpatterns = [
 
                   # REST API
                   path('api/account/', include('account.api.urls')),
+                  path('api/store/', include('store.api.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
