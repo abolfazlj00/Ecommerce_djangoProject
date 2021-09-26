@@ -4,13 +4,14 @@ from random import random, randint
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from account.models import CustomUser
 from store.models import Product
 
 User = get_user_model()
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     customer_id = models.PositiveSmallIntegerField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
