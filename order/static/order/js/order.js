@@ -1,11 +1,7 @@
-if (localStorage.getItem(login_user)) {
-    document.getElementById('total_cart').innerHTML = JSON.parse(localStorage.getItem(login_user)).length
-}
-if (JSON.parse(localStorage.getItem(login_user)).length !== 0) {
-    var shipping_price = document.getElementById('shipping_price')
+const shipping_price = document.getElementById('shipping_price')
+if (Object.keys(JSON.parse(localStorage.getItem(login_user))).length !== 0) {
     shipping_price.innerHTML = '10000'
 }
-
 
 function createHtml(product) {
     let product_ul = document.getElementById('user_product_list')
@@ -27,7 +23,7 @@ function createHtml(product) {
     quantityInput.setAttribute('type', 'number')
     quantityInput.setAttribute('min', '1')
     quantityInput.setAttribute('max', `${product.stock}`)
-    quantityInput.setAttribute('value', '1')
+    quantityInput.setAttribute('value', userOrders[product.id])
     quantityInput.classList.add('qty')
     quantityInput.setAttribute('data-price', `${product.price}`)
     quantityInput.setAttribute('data-id', `${product.id}`)
@@ -45,7 +41,7 @@ function createHtml(product) {
     let thirdP = document.createElement('p')
     thirdP.setAttribute('id', `total_price_${product.id}`)
     thirdP.classList.add('tot_price')
-    thirdP.innerHTML = product.price
+    thirdP.innerHTML = quantityInput.value * product.price
     thirdDiv.appendChild(thirdP)
     firstDiv.appendChild(thirdDiv)
     let forthDiv = document.createElement('div')
@@ -70,53 +66,42 @@ fetch(url, {
         return response.json()
     })
     .then((products) => {
-        var userProducts = []
         if (userOrders) {
-            for (let i = 0; i < userOrders.length; i++) {
-                var userProductId = userOrders[i]
-                for (let j = 0; j < products.length; j++) {
-                    if (products[j].id.toString() === userProductId) {
-                        userProducts.push(products[j])
-                    }
+            for (let j = 0; j < products.length; j++) {
+                if (Object.keys(userOrders).includes(products[j].id.toString())) {
+                    createHtml(products[j])
+                    calcPrice()
                 }
             }
         }
-        for (let userProduct of userProducts) {
-            // console.log(userProduct)
-            createHtml(userProduct)
-            calcPrice()
-        }
+
         var removes = document.getElementsByClassName('remove')
         for (let i = 0; i < removes.length; i++) {
             removes[i].addEventListener('click', function (e) {
                 e.preventDefault()
                 this.parentElement.parentElement.parentElement.style.display = 'none'
-                for (let product of userProducts) {
-                    if (product.id.toString() === removes[i].dataset.product) {
-                        var proPriceP = document.getElementById(`total_price_${product.id}`)
-                        proPriceP.innerHTML = 0
-                        let proIndex = userProducts.indexOf(product)
-                        userProducts = [...userProducts.slice(0, proIndex), ...userProducts.slice(proIndex + 1)]
-                        document.getElementById('total_cart').innerHTML -= 1
-                        let locIndex = userOrders.indexOf(product.id.toString())
-                        userOrders = [...userOrders.slice(0, locIndex), ...userOrders.slice(locIndex + 1)]
-                        localStorage.setItem(login_user, JSON.stringify(userOrders))
-                    }
-                }
+                let delProId = removes[i].dataset.product
+                delete userOrders[delProId]
+                localStorage.setItem(login_user, JSON.stringify(userOrders))
+                document.getElementById('total_cart').innerHTML -= 1
+                var proPriceP = document.getElementById(`total_price_${delProId}`)
+                proPriceP.innerHTML = 0
                 calcPrice()
             })
         }
-        var quantitiesInputs = document.getElementsByClassName('qty')
+        const quantitiesInputs = document.getElementsByClassName('qty')
         for (let i = 0; i < quantitiesInputs.length; i++) {
+            quantitiesInputs[i].value = userOrders[quantitiesInputs[i].dataset.id]
             quantitiesInputs[i].addEventListener('change', function () {
                 var min = this.getAttribute('min')
                 var max = this.getAttribute('max')
                 var proId = this.dataset.id
                 var unitPrice = this.dataset.price
                 var quantity = this.value
-                console.log(typeof min)
                 if (parseInt(min) > parseInt(quantity)) {
                     alert('Wrong Input for quantity !!!')
+                    this.value = 1
+                    quantity = this.value
                 }
                 if (parseInt(quantity) > parseInt(max)) {
                     alert('Not In Stock')
@@ -126,7 +111,9 @@ fetch(url, {
                 if (parseInt(min) <= parseInt(quantity) <= parseInt(max)) {
                     var productPrice = parseInt(quantity) * unitPrice
                     var proPriceP = document.getElementById(`total_price_${proId}`)
-                    proPriceP.innerHTML = productPrice
+                    proPriceP.innerHTML = productPrice.toString()
+                    userOrders[proId] = parseInt(quantity)
+                    localStorage.setItem(login_user, JSON.stringify(userOrders))
                 }
                 calcPrice()
             })
@@ -134,7 +121,7 @@ fetch(url, {
     })
 
 function calcPrice() {
-    var prices = document.getElementsByClassName('tot_price')
+    let prices = document.getElementsByClassName('tot_price')
     let sum = 0
     for (let price of prices) {
         sum += parseInt(price.innerHTML)
@@ -142,18 +129,30 @@ function calcPrice() {
     if (sum === 0) {
         shipping_price.innerHTML = '0'
     }
-    var shipping = shipping_price.innerHTML
+    let shipping = shipping_price.innerHTML
     let tax = 0.09 * sum
-    var total_products_price = document.getElementById('total_products_price')
+    const total_products_price = document.getElementById('total_products_price')
     total_products_price.innerHTML = `${sum}`
-    var tax_price = document.getElementById('tax_price')
+    const tax_price = document.getElementById('tax_price')
     tax_price.innerHTML = `${tax}`
-    var total_price = document.getElementById('total_price')
+    const total_price = document.getElementById('total_price')
     total_price.innerHTML = `${sum + tax + parseInt(shipping)}`
-
 }
 
 const checkoutBtn = document.getElementById('checkout')
-checkoutBtn.addEventListener('click', function (e){
+checkoutBtn.addEventListener('click', function (e) {
+    const homeLogo = document.getElementById('home_logo')
     e.preventDefault()
+    if (Object.keys(userOrders).length === 0) {
+        alert('Your orderItem is empty')
+        homeLogo.click()
+    } else {
+        if (login_user !== 'AnonymousUser'){
+            console.log(userOrders)
+        }
+        else {
+            alert('Please login first !!!')
+            document.getElementById('login_link').click()
+        }
+    }
 })
