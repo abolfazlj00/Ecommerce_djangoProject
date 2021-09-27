@@ -19,7 +19,7 @@
                     <img src="/media/{{ product.image }}" alt="">
                     <h3>{{ product.title }}</h3>
                     <div class="stars pro-stars" id="{{ product.id }}"></div>
-                    <span>{{ product.price }}T</span><br>
+                    <span>{{ product.price }}<b style="color: var(--black-color);"> T </b></span><br>
                     <a data-product="{{ product.id }}" data-action="add" class="btn update-cart">Add To Cart</a>
                 </div>
             {% endfor %}

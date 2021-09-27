@@ -24,7 +24,7 @@
     height: 5rem;
     width:5rem;
     line-height: 5rem;
-    font-size: 2rem;
+    font-size: 1.2rem;
     color:var(--white-color);
 }
 
@@ -57,15 +57,15 @@
 
 .product .box-container .box h3{
     color:var(--black-color);
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .product .box-container .box .stars{
-    padding:1rem 0;
+    padding:0.5rem 0;
 }
 
 .product .box-container .box .stars i{
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     color:var(--orange);
 }
 .product .box-container .box .stars i.empty{
@@ -75,5 +75,5 @@
     color:var(--orange);
     font-weight: bolder;
     margin-right: 1rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
