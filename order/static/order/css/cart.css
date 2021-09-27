@@ -84,7 +84,7 @@
 
 .cart_section .heading h1 {
     font-family: "Droid Serif", serif;
-    font-size: 1em;
+    font-size: 2.3rem;
     float: left;
 }
 
@@ -92,8 +92,8 @@
 .cart_section .heading a.continue:visited {
     text-decoration: none;
     font-family: "Droid Serif", serif;
-    font-size: 0.7em;
-    padding: 5px;
+    font-size: 1rem;
+    padding: 9px;
     color: #fff;
     background: #82ca9c;
     border-radius: 50px;
@@ -122,23 +122,6 @@
     right: -10px;
 }
 
-.cart_section .tableHead {
-    display: table;
-    width: 100%;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1em;
-}
-
-.cart_section .tableHead li {
-    display: table-cell;
-    padding: 1em 0;
-    text-align: center;
-}
-
-.cart_section .tableHead li.prodHeader {
-    text-align: left;
-}
-
 .cart_section .cart {
     padding: 1em 0;
 }
@@ -162,7 +145,7 @@
 }
 
 .cart_section .cart .items .cartSection h3 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.025em;
@@ -171,7 +154,7 @@
 
 .cart_section .cart .items .cartSection p {
     display: inline-block;
-    font-size: 2em;
+    font-size: 1.5rem;
     color: var(--orange);
 }
 
@@ -184,6 +167,7 @@
     font-weight: bold;
     padding: 0.5em 0 0 1em;
     text-transform: uppercase;
+    margin-left: 15px;
 }
 
 .cart_section .cart .items .cartSection p.stockStatus.out {
@@ -203,11 +187,11 @@
 .cart_section .cart .items .cartSection.qtyWrap p,
 .cart_section .cart .items .cartSection.prodTotal p {
     font-weight: bold;
-    font-size: 1.8em;
+    font-size: 1.5rem;
 }
 
 .cart_section .cart .items .cartSection input.qty {
-    width: 2em;
+    width: 4rem;
     text-align: center;
     font-size: 1em;
     padding: 0;
@@ -215,7 +199,7 @@
 }
 
 .cart_section .cart .items .cartSection .itemImg {
-    width: 8em;
+    width: 10rem;
     display: inline;
     padding-right: 1em;
 }
@@ -228,7 +212,7 @@
     font-weight: bold;
     background: darkgray;
     padding: 0.5em;
-    font-size: 1em;
+    font-size: 1rem;
     display: inline-block;
     border-radius: 100%;
     line-height: 0.85;
@@ -250,7 +234,7 @@
     display: block;
     width: 100%;
     font-style: italic;
-    font-size: 1.35em;
+    font-size: 1.45rem;
     margin-bottom: 0.5em;
     letter-spacing: -0.025em;
     color: var(--black-color);
@@ -258,7 +242,7 @@
 
 .cart_section .promoCode input {
     width: 85%;
-    font-size: 1em;
+    font-size: 1.2rem;
     padding: 0.5em;
     float: left;
     border: 1px solid #dadada;
@@ -289,8 +273,8 @@
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
     letter-spacing: -0.015em;
-    font-size: 1em;
-    padding: 1em 3em;
+    font-size: 1.3rem;
+    padding: 1em 2.5em;
     color: #fff;
     background: #82ca9c;
     font-weight: bold;
@@ -322,7 +306,7 @@
 
 .cart_section .promoCode .btn {
     font-size: 0.85em;
-    paddding: 0.5em 2em;
+    padding: 0.5em 2em;
 }
 
 /* TOTAL AND CHECKOUT  */
@@ -332,7 +316,7 @@
 }
 
 .cart_section .subtotal .totalRow {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     padding: 0.5em;
     text-align: right;
     color: var(--black-color);
@@ -402,9 +386,9 @@
         display: none;
     }
 
-    .cart_section .cart .items .cartSection.removeWrap {
-        display: none;
-    }
+    /*.cart_section .cart .items .cartSection.removeWrap {*/
+    /*    display: none;*/
+    /*}*/
 
     .cart_section .cart .items .cartSection .itemImg {
         width: 25%;

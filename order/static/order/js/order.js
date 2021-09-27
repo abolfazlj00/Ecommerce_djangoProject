@@ -28,7 +28,12 @@ function createHtml(product) {
     quantityInput.setAttribute('data-price', `${product.price}`)
     quantityInput.setAttribute('data-id', `${product.id}`)
     firstP.appendChild(quantityInput)
-    firstP.append(`x ${product.price}`)
+    let bTag = document.createElement('b')
+    bTag.style.color = 'var(--black-color)'
+    bTag.style.margin = 'auto 10px'
+    bTag.innerHTML = 'x '
+    firstP.append(bTag)
+    firstP.append(`${product.price}`)
     secondDiv.appendChild(firstP)
     let secondP = document.createElement('p')
     secondP.classList.add('stockStatus')
@@ -86,6 +91,9 @@ fetch(url, {
                 document.getElementById('total_cart').innerHTML -= 1
                 var proPriceP = document.getElementById(`total_price_${delProId}`)
                 proPriceP.innerHTML = 0
+                if (Object.keys(userOrders).length === 0){
+                    localStorage.removeItem(login_user)
+                }
                 calcPrice()
             })
         }
@@ -152,7 +160,7 @@ checkoutBtn.addEventListener('click', function (e) {
         }
         else {
             alert('Please login first !!!')
-            document.getElementById('login_link').click()
         }
+        location.href = this.getAttribute('href')
     }
 })

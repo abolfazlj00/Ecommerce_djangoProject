@@ -43,7 +43,7 @@
 
                     <li class="totalRow"><span class="label">Tax</span><span id="tax_price" class="value"></span></li>
                     <li class="totalRow final"><span class="label">Total</span><span id="total_price" class="value"></span></li>
-                    <li class="totalRow"><a href="#" id="checkout" class="btn continue">Checkout</a></li>
+                    <li class="totalRow"><a href="{% url 'order:checkout' %}" id="checkout" class="btn continue">Checkout</a></li>
                 </ul>
             </div>
         </div>
