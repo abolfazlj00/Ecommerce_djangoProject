@@ -84,7 +84,17 @@
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script type="text/javascript">
     var login_user = '{{ request.user }}'
-
+    if (!localStorage.getItem(login_user)) {
+        if (localStorage.getItem('AnonymousUser')) {
+            localStorage.setItem(login_user, localStorage.getItem('AnonymousUser'))
+            localStorage.removeItem('AnonymousUser')
+        }
+    }
+    if (login_user !== 'AnonymousUser'){
+        if (localStorage.getItem('AnonymousUser')) {
+            localStorage.removeItem('AnonymousUser')
+        }
+    }
     function getToken(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -104,7 +114,11 @@
     const csrf__token = getToken('csrftoken');
 </script>
 <script>
-    document.getElementById('total_cart').innerHTML = Object.keys(JSON.parse(localStorage.getItem(login_user))).length.toString()
+    if (localStorage.getItem(login_user)) {
+        document.getElementById('total_cart').innerHTML = Object.keys(JSON.parse(localStorage.getItem(login_user))).length.toString()
+    } else {
+        document.getElementById('total_cart').innerHTML = 0
+    }
 </script>
 {% block loadJs %}
 {% endblock %}

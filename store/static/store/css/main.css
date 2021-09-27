@@ -12,6 +12,11 @@
     --green-success: #2eb324;
     --white-text-error: #fff;
     --white-text-success: #fff;
+    --green: #1cbd2c;
+	--grey: #c4c4c4;
+	--white: #ffffff;
+	--padding: 1em;
+
 }
 
 *{
@@ -21,7 +26,11 @@
     outline: none; border:none;
     text-decoration: none;
     /*text-transform: capitalize;*/
-    transition:.2s linear;
+	border: 0;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 html{
@@ -88,7 +97,7 @@ section{
     padding: 0.2em;
 }
 .footer>p{
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 header #k{
     color: var(--orange);
@@ -100,7 +109,7 @@ header #k{
     border-radius: 5rem;
     background: var(--black-color);
     color:var(--white-color);
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     padding:.9rem 3.5rem;
     cursor: pointer;
 }
@@ -125,7 +134,7 @@ header .logo{
     text-transform: uppercase;
     font-weight: bolder;
     color:var(--black-color);
-    font-size: 3rem;
+    font-size: 3.5rem;
 }
 
 header .logo span{
@@ -146,14 +155,14 @@ header form input{
     width: 100%;
     height: 100%;
     background: none;
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     color:var(--white-color);
     padding:0 2rem;
     text-transform: none;
 }
 
 header form label{
-    font-size: 2rem;
+    font-size: 1.2rem;
     padding-right: 2rem;
     color:var(--white-color);
     cursor: pointer;
@@ -165,10 +174,10 @@ header form label:hover{
 
 header .icons div,
 header .icons a{
-    height: 4rem;
-    width: 4rem;
-    font-size: 1.5rem;
-    line-height: 4rem;
+    height: 3rem;
+    width: 3rem;
+    font-size: 1.2rem;
+    line-height: 3rem;
     background: var(--black-color);
     color:var(--white-color);
     text-align: center;
@@ -229,13 +238,13 @@ header.active{
     padding-top: .5rem;
     color:var(--black-color);
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
 .navbar .links a{
     display: block;
     border-bottom: .1rem solid var(--light-color);
-    font-size: 2rem;
+    font-size: 1.7rem;
     padding:1.5rem 0;
     color:var(--black-color);
 }
