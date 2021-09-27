@@ -12,14 +12,6 @@ from store.models import Product
 
 
 def cart(request):
-    #
-    # if request.user.is_authenticated:
-    #     customer = Customer.objects.get(user__username=request.user.username)
-    #     order, created = Order.objects.get(customer=customer, complete=False)
-    #     items = order.orderitem_set.all()
-    #
-    # else:
-    #     pass
     return render(request, 'order/cart.html')
 
 
@@ -47,3 +39,8 @@ def updateItem(request):
         order_item.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+
+@login_required
+def checkout(request):
+    return render(request, 'order/checkout.html')
