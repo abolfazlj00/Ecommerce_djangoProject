@@ -15,32 +15,48 @@ def cart(request):
     return render(request, 'order/cart.html')
 
 
+@login_required
 def updateItem(request):
-    data = json.loads(request.body)
-    product_id = data['productId']
-    action = data['action']
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        product_id = data['productId']
+        quantity = data['quantity']
 
-    username = request.user.username
-    customer = Customer.objects.get(user__username=username)
-    product = Product.objects.get(id=product_id)
+        customer = Customer.objects.get(user=request.user)
+        product = Product.objects.get(id=product_id)
 
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        try:
+            order = Order.objects.get(customer=customer, complete=False)
+        except Order.DoesNotExist:
+            order = Order(customer=customer, complete=False)
+            order.save()
 
-    order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
+        try:
+            order_item = OrderItem.objects.get(order=order, product=product)
+        except OrderItem.DoesNotExist:
+            order_item = OrderItem(order=order, product=product)
 
-    if action == 'add':
-        order_item.quantity += 1
-    elif action == 'remove':
-        order_item.quantity -= 1
+        order_item.quantity = quantity
 
-    order_item.save()
+        order_item.save()
 
-    if order_item.quantity <= 0:
-        order_item.delete()
+        if order_item.quantity <= 0:
+            order_item.delete()
 
-    return JsonResponse('Item was added', safe=False)
+        return JsonResponse('Item was added', safe=False)
 
 
 @login_required
 def checkout(request):
+    if request.method == 'POST':
+        customer = Customer.objects.get(user=request.user)
+        order = Order.objects.get(customer=customer, complete=False)
+        order.complete = True
+        order.save()
+        return JsonResponse('True', safe=False)
     return render(request, 'order/checkout.html')
+
+
+@login_required
+def orderHistory(request):
+    return JsonResponse('history', safe=False)
