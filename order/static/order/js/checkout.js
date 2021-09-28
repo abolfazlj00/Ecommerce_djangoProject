@@ -3,6 +3,7 @@ var stateMax = 3;
 const nextBtn = document.getElementById('next')
 const backBtn = document.getElementById('back')
 
+var userCart = JSON.parse(localStorage.getItem(login_user))
 checkBack()
 
 function checkBack() {
@@ -15,6 +16,15 @@ function checkBack() {
 
 nextBtn.addEventListener('click', function () {
     if (state < stateMax) {
+        if (state === 0) {
+            for (let item in userCart) {
+                sendUserOrder(item, userCart[item])
+            }
+        }
+        if (state === 2) {
+            checkout()
+        }
+
 
         state += 1;
 
@@ -86,3 +96,42 @@ backBtn.addEventListener('click', function () {
     }
 
 });
+
+function sendUserOrder(productId, quantity) {
+    const url = 'http://127.0.0.1:8000/order/update-item/'
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrf__token
+        },
+        body: JSON.stringify({'productId': productId, 'quantity': quantity})
+    })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            console.log({'data': data})
+        })
+}
+
+function checkout() {
+    localStorage.removeItem(login_user)
+    const url_checkout = 'http://127.0.0.1:8000/order/checkout/'
+    fetch(url_checkout, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrf__token,
+        }
+    })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            if (data === 'True'){
+                alert('Sending...')
+            }
+        })
+}
+
