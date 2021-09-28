@@ -64,8 +64,8 @@
         <a href="{% url 'store:home' %}">Home</a>
         <a href="{% url 'account:profile' %}">Profile</a>
         <a href="#">Categories</a>
-        <a href="#">Deal</a>
-        <a href="#">Review</a>
+        <a href="{% url 'order:order-history' %}">History</a>
+        <a href="#">About Us</a>
     </div>
 
     <div id="close" class="fas fa-times"></div>
@@ -110,7 +110,6 @@
         }
         return cookieValue;
     }
-
     const csrf__token = getToken('csrftoken');
 </script>
 <script>
