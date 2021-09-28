@@ -27,7 +27,7 @@ class Order(models.Model):
         return total
 
     def __str__(self):
-        return f'{self.id}--{self.get_cart_total}'
+        return f'{self.customer}--{self.date_ordered}'
 
 
 class OrderItem(models.Model):
@@ -42,7 +42,7 @@ class OrderItem(models.Model):
         return total
 
     def __str__(self):
-        return f'{self.product}--{self.quantity}--{self.order.id}'
+        return f'{self.product}--{self.quantity}'
 
 
 class ShippingAddress(models.Model):
