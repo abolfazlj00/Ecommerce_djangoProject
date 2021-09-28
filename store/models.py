@@ -42,7 +42,7 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.slug
+        return self.title
 
 
 class Discount(models.Model):
