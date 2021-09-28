@@ -1,7 +1,4 @@
 const shipping_price = document.getElementById('shipping_price')
-if (Object.keys(JSON.parse(localStorage.getItem(login_user))).length !== 0) {
-    shipping_price.innerHTML = '10000'
-}
 
 function createHtml(product) {
     let product_ul = document.getElementById('user_product_list')
@@ -62,7 +59,15 @@ function createHtml(product) {
     product_ul.appendChild(product_li)
 }
 
-var userOrders = JSON.parse(localStorage.getItem(login_user))
+var userOrders
+if (JSON.parse(localStorage.getItem(login_user))) {
+    userOrders = JSON.parse(localStorage.getItem(login_user))
+    if (Object.keys(JSON.parse(localStorage.getItem(login_user))).length !== 0) {
+        shipping_price.innerHTML = '10000'
+    }
+} else {
+    userOrders = {}
+}
 const url = 'http://127.0.0.1:8000/api/store/products/'
 fetch(url, {
     method: 'GET',
@@ -91,7 +96,7 @@ fetch(url, {
                 document.getElementById('total_cart').innerHTML -= 1
                 var proPriceP = document.getElementById(`total_price_${delProId}`)
                 proPriceP.innerHTML = 0
-                if (Object.keys(userOrders).length === 0){
+                if (Object.keys(userOrders).length === 0) {
                     localStorage.removeItem(login_user)
                 }
                 calcPrice()
@@ -152,13 +157,10 @@ checkoutBtn.addEventListener('click', function (e) {
     const homeLogo = document.getElementById('home_logo')
     e.preventDefault()
     if (Object.keys(userOrders).length === 0) {
-        alert('Your orderItem is empty')
+        alert('Your cart is empty !!!')
         homeLogo.click()
     } else {
-        if (login_user !== 'AnonymousUser'){
-            console.log(userOrders)
-        }
-        else {
+        if (login_user === 'AnonymousUser') {
             alert('Please login first !!!')
         }
         location.href = this.getAttribute('href')
