@@ -1,0 +1,18 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block loadCss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order/css/order_history.css' %}">
+{% endblock %}
+{% block title %}history{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+    <section class="history_section" id="history_section">
+        {% for order in available_orders %}
+            {{ order. }}
+        {% endfor %}
+    </section>
+{% endblock %}
+{% block loadJs %}
+    <script src="{% static 'order/js/order_history.js' %}"></script>
+{% endblock %}
