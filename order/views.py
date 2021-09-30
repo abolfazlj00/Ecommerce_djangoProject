@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.storage import session
@@ -11,10 +12,12 @@ from order.models import Order, OrderItem
 from store.models import Product
 
 
+# this is a function that just return cart of customer that logged in.
 def cart(request):
     return render(request, 'order/cart.html')
 
 
+# this is a function for update order & orderItem of customer
 @login_required
 def updateItem(request):
     if request.method == 'POST':
@@ -46,6 +49,7 @@ def updateItem(request):
         return JsonResponse('Item was added', safe=False)
 
 
+# this is for checkout the order for customer and complete the order
 @login_required
 def checkout(request):
     if request.method == 'POST':
@@ -57,6 +61,15 @@ def checkout(request):
     return render(request, 'order/checkout.html')
 
 
+# this function return history of orders for 10 days ago
+# orders must be completed.
 @login_required
 def orderHistory(request):
-    return JsonResponse('history', safe=False)
+    login_user = request.user
+    customer = Customer.objects.get(user=login_user)
+    t = timedelta(days=10)
+    ten_days_ago = datetime.now() - t
+    available_orders = Order.objects.filter(customer=customer, date_ordered__range=[ten_days_ago, datetime.now()])
+    return render(request, 'order/order_history.html', context={
+        'available_orders': available_orders
+    })
