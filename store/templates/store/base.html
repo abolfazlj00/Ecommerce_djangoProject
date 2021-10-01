@@ -63,7 +63,13 @@
     <div class="links">
         <a href="{% url 'store:home' %}">Home</a>
         <a href="{% url 'account:profile' %}">Profile</a>
-        <a href="#">Categories</a>
+        <div class="category">
+            <a href="" id="categories" >Categories</a>
+            <ul class="todos" id="todos">
+
+            </ul>
+        </div>
+
         <a href="{% url 'order:order-history' %}">History</a>
         <a href="#">About Us</a>
     </div>
@@ -119,6 +125,7 @@
         document.getElementById('total_cart').innerHTML = 0
     }
 </script>
+<script src="{% static 'store/js/category.js' %}"></script>
 {% block loadJs %}
 {% endblock %}
 </body>
