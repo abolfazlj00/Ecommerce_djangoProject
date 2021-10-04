@@ -48,7 +48,6 @@ class Product(models.Model):
 class Discount(models.Model):
     title = models.CharField(max_length=255)
     amount = models.PositiveIntegerField(help_text='per cent')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 
 class Staff(models.Model):
