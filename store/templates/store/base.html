@@ -64,7 +64,7 @@
         <a href="{% url 'store:home' %}">Home</a>
         <a href="{% url 'account:profile' %}">Profile</a>
         <div class="category">
-            <a href="" id="categories" >Categories</a>
+            <a href="" id="categories">Categories</a>
             <ul class="todos" id="todos">
 
             </ul>
@@ -86,8 +86,12 @@
         Copyright @2021 | Designed With by abolfazlj00
     </p>
 </div>
+
+{# script for load the base file #}
 <script src="{% static 'store/js/base.js' %}"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+{# script for get the username of user and get token #}
 <script type="text/javascript">
     var login_user = '{{ request.user }}'
     if (!localStorage.getItem(login_user)) {
@@ -96,11 +100,12 @@
             localStorage.removeItem('AnonymousUser')
         }
     }
-    if (login_user !== 'AnonymousUser'){
+    if (login_user !== 'AnonymousUser') {
         if (localStorage.getItem('AnonymousUser')) {
             localStorage.removeItem('AnonymousUser')
         }
     }
+
     function getToken(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -116,16 +121,35 @@
         }
         return cookieValue;
     }
+
     const csrf__token = getToken('csrftoken');
 </script>
+
+{# script for show number of user orders on the sign #}
 <script>
     if (localStorage.getItem(login_user)) {
-        document.getElementById('total_cart').innerHTML = Object.keys(JSON.parse(localStorage.getItem(login_user))).length.toString()
-    } else {
-        document.getElementById('total_cart').innerHTML = 0
+        let count = 0
+        let local = JSON.parse(localStorage.getItem(login_user))
+        for (let x in Object.keys(local)) {
+            let pId = Object.keys(local)[x]
+            if (local[pId] !== 0) {
+                count += 1
+            }
+        }
+        document.getElementById('total_cart').innerHTML = count.toString()
     }
 </script>
+
+{# load script of categories #}
 <script src="{% static 'store/js/category.js' %}"></script>
+
+
+ script for prices
+<script>
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+</script>
 {% block loadJs %}
 {% endblock %}
 </body>
