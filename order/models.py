@@ -12,7 +12,7 @@ class Order(models.Model):
 
     @property
     def get_cart_total(self):
-        order_items = self.orderitem_set.all()
+        order_items = self.orderItems.all()
         total = 0
         for item in order_items:
             total += item.get_total
@@ -20,7 +20,7 @@ class Order(models.Model):
 
     @property
     def get_cart_items(self):
-        order_items = self.orderitem_set.all()
+        order_items = self.orderItems.all()
         total = 0
         for item in order_items:
             total += item.quantity
@@ -32,7 +32,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True, related_name='orderItems')
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
