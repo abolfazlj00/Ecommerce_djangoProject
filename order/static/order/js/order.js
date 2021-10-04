@@ -78,7 +78,7 @@ fetch(url, {
     .then((products) => {
         if (userOrders) {
             for (let j = 0; j < products.length; j++) {
-                if (Object.keys(userOrders).includes(products[j].id.toString())) {
+                if (Object.keys(userOrders).includes(products[j].id.toString()) && userOrders[products[j].id.toString()] !== 0) {
                     createHtml(products[j])
                     calcPrice()
                 }
@@ -91,7 +91,7 @@ fetch(url, {
                 e.preventDefault()
                 this.parentElement.parentElement.parentElement.style.display = 'none'
                 let delProId = removes[i].dataset.product
-                delete userOrders[delProId]
+                userOrders[delProId] = 0
                 localStorage.setItem(login_user, JSON.stringify(userOrders))
                 document.getElementById('total_cart').innerHTML -= 1
                 var proPriceP = document.getElementById(`total_price_${delProId}`)
@@ -149,7 +149,8 @@ function calcPrice() {
     const tax_price = document.getElementById('tax_price')
     tax_price.innerHTML = `${tax}`
     const total_price = document.getElementById('total_price')
-    total_price.innerHTML = `${sum + tax + parseInt(shipping)}`
+    let tot = sum + tax + parseInt(shipping)
+    total_price.innerHTML = numberWithCommas(tot)
 }
 
 const checkoutBtn = document.getElementById('checkout')
