@@ -8,8 +8,32 @@
 {% endblock %}
 {% block content %}
     <section class="history_section" id="history_section">
+        <h1 class="heading"> Order <span>history</span> from <span>10</span> days ago</h1>
         {% for order in available_orders %}
-            {{ order. }}
+            <table>
+            <caption>{{ order.date_ordered }}</caption>
+                <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
+                </tr>
+                </thead>
+                <tbody id="">
+                {% for orderItem in order.orderItems.all %}
+                    <tr>
+                        <td data-label="Image"><img width="65em" src="/media/{{ orderItem.product.image }}" alt="productImage"></td>
+                        <td data-label="Title">{{ orderItem.product.title }}</td>
+                        <td class="historyUnitPrice" data-label="Unit Price">{{ orderItem.product.price }}</td>
+                        <td data-label="Quantity">{{ orderItem.quantity }}</td>
+                        <td class="historyTotPrice" data-label="Total Price">{% widthratio orderItem.quantity 1 orderItem.product.price %}</td>
+                    </tr>
+                    </tbody>
+
+                {% endfor %}
+            </table>
         {% endfor %}
     </section>
 {% endblock %}
