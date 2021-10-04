@@ -1,14 +1,22 @@
-if (localStorage.getItem(login_user)) {
-    document.getElementById('total_cart').innerHTML = Object.keys(JSON.parse(localStorage.getItem(login_user))).length.toString()
-}
+const proPrices = document.querySelectorAll('.proPrice')
+proPrices.forEach((proPrice)=>{
+    let price = proPrice.innerHTML
+    let newPrice = numberWithCommas(price)
+    proPrice.innerHTML = newPrice.toString()
+})
+
+const catPrices = document.querySelectorAll('.catPrice')
+catPrices.forEach((catPrice)=>{
+    catPrice.innerHTML = numberWithCommas(catPrice.innerHTML).toString()
+})
+
 var updateBtns = document.getElementsByClassName('update-cart')
 for (var i = 0; i < updateBtns.length; i++) {
-
     if (localStorage.getItem(login_user)) {
         let list = JSON.parse(localStorage.getItem(login_user))
         let updateBtn = updateBtns[i]
-        let productUpdateebtn = updateBtn.dataset.product.toString()
-        if (Object.keys(list).includes(productUpdateebtn)) {
+        let productUpdateBtn = updateBtn.dataset.product.toString()
+        if (Object.keys(list).includes(productUpdateBtn) && list[productUpdateBtn] !== 0) {
             updateBtn.innerHTML = 'Remove From Cart'
             updateBtn.dataset.action = 'remove'
         }
@@ -38,7 +46,7 @@ function updateUserOrder(productId, action) {
         if (action === 'add') {
             orders[productId] = 1
         } else {
-            delete orders[productId]
+            orders[productId] = 0
         }
         localStorage.setItem(login_user, JSON.stringify(orders))
     } else {
