@@ -24,10 +24,8 @@ def updateItem(request):
         data = json.loads(request.body)
         product_id = data['productId']
         quantity = data['quantity']
-
         customer = Customer.objects.get(user=request.user)
         product = Product.objects.get(id=product_id)
-
         try:
             order = Order.objects.get(customer=customer, complete=False)
         except Order.DoesNotExist:
@@ -69,7 +67,7 @@ def orderHistory(request):
     customer = Customer.objects.get(user=login_user)
     t = timedelta(days=10)
     ten_days_ago = datetime.now() - t
-    available_orders = Order.objects.filter(customer=customer, date_ordered__range=[ten_days_ago, datetime.now()])
+    available_orders = Order.objects.filter(customer=customer, date_ordered__range=[ten_days_ago, datetime.now()], complete=True)
     return render(request, 'order/order_history.html', context={
         'available_orders': available_orders
     })
