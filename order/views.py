@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from customer.models import Customer
-from order.models import Order, OrderItem
+from order.models import Order, OrderItem, ShippingAddress
 from store.models import Product
 
 
@@ -56,7 +56,9 @@ def checkout(request):
         order.complete = True
         order.save()
         return JsonResponse('True', safe=False)
-    return render(request, 'order/checkout.html')
+    customer = Customer.objects.get(user=request.user)
+    addresses = ShippingAddress.objects.filter(customer=customer)
+    return render(request, 'order/checkout.html', context={'addresses': addresses})
 
 
 # this function return history of orders for 10 days ago
@@ -67,7 +69,8 @@ def orderHistory(request):
     customer = Customer.objects.get(user=login_user)
     t = timedelta(days=10)
     ten_days_ago = datetime.now() - t
-    available_orders = Order.objects.filter(customer=customer, date_ordered__range=[ten_days_ago, datetime.now()], complete=True)
+    available_orders = Order.objects.filter(customer=customer, date_ordered__range=[ten_days_ago, datetime.now()],
+                                            complete=True)
     return render(request, 'order/order_history.html', context={
         'available_orders': available_orders
     })
