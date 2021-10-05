@@ -51,6 +51,17 @@
             <table>
                 <caption>Your <span>Address</span></caption>
             </table>
+            <div id="Useraddress">
+                {% for address in addresses %}
+                <input type="radio" id="address_{{ forloop.counter }}" onchange="showAddressForm(this)" name="fav_language">
+                <label for="address_{{ forloop.counter }}">{{ address }}</label><br>
+                {% endfor %}
+            </div>
+            <input type="radio" id="new" onchange="showAddressForm(this)" name="fav_language">
+            <label for="new">Add new one</label>
+            <form action="" class="new_address" id="add_new_address">
+                <h1>sdnvksvnvksdnv</h1>
+            </form>
         </div>
         <div class="payment" id="payment">
             <table>

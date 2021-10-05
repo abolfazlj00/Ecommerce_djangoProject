@@ -9,8 +9,6 @@ if (!localStorage.getItem(login_user)) {
     let skip = 0
     for (let i in JSON.parse(localStorage.getItem(login_user))) {
         if (JSON.parse(localStorage.getItem(login_user))[i] !== 0) {
-            console.log(i)
-            console.log(JSON.parse(localStorage.getItem(login_user))[i])
             skip = 1
         }
     }
@@ -196,4 +194,12 @@ function AddToTable(product, quantity) {
     trTag.appendChild(forthTd)
     trTag.appendChild(fifthTd)
     tBody.appendChild(trTag)
+}
+
+function showAddressForm(radio){
+    if (radio.id === 'new'){
+        document.getElementById('add_new_address').classList.add('active')
+    }else {
+        document.getElementById('add_new_address').classList.remove('active')
+    }
 }

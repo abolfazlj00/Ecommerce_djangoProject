@@ -263,7 +263,12 @@
 	color: var(--orange);
 }
 
-
+.new_address {
+	display: none;
+}
+.new_address.active{
+	display: block;
+}
 
 @media screen and (max-width: 600px) {
   .summary table {
