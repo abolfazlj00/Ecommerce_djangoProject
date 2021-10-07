@@ -7,7 +7,7 @@ from store.models import Product, Category
 
 # return all products
 def getProducts():
-    return Product.objects.all()
+    return Product.objects.filter(in_stock=True)
 
 
 # this function return home page
@@ -25,7 +25,7 @@ def deepCategoryView(request, cat_id):
         if cat.parent_id in related_categories_id:
             related_categories_id.append(cat.id)
 
-    selected_products = Product.objects.filter(category_id__in=related_categories_id)
+    selected_products = Product.objects.filter(category_id__in=related_categories_id, in_stock=True)
 
     p = Paginator(selected_products, 1)
 
