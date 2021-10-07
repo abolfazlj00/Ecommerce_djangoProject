@@ -54,4 +54,4 @@ class ShippingAddress(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.city}--{self.address}--{self.postal_code}'
+        return f'{self.province},{self.city},{self.address}'
