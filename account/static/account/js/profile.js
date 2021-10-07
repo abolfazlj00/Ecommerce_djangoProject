@@ -93,3 +93,30 @@ changePassForm.addEventListener('submit', async function (e) {
         errorDiv.style.display = 'block'
     }
 })
+var tbodyTagChildren = document.getElementById('tbodyTag').childElementCount
+trash_icons = document.querySelectorAll('.delete_address')
+trash_icons.forEach((trash_icon) => {
+    trash_icon.addEventListener('click', () => {
+        let deleteUrl = trash_icon.dataset.url
+        fetch(deleteUrl, {
+            method: 'GET',
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                if (data.data === 'True') {
+                    let parent = trash_icon.parentElement.parentElement
+                    parent.style.display = 'none'
+                    tbodyTagChildren -= 1
+                    if (tbodyTagChildren <= 0){
+                        document.getElementById('address_table').style.display = 'none'
+                        let h3Tag = document.createElement('h3')
+                        h3Tag.innerHTML = 'There is no address submitted !!!'
+                        document.getElementById('address_div').appendChild(h3Tag)
+                    }
+                    alert('Your address deleted successfully !!!')
+                }
+            })
+    })
+})
