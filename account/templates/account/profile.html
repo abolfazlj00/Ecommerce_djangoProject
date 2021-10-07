@@ -13,7 +13,7 @@
                         <i class="fa fa-user"></i>
                     </a>
                     <a onclick="tabs(1)" class="tab">
-                        <i class="fa fa-credit-card"></i>
+                        <i class="fa fa-address-book"></i>
                     </a>
                     <a onclick="tabs(2)" class="tab">
                         <i class="fa fa-key"></i>
@@ -46,9 +46,9 @@
                         <input type="text" class="input" name="last_name" value="{{ user.last_name }}">
                         <h2>Age</h2>
                         {% if user.age %}
-                            <input type="number" class="input" name="age" value="{{ user.age }}">
+                            <input type="number" class="input" min="1" name="age" value="{{ user.age }}">
                         {% else %}
-                            <input type="number" class="input" name="age" placeholder="Enter your age">
+                            <input type="number" class="input" min="1" name="age" placeholder="Enter your age">
                         {% endif %}
                         <h2>Gender</h2>
                         <select name="gender" id="gender">
@@ -77,17 +77,38 @@
                     </div>
                 </form>
                 <form action="">
-                    <div class="Payment tabShow">
-                        <h1>Payment Info</h1>
-                        <h2>Payment Method</h2>
-                        <input type="text" class="input" value="MastterCard - 0202 **** **** 7336">
-                        <h2>Main Address</h2>
-                        <input type="text" class="input" value="1234 some street in a town">
-                        <h2>Zip code</h2>
-                        <input type="text" class="input" value="419911">
-                        <h2>Gift Card</h2>
-                        <input type="password" class="input" value="Enter Gift Code"><br>
-                        <button class="btn">Update</button>
+                    <div class="address tabShow" id="address_div">
+
+                        <h1>Address Information</h1>
+                        {% if addresses %}
+                            <table id="address_table">
+                                <thead>
+                                <tr>
+                                    <th>Number</th>
+                                    <th>Province</th>
+                                    <th>City</th>
+                                    <th>Address</th>
+                                    <th>Postal-Code</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbodyTag">
+                                {% for address in addresses %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><input type="text" class="input" value="{{ address.province }}"></td>
+                                        <td><input type="text" class="input" value="{{ address.city }}"></td>
+                                        <td><textarea rows="3" class="input">{{ address.address }}</textarea></td>
+                                        <td><input type="number" class="input" value="{{ address.postal_code }}"></td>
+                                        <td><i data-url="{% url 'account:delete-address' address.id %}"
+                                               class="fa fa-trash delete_address"></i></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {% else %}
+                            <h3>There is no address submitted !!!</h3>
+                        {% endif %}
                     </div>
                 </form>
 
