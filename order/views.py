@@ -55,6 +55,11 @@ def checkout(request):
         order = Order.objects.get(customer=customer, complete=False)
         order.complete = True
         order.save()
+        user_order_items = order.orderItems.all()
+        for orderItem in user_order_items:
+            product = orderItem.product
+            product.stock -= 1
+            product.save()
         return JsonResponse('True', safe=False)
     customer = Customer.objects.get(user=request.user)
     addresses = ShippingAddress.objects.filter(customer=customer)
