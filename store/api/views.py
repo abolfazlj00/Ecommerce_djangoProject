@@ -8,7 +8,7 @@ from store.models import Product, Category
 class ProductList(APIView):
 
     def get_products(self):
-        return Product.objects.all()
+        return Product.objects.filter(in_stock=True)
 
     def get(self, request):
         products = self.get_products()
