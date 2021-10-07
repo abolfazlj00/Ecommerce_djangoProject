@@ -102,3 +102,60 @@
 .profile-div .tabShow {
     display: none;
 }
+
+.profile-div table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.profile-div table caption {
+  font-size: 2.5rem;
+  margin: .5em 0 .75em;
+  color: var(--black-color);
+  text-transform: uppercase;
+}
+
+.profile-div table caption span{
+	color: var(--orange);
+}
+
+.profile-div table tr {
+  background-color: var(--black-color);
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.profile-div table th,
+.profile-div table td {
+  padding: .625em;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--white-color);
+}
+
+.profile-div table th {
+  font-size: 1.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--black-color);
+  background-color: var(--white-color);
+
+}
+.profile-div table .input  {
+    border: 1px solid var(--border-blue);;
+}
+.profile-div table .delete_address:hover{
+    color: red;
+}
+.profile-div table .delete_address {
+    cursor: pointer;
+}
+
+.profile-div h3 {
+    color: var(--black-color);
+    font-size: 1.3rem;
+}
