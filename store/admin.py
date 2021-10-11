@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from store.models import Category, Product, Staff
+from customer.models import Customer
+from store.models import Category, Product, Staff, Discount
 
 
 @admin.register(Category)
@@ -20,3 +21,8 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Staff)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ['user']
+
+
+@admin.register(Discount)
+class DiscountAdmin(admin.ModelAdmin):
+    pass
