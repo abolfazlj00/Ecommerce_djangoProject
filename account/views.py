@@ -3,12 +3,14 @@ import uuid
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.http import response, HttpResponse
+from django.http import response, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from string import ascii_letters
 from account.api.views import emailValidation, passwordValidation
 from account.models import CustomUser
 from django.conf import settings
+
+from order.models import ShippingAddress
 
 
 def loginUser(request, username, password):
@@ -32,13 +34,24 @@ def rgisterLogin(request):
 
 
 def ageValidation(age):
-    if int(age) >= 1:
-        return 'True'
-    return 'Age must be a positive number'
+    if int(age) <= 0:
+        return 'Age must be a positive number'
+    return 'True'
 
 
 def setInfo(request, username, first_name, last_name, age, gender, email):
     if emailValidation(email) == 'True':
+        if age == '' or age is None:
+            age = None
+            user = CustomUser.objects.get(username=username)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.age = age
+            user.gender = gender
+            user.email = email
+            user.save()
+            login(request, user)
+            return 'True'
         if ageValidation(age) == 'True':
             user = CustomUser.objects.get(username=username)
             user.first_name = first_name
@@ -47,6 +60,7 @@ def setInfo(request, username, first_name, last_name, age, gender, email):
             user.gender = gender
             user.email = email
             user.save()
+            login(request, user)
             return 'True'
         return ageValidation(age)
     return emailValidation(email)
@@ -59,8 +73,10 @@ def logoutUser(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'account/profile.html')
+def profile(request, editInfo_response=None):
+    addresses = ShippingAddress.objects.filter(customer__user=request.user)
+    context = {'addresses': addresses, 'editInfo_response': editInfo_response}
+    return render(request, 'account/profile.html', context=context)
 
 
 @login_required
@@ -73,7 +89,8 @@ def editProfilePersonalInfo(request):
         gender = request.POST['gender']
         email = request.POST['email']
         edit_info_response = setInfo(request, username, first_name, last_name, age, gender, email)
-        return render(request, 'account/profile.html', context={'editInfo_response': edit_info_response})
+        return profile(request, edit_info_response)
+        # return render(request, 'account/profile.html', context={'editInfo_response': edit_info_response})
 
 
 def secretEmail(email):
@@ -132,3 +149,10 @@ def resetPassword(request, token):
         return render(request, 'account/reset_password.html', context)
     except:
         return HttpResponse('Not user found !!!')
+
+
+@login_required
+def deleteAddress(request, address_id):
+    user_address = ShippingAddress.objects.get(id=address_id)
+    user_address.delete()
+    return JsonResponse({'data':'True'})
