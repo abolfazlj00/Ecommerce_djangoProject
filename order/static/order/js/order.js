@@ -148,8 +148,9 @@ function calcPrice() {
     total_products_price.innerHTML = `${sum}`
     const tax_price = document.getElementById('tax_price')
     tax_price.innerHTML = `${tax}`
+    const discount_percent = document.getElementById('discount_percent').innerHTML
     const total_price = document.getElementById('total_price')
-    let tot = sum + tax + parseInt(shipping)
+    let tot = (sum * (100 - discount_percent)/100) + tax + parseInt(shipping)
     total_price.innerHTML = numberWithCommas(tot)
 }
 
@@ -166,4 +167,23 @@ checkoutBtn.addEventListener('click', function (e) {
         }
         location.href = this.getAttribute('href')
     }
+})
+
+const discountCodeForm = document.getElementById('discount_code')
+discountCodeForm.addEventListener('submit', async (e)=>{
+    e.preventDefault()
+    let code = document.getElementById('promo').value
+    const discountUrl = `http://127.0.0.1:8000/order/check-discount/${code}/`
+    await fetch(discountUrl, {
+        method: 'GET',
+    }).then((response)=>{
+        return response.json()
+    }).then((data)=>{
+        if (data.error){
+            alert(data.error)
+        }else{
+            document.getElementById('discount_percent').innerHTML = data.amount
+            calcPrice()
+        }
+    })
 })
