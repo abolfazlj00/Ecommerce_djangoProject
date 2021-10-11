@@ -144,10 +144,17 @@
 <script src="{% static 'store/js/category.js' %}"></script>
 
 
- script for prices
+{# script for prices#}
 <script>
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+</script>
+
+{# script for design #}
+<script>
+    if (localStorage.getItem('light') === '0'){
+        document.getElementById('theme-toggler').click()
     }
 </script>
 {% block loadJs %}
