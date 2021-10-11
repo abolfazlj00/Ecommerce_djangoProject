@@ -1,5 +1,7 @@
 from datetime import datetime
 from random import random, randint
+
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 # Create your models here.
@@ -47,7 +49,15 @@ class Product(models.Model):
 
 class Discount(models.Model):
     title = models.CharField(max_length=255)
-    amount = models.PositiveIntegerField(help_text='per cent')
+    code = models.CharField(max_length=225, unique=True)
+    amount = models.PositiveIntegerField(help_text='per cent',
+                                         validators=[MinValueValidator(1), MaxValueValidator(100)])
+    state = models.BooleanField(default=True)
+    created_date = models.DateTimeField(auto_now=True)
+    expired_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.title}--{self.amount}%'
 
 
 class Staff(models.Model):
