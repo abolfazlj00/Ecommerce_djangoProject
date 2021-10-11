@@ -5,10 +5,23 @@ from customer.models import Customer
 from store.models import Product
 
 
+class ShippingAddress(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    province = models.CharField(max_length=225)
+    city = models.CharField(max_length=225)
+    address = models.CharField(max_length=225)
+    postal_code = models.CharField(max_length=225)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.province},{self.city},{self.address},{self.postal_code}'
+
+
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
+    shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE, null=True, blank=True)
 
     @property
     def get_cart_total(self):
@@ -43,15 +56,3 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.product}--{self.quantity}'
-
-
-class ShippingAddress(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
-    province = models.CharField(max_length=225)
-    city = models.CharField(max_length=225)
-    address = models.CharField(max_length=225)
-    postal_code = models.CharField(max_length=225)
-    date_added = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.province},{self.city},{self.address}'
