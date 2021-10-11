@@ -9,7 +9,7 @@ from django.shortcuts import render
 # Create your views here.
 from customer.models import Customer
 from order.models import Order, OrderItem, ShippingAddress
-from store.models import Product
+from store.models import Product, Discount
 
 
 # this is a function that just return cart of customer that logged in.
@@ -51,14 +51,18 @@ def updateItem(request):
 @login_required
 def checkout(request):
     if request.method == 'POST':
+        data = json.loads(request.body)
+        address_id = data['address_id']
         customer = Customer.objects.get(user=request.user)
         order = Order.objects.get(customer=customer, complete=False)
+        user_address = ShippingAddress.objects.get(id=address_id)
+        order.shipping_address = user_address
         order.complete = True
         order.save()
         user_order_items = order.orderItems.all()
         for orderItem in user_order_items:
             product = orderItem.product
-            product.stock -= 1
+            product.stock -= orderItem.quantity
             product.save()
         return JsonResponse('True', safe=False)
     customer = Customer.objects.get(user=request.user)
@@ -79,3 +83,18 @@ def orderHistory(request):
     return render(request, 'order/order_history.html', context={
         'available_orders': available_orders
     })
+
+
+@login_required
+def checkDiscount(request, code):
+    customer = Customer.objects.get(user=request.user)
+    try:
+        discount = Discount.objects.get(code=code)
+        if customer.discount_code != discount:
+            return JsonResponse({'error': 'Wrong code !!!'})
+        if not discount.state:
+            return JsonResponse({'error': 'This code already used !!!'})
+        else:
+            return JsonResponse({'amount': discount.amount})
+    except:
+        return JsonResponse({'error': 'Wrong code !!!'})
