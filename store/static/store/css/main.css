@@ -373,7 +373,10 @@ header.active {
 .category .toggler-target.active {
     display: block;
 }
-
+#todos {
+    max-height: 300px;
+    overflow-y: scroll;
+}
 
 @media (max-width: 991px) {
 
