@@ -4,5 +4,5 @@ from customer.models import Customer
 
 
 @admin.register(Customer)
-class CategoryAdmin(admin.ModelAdmin):
+class CustomerAdmin(admin.ModelAdmin):
     pass
