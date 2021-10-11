@@ -1,9 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:400,700);
 
-.cart_section {
-    min-height: 900px;
-}
-
 .cart_section ol, ul {
     list-style: none;
 }
@@ -243,30 +239,33 @@
     color: var(--black-color);
 }
 
-.cart_section .promoCode input {
+#promo{
     width: 85%;
     font-size: 1.2rem;
     padding: 0.5em;
     float: left;
     border: 1px solid #dadada;
+    background-color: var(--light-color);
+    color: #fff;
 }
 
-.cart_section .promoCode input:active,
-.cart_section .promoCode input:focus {
+#promo:active,
+#promo:focus {
     outline: 0;
 }
 
-.cart_section .promoCode a.btn {
+.cart_section .promoCode .btn {
     margin: 0;
     float: left;
     width: 15%;
-    padding: 0.65em 0;
+    padding: 0.5em 0.5em;
     border-radius: 0 1em 1em 0;
     text-align: center;
     border: 1px solid #82ca9c;
+    font-size: 1.2rem;
 }
 
-.cart_section .promoCode a.btn:hover {
+.cart_section .promoCode .btn:hover {
     border: 1px solid #f69679;
     background: #f69679;
 }
@@ -402,7 +401,7 @@
         width: 100%;
     }
 
-    .cart_section a.btn.continue {
+    .cart_section .btn.continue {
         width: 100%;
         text-align: center;
     }

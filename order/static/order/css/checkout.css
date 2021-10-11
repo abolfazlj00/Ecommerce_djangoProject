@@ -1,6 +1,3 @@
-.checkout_section {
-	min-height: 850px;
-}
 .mainWrapper {
 	width: 100%;
 	/*min-width: 40ch;*/
@@ -206,7 +203,63 @@
 .address table caption span{
 	color: var(--orange);
 }
-
+#Useraddress {
+	font-size: 1.7rem;
+	margin-bottom: 1em;
+	color: var(--black-color);
+}
+.address_label {
+	margin-bottom: 0.5em;
+}
+.address_label input {
+	width: 1.05em;
+	height: 1.05em;
+}
+.new_address_div {
+	font-size: 1.9rem;
+	color: var(--dark-blue);
+	font-weight: bolder;
+	margin-bottom: 1.5em;
+}
+.new_address_div input{
+	width: 1.05em;
+	height: 1.05em;
+}
+.new_address_form {
+	font-size: 1.7rem;
+	color: var(--black-color);
+	display: none;
+}
+.new_address_form.active{
+	display: block;
+}
+.new_address_form input {
+	height: 1.7em;
+	border-radius: 6px;
+	padding: 0.5em;
+	font-size: 1.5rem;
+	margin-top: 0.25em;
+	margin-bottom: 0.5em;
+}
+.new_address_form textarea{
+	border-radius: 6px;
+	padding: 0.5em;
+	font-size: 1.5rem;
+	margin-top: 0.25em;
+	margin-bottom: 0.5em;
+}
+.new_address_form .save_address{
+	border: 1px solid var(--border-blue);
+	padding: 0.25em;
+	background-color: var(--white-color);
+	color: var(--dark-blue);
+	font-weight: bolder;
+	cursor: pointer;
+}
+.new_address_form .save_address:hover{
+	background-color: #7ed386;
+	color: var(--white-color);
+}
 
 .payment {
 	margin-top: 6em;
@@ -261,13 +314,6 @@
 
 .complete table caption span{
 	color: var(--orange);
-}
-
-.new_address {
-	display: none;
-}
-.new_address.active{
-	display: block;
 }
 
 @media screen and (max-width: 600px) {
