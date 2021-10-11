@@ -21,6 +21,7 @@ if (!localStorage.getItem(login_user)) {
 
 var userCart = JSON.parse(localStorage.getItem(login_user))
 
+
 nextBtn.addEventListener('click', function () {
     if (state < stateMax) {
         if (state === 0) {
@@ -30,9 +31,14 @@ nextBtn.addEventListener('click', function () {
             document.getElementById('address').classList.add('active')
         }
         if (state === 1) {
-            nextBtn.innerHTML = 'Confirm'
-            document.getElementById('address').classList.remove('active')
-            document.getElementById('payment').classList.add('active')
+            if (checkAddresses()) {
+                nextBtn.innerHTML = 'Confirm'
+                document.getElementById('address').classList.remove('active')
+                document.getElementById('payment').classList.add('active')
+            } else {
+                alert('Choose your address !!!')
+                state -= 1
+            }
         }
         if (state === 2) {
             checkout()
@@ -137,13 +143,15 @@ async function sendUserOrder() {
 function checkout() {
     localStorage.removeItem(login_user)
     document.getElementById('total_cart').innerHTML = '0'
+    let addressId = localStorage.getItem('addressId').substr(8)
     const url_checkout = 'http://127.0.0.1:8000/order/checkout/'
     fetch(url_checkout, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrf__token,
-        }
+        },
+        body: JSON.stringify({'address_id': addressId}),
     })
         .then((response) => {
             return response.json()
@@ -196,10 +204,74 @@ function AddToTable(product, quantity) {
     tBody.appendChild(trTag)
 }
 
-function showAddressForm(radio){
-    if (radio.id === 'new'){
+function showAddressForm(radio) {
+    if (radio.id === 'new') {
         document.getElementById('add_new_address').classList.add('active')
-    }else {
+    } else {
         document.getElementById('add_new_address').classList.remove('active')
+        localStorage.setItem('addressId', radio.id)
     }
+}
+
+const newAddressForm = document.getElementById('add_new_address')
+// newAddressForm.addEventListener('submit', (e) => {
+async function sendAddress(){
+    const addressUrl = newAddressForm.getAttribute('action')
+    const newAddressFormData = new FormData(newAddressForm)
+    const newAddressFormDataSerialized = Object.fromEntries(newAddressFormData)
+    const csrfTokenAddress = newAddressForm.getElementsByTagName("input")[0].value
+    await fetch(addressUrl, {
+        method: 'POST',
+        body: JSON.stringify(newAddressFormDataSerialized),
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfTokenAddress
+        }
+    }).then((response) => {
+        return response.json()
+    }).then((data) => {
+        if (data.response === 'True') {
+            localStorage.setItem('addressId', data.id)
+            // alert('Your address saved successfully :)')
+        }
+    })
+}
+
+function checkAddresses() {
+    let pass = 0
+    let buttons = document.getElementsByName('address_button')
+    buttons.forEach((button) => {
+        if (pass === 0) {
+            if (button.checked === true) {
+                if (button.id !== 'new') {
+                    pass = 1
+                } else {
+
+                    const input_fields = [
+                        'province', 'city', 'address_text', 'postal_code',
+                    ]
+                    let input_pass = 0
+                    for (let field in input_fields) {
+                        if (input_pass !== 1) {
+                            field = input_fields[field]
+                            if (!check_valid(field)) {
+                                input_pass = 1
+                            }
+                        }
+
+                    }
+                    if (input_pass === 0) {
+                        sendAddress()
+                        pass = 1
+                    }
+                }
+            }
+        }
+    })
+    return pass === 1
+}
+
+function check_valid(field) {
+    let inpObj = document.getElementById(field)
+    return inpObj.checkValidity();
 }

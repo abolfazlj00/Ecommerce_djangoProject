@@ -53,14 +53,28 @@
             </table>
             <div id="Useraddress">
                 {% for address in addresses %}
-                <input type="radio" id="address_{{ forloop.counter }}" onchange="showAddressForm(this)" name="fav_language">
-                <label for="address_{{ forloop.counter }}">{{ address }}</label><br>
+                    <div class="address_label">
+                        <input type="radio" id="address_{{ address.id }}" onchange="showAddressForm(this)"
+                               name="address_button" required>
+                        <label for="address_{{ address.id }}">{{ address }}</label><br>
+                    </div>
                 {% endfor %}
             </div>
-            <input type="radio" id="new" onchange="showAddressForm(this)" name="fav_language">
-            <label for="new">Add new one</label>
-            <form action="" class="new_address" id="add_new_address">
-                <h1>sdnvksvnvksdnv</h1>
+            <div class="new_address_div">
+                <input type="radio" id="new" onchange="showAddressForm(this)" name="address_button">
+                <label for="new">Add new one</label>
+            </div>
+
+            <form action="{% url 'customer:address' %}" class="new_address_form" id="add_new_address" method="post">
+                {% csrf_token %}
+                <label for="province">Province:</label><br>
+                <input type="text" name="province" id="province" required><br>
+                <label for="city">City:</label><br>
+                <input type="text" name="city" id="city" required><br>
+                <label for="address">Address:</label><br>
+                <textarea type="text" rows="10" cols="20" name="address" id="address_text" required></textarea><br>
+                <label for="postal_code">Postal Code:</label><br>
+                <input type="number" name="postal_code" id="postal_code" required>
             </form>
         </div>
         <div class="payment" id="payment">
