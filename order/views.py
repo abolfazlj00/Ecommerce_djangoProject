@@ -7,6 +7,8 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.utils.translation import gettext
+
 from customer.models import Customer
 from order.models import Order, OrderItem, ShippingAddress
 from store.models import Product, Discount
@@ -95,10 +97,10 @@ def checkDiscount(request, code):
     try:
         discount = Discount.objects.get(code=code)
         if customer.discount_code != discount:
-            return JsonResponse({'error': 'Wrong code !!!'})
+            return JsonResponse({'error': gettext('Wrong code !!!')})
         if not discount.state:
-            return JsonResponse({'error': 'This code already used !!!'})
+            return JsonResponse({'error': gettext('This code has been expired !!!')})
         else:
             return JsonResponse({'amount': discount.amount})
     except:
-        return JsonResponse({'error': 'Wrong code !!!'})
+        return JsonResponse({'error': gettext('Wrong code !!!')})
