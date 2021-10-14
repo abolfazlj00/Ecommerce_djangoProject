@@ -53,6 +53,7 @@ def checkout(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         address_id = data['address_id']
+        discount_code = data['discount']
         customer = Customer.objects.get(user=request.user)
         order = Order.objects.get(customer=customer, complete=False)
         user_address = ShippingAddress.objects.get(id=address_id)
@@ -64,6 +65,9 @@ def checkout(request):
             product = orderItem.product
             product.stock -= orderItem.quantity
             product.save()
+        if discount_code != '':
+            customer.discount_code = None
+            customer.save()
         return JsonResponse('True', safe=False)
     customer = Customer.objects.get(user=request.user)
     addresses = ShippingAddress.objects.filter(customer=customer)
