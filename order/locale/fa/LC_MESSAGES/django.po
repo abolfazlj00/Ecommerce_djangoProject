@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-13 09:42+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\order\templates\order\cart.html:16
+msgid "My Cart"
+msgstr "سبد من"
+
+#: .\order\templates\order\cart.html:17
+msgid "Continue Shopping"
+msgstr "ادامه خرید"
+
+#: .\order\templates\order\cart.html:26
+msgid "Have A Promo Code?"
+msgstr "کد تخفیف دارید؟"
+
+#: .\order\templates\order\cart.html:33
+msgid "Enter Code..."
+msgstr "کد را وارد کنید..."
+
+#: .\order\templates\order\cart.html:34
+msgid "Submit"
+msgstr "ثبت"
+
+#: .\order\templates\order\cart.html:40
+msgid "Login First..."
+msgstr "ابتدا وارد شوید..."
+
+#: .\order\templates\order\cart.html:46
+msgid "Subtotal"
+msgstr "جمع خرید"
+
+#: .\order\templates\order\cart.html:49
+msgid "Shipping"
+msgstr "پست"
+
+#: .\order\templates\order\cart.html:52
+msgid "Tax"
+msgstr "مالیات"
+
+#: .\order\templates\order\cart.html:53
+msgid "Discount Percent"
+msgstr "درصد تخفیف"
+
+#: .\order\templates\order\cart.html:54
+msgid "Total"
+msgstr "جمع کل"
+
+#: .\order\templates\order\cart.html:56
+msgid "Checkout"
+msgstr "نهایی کردن خرید"
+
+#: .\order\templates\order\checkout.html:18
+msgid "Confirm"
+msgstr "تأیید"
+
+#: .\order\templates\order\checkout.html:22
+#: .\order\templates\order\checkout.html:54
+msgid "Address"
+msgstr "آدرس"
+
+#: .\order\templates\order\checkout.html:26
+#: .\order\templates\order\checkout.html:84
+msgid "Payment"
+msgstr "پرداخت"
+
+#: .\order\templates\order\checkout.html:30
+msgid "Complete"
+msgstr "تکمیل"
+
+#: .\order\templates\order\checkout.html:37
+msgid "Summary Of"
+msgstr "خلاصه"
+
+#: .\order\templates\order\checkout.html:37
+msgid "Orders"
+msgstr "سفارشات"
+
+#: .\order\templates\order\checkout.html:40
+#: .\order\templates\order\order_history.html:19
+msgid "Image"
+msgstr "تصویر"
+
+#: .\order\templates\order\checkout.html:41
+#: .\order\templates\order\order_history.html:20
+msgid "Title"
+msgstr "عنوان"
+
+#: .\order\templates\order\checkout.html:42
+#: .\order\templates\order\order_history.html:21
+msgid "Unit Price"
+msgstr "قیمت واحد"
+
+#: .\order\templates\order\checkout.html:43
+#: .\order\templates\order\order_history.html:22
+msgid "Quantity"
+msgstr "تعداد"
+
+#: .\order\templates\order\checkout.html:44
+#: .\order\templates\order\order_history.html:23
+#, fuzzy
+#| msgid "Total"
+msgid "Total Price"
+msgstr "جمع کل"
+
+#: .\order\templates\order\checkout.html:54
+#: .\order\templates\order\checkout.html:84
+msgid "Your"
+msgstr "شما"
+
+#: .\order\templates\order\checkout.html:67
+msgid "Add new one"
+msgstr "اضافه کردن"
+
+#: .\order\templates\order\checkout.html:72
+msgid "Province:"
+msgstr "استان:"
+
+#: .\order\templates\order\checkout.html:74
+msgid "City:"
+msgstr "شهر:"
+
+#: .\order\templates\order\checkout.html:76
+msgid "Address:"
+msgstr "آدرس:"
+
+#: .\order\templates\order\checkout.html:78
+msgid "Postal Code:"
+msgstr "کد پستی:"
+
+#: .\order\templates\order\checkout.html:89
+msgid "Your Orders is "
+msgstr "سفارش شما"
+
+#: .\order\templates\order\checkout.html:89
+msgid "Sending..."
+msgstr "در حال فرستادن است..."
+
+#: .\order\templates\order\checkout.html:94
+msgid "Back To Cart"
+msgstr "بازگشت به سبد خرید"
+
+#: .\order\templates\order\checkout.html:95
+msgid "Next"
+msgstr "بعدی"
+
+#: .\order\templates\order\order_history.html:13
+msgid "Order"
+msgstr "سفارش"
+
+#: .\order\templates\order\order_history.html:13
+msgid "history"
+msgstr "تاریحچه"
+
+#: .\order\templates\order\order_history.html:13
+msgid "from"
+msgstr "از"
+
+#: .\order\templates\order\order_history.html:13
+msgid "days ago"
+msgstr "روز پیش"
