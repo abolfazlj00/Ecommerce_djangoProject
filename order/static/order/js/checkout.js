@@ -3,7 +3,11 @@ var stateMax = 3;
 const nextBtn = document.getElementById('next')
 const backBtn = document.getElementById('back')
 if (!localStorage.getItem(login_user)) {
-    alert('Your cart is empty ...')
+    if (lang_code === 'en-us') {
+        alert('Your cart is empty ...')
+    } else {
+        alert('سبد خرید شما خالی است.')
+    }
     document.getElementById('home_logo').click()
 } else {
     let skip = 0
@@ -13,7 +17,11 @@ if (!localStorage.getItem(login_user)) {
         }
     }
     if (skip === 0) {
-        alert('Your cart is empty ...')
+        if (lang_code === 'en-us') {
+            alert('Your cart is empty ...')
+        } else {
+            alert('سبد خرید شما خالی است.')
+        }
         document.getElementById('home_logo').click()
     }
 }
@@ -44,7 +52,11 @@ nextBtn.addEventListener('click', function () {
                 document.getElementById('address').classList.remove('active')
                 document.getElementById('payment').classList.add('active')
             } else {
-                alert('Choose your address !!!')
+                if (lang_code === 'en-us') {
+                    alert('Choose or enter your address !!!')
+                } else {
+                    alert('آدرس خود را انتخاب یا وارد کنید.')
+                }
                 state -= 1
             }
         }
@@ -261,7 +273,6 @@ async function sendAddress() {
     }).then((data) => {
         if (data.response === 'True') {
             localStorage.setItem('addressId', data.id)
-            // alert('Your address saved successfully :)')
         }
     })
 }
