@@ -112,7 +112,7 @@ def registrationView(request):
             data['resp'] = resp
             return Response(data)
         except:
-            data['wrong input'] = 'Wrong Input'
+            data['wrong input'] = _('Wrong Input')
             return Response(data)
 
 
