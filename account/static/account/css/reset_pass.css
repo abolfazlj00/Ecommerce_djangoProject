@@ -1,4 +1,30 @@
-.reset_pass {
-    min-height: 800px;
+.reset_pass_div {
+    width: 50%;
+    padding-top: 2em;
+    text-align: center;
+    margin: auto;
+}
 
+#reset_form input {
+    margin-top: 1.2em;
+    padding: 1em;
+    border-radius: 6px;
+    width: 100%;
+}
+
+#reset_form input[type='submit'] {
+    width: 50%;
+}
+
+.error_reset {
+    padding: 1em 0;
+    border: 2px solid var(--red-error);
+    background-color: var(--white-text-error);
+    color: var(--black-color);
+}
+.message_reset {
+    padding: 1em 0;
+    border: 2px solid var(--green-success);
+    background-color: var(--white-text-success);
+    color: var(--black-color);
 }
