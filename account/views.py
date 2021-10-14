@@ -137,27 +137,33 @@ def sendEmail(request, username):
         return HttpResponse('This username is not exist !!!')
 
 
-def resetPassword(request, token):
+def resetPassword(request, token=None):
     try:
-        user_obj = CustomUser.objects.get(forget_pass_token=token)
-        user_obj.forget_pass_token = ''
-        user_obj.save()
         if request.method == 'POST':
+            username = request.POST['username']
+            user_obj = CustomUser.objects.get(username=username)
             password = request.POST['password']
             confirm_password = request.POST['confirm_password']
             if password != confirm_password:
                 error = 'The password and its confirm do not match'
-                return render(request, 'account/reset_password.html', context={'error': error})
+                return render(request, 'account/reset_password.html', context={'error': error, 'user_obj': user_obj})
             if passwordValidation(password) == 'True':
-                user_obj.password = password
+                user_obj.set_password(password)
+                user_obj.save()
                 message = 'Your password changed successfully :)'
-                return render(request, 'account/reset_password.html', context={'message': message})
+                return render(request, 'account/reset_password.html',
+                              context={'message': message, 'user_obj': user_obj})
+            return render(request, 'account/reset_password.html',
+                          context={'error': passwordValidation(password), 'user_obj': user_obj})
+        user_obj = CustomUser.objects.get(forget_pass_token=token)
+        user_obj.forget_pass_token = ''
+        user_obj.save()
         context = {
             'user_obj': user_obj
         }
         return render(request, 'account/reset_password.html', context)
     except:
-        return HttpResponse('Not user found !!!')
+        return redirect('store:home')
 
 
 @login_required
