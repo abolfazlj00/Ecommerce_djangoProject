@@ -1,8 +1,9 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import response, HttpResponse
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage
-from django.utils.translation import activate
+from django.utils.translation import activate, LANGUAGE_SESSION_KEY
 
 from store.models import Product, Category
 
