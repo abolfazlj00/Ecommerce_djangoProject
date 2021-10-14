@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import response, HttpResponse
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage
+from django.utils.translation import activate
+
 from store.models import Product, Category
 
 

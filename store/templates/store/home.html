@@ -1,5 +1,6 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block loadCss %}
     <link rel="stylesheet" type="text/css" href="{% static 'store/css/home.css' %}">
 {% endblock %}
@@ -10,7 +11,7 @@
 
     <section class="category_view" id="product">
 
-        <h1 class="heading"> latest <span>product</span></h1>
+        <h1 class="heading"> {% translate 'latest'%} <span>{% translate 'products' %}</span></h1>
 
         <div class="box-container">
             {% for product in all_products %}
@@ -21,7 +22,7 @@
                     <h3>{{ product.title }}</h3>
                     <div class="stars pro-stars" id="{{ product.id }}"></div>
                     <span class="proPrice">{{ product.price }}<b style="color: var(--black-color);"> T </b></span><br>
-                    <a data-product="{{ product.id }}" data-action="add" class="btn update-cart">Add To Cart</a>
+                    <a data-product="{{ product.id }}" data-action="add" class="btn update-cart">{% translate 'Add To Cart'%}</a>
                 </div>
             {% endfor %}
         </div>

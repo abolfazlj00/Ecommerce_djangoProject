@@ -1,5 +1,7 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block loadCss %}
     <link rel="stylesheet" type="text/css" href="{% static 'account/css/register-login.css' %}">
 {% endblock %}
@@ -20,22 +22,22 @@
                             <input type="hidden" name="next" value="{{ request.GET.next }}">
                         {% endif %}
                         <input type="text" name="type" id="type" value="login" hidden>
-                        <h2 class="title">Sign in</h2>
+                        <h2 class="title">{% translate 'Sign in' %}</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" name="username" id="log-username" placeholder="Username" required/>
+                            <input type="text" name="username" id="log-username" placeholder="{% translate 'Username' %}" required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="password" id="log-password" placeholder="Password" required/>
+                            <input type="password" name="password" id="log-password" placeholder="{% translate 'Password' %}" required/>
                         </div>
                         {% if log_error %}
                             <div class="forget">
-                                <p>Forget password?? <a id="send_email_link">Send email</a></p>
+                                <p>{% translate 'Forget password??' %} <a id="send_email_link">{% translate 'Send email' %}</a></p>
                             </div>
                         {% endif %}
-                        <input type="submit" value="Login" class="btn solid"/>
-                        <p class="social-text">Or Sign in with social platforms</p>
+                        <input type="submit" value="{% translate 'Login' %}" class="btn solid"/>
+                        <p class="social-text">{% translate 'Sign in with social platforms' %}</p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
@@ -60,33 +62,33 @@
                             </div>
                         {% endif %}
                         <input type="text" id="type" name="type" value="register" hidden>
-                        <h2 class="title">Sign up</h2>
+                        <h2 class="title">{% translate 'Sign up' %}</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="username" name="username" placeholder="Username" required/>
+                            <input type="text" id="username" name="username" placeholder="{% translate 'Username' %}" required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-phone"></i>
-                            <input type="text" name="phone" id="phone" placeholder="phone" required/>
+                            <input type="text" name="phone" id="phone" placeholder="{% translate 'phone' %}" required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" id="email" name="email" placeholder="Email (optional)"/>
+                            <input type="email" id="email" name="email" placeholder="{% translate 'Email (optional)' %}"/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="first_name" name="first_name" placeholder="Firstname" required/>
+                            <input type="text" id="first_name" name="first_name" placeholder="{% translate 'Firstname' %}" required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="last_name" name="last_name" placeholder="Lastname" required/>
+                            <input type="text" id="last_name" name="last_name" placeholder="{% translate 'Lastname' %}" required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" id="password" name="password" placeholder="Password" required/>
+                            <input type="password" id="password" name="password" placeholder="{% translate 'Password' %}" required/>
                         </div>
-                        <input type="submit" class="btn" id="register-btn" value="Sign up"/>
-                        <p class="social-text">Or Sign up with social platforms</p>
+                        <input type="submit" class="btn" id="register-btn" value="{% translate 'Sign up' %}"/>
+                        <p class="social-text">{% translate 'Sign up with social platforms' %}</p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
@@ -108,19 +110,19 @@
             <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
-                        <h3>New here ?</h3><br>
+                        <h3>{% translate 'New here ?' %}</h3><br>
                         <button class="btn transparent" id="sign-up-btn">
-                            Sign up
+                            {% translate 'Sign up' %}
                         </button>
                     </div>
                     <img src="" class="image" alt=""/>
                 </div>
                 <div class="panel right-panel">
                     <div class="content">
-                        <h3>One of us ?</h3>
+                        <h3>{% translate 'One of us ?' %}</h3>
                         <br>
                         <button class="btn transparent" id="sign-in-btn">
-                            Sign in
+                            {% translate 'Sign in' %}
                         </button>
                     </div>
                     <img src="" class="image" alt=""/>

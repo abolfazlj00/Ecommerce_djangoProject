@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-13 09:42+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\store\models.py:14
+msgid "name"
+msgstr "نام"
+
+#: .\store\templates\store\base.html:70
+#: .\store\templates\store\category.html:33
+#: .\store\templates\store\category.html:39
+msgid "Home"
+msgstr "خانه"
+
+#: .\store\templates\store\base.html:71
+msgid "Profile"
+msgstr "پروفایل"
+
+#: .\store\templates\store\base.html:73
+msgid "Categories"
+msgstr "دسته بندی ها"
+
+#: .\store\templates\store\base.html:79
+msgid "History"
+msgstr "تاریخچه"
+
+#: .\store\templates\store\base.html:80
+msgid "About Us"
+msgstr "درباره ما"
+
+#: .\store\templates\store\base.html:92
+msgid "Copyright @2021 | Designed With by abolfazlj00"
+msgstr "است abolfazlj00 تمامی حقوق این سایت متعلق به"
+
+#: .\store\templates\store\category.html:13
+msgid "By"
+msgstr "براساس"
+
+#: .\store\templates\store\category.html:13
+msgid "category"
+msgstr "دسته بندی"
+
+#: .\store\templates\store\category.html:24
+#: .\store\templates\store\home.html:25
+msgid "Add To Cart"
+msgstr "اضافه کردن به سبد"
+
+#: .\store\templates\store\category.html:31
+msgid "Previous"
+msgstr "قبلی"
+
+#: .\store\templates\store\category.html:36
+msgid "Next"
+msgstr "بعدی"
+
+#: .\store\templates\store\category.html:44
+msgid "There is no product for this category"
+msgstr "محصولی برای این دسته بندی ثبت نشده است"
+
+#: .\store\templates\store\category.html:45
+msgid "Back To Home"
+msgstr "بازگشت به خانه"
+
+#: .\store\templates\store\home.html:7
+msgid "home"
+msgstr "خانه"
+
+#: .\store\templates\store\home.html:14
+msgid "latest"
+msgstr "آخرین"
+
+#: .\store\templates\store\home.html:14
+msgid "products"
+msgstr "محصولات"

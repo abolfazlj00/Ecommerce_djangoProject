@@ -1,5 +1,7 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block loadCss %}
     <link rel="stylesheet" type="text/css" href="{% static 'order/css/order_history.css' %}">
 {% endblock %}
@@ -8,17 +10,17 @@
 {% endblock %}
 {% block content %}
     <section class="history_section" id="history_section">
-        <h1 class="heading"> Order <span>history</span> from <span>10</span> days ago</h1>
+        <h1 class="heading"> {% translate 'Order' %} <span>{% translate 'history' %}</span> {% translate 'from' %} <span>10</span> {% translate 'days ago' %}</h1>
         {% for order in available_orders %}
             <table>
             <caption>{{ order.date_ordered }}</caption>
                 <thead>
                 <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Unit Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total Price</th>
+                    <th scope="col">{% translate 'Image' %}</th>
+                    <th scope="col">{% translate 'Title' %}</th>
+                    <th scope="col">{% translate 'Unit Price' %}</th>
+                    <th scope="col">{% translate 'Quantity' %}</th>
+                    <th scope="col">{% translate 'Total Price' %}</th>
                 </tr>
                 </thead>
                 <tbody id="">

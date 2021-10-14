@@ -55,7 +55,7 @@ fetch(cat_url, {
         todos.forEach((todo) =>{
             todo.addEventListener('click', function (){
                 let categoryId = todo.getAttribute('id').substr(4)
-                window.location.href = `http://127.0.0.1:8000/store/category/all/${categoryId}`
+                window.location.href = `http://127.0.0.1:8000/category/all/${categoryId}`
             })
         })
 
@@ -63,7 +63,7 @@ fetch(cat_url, {
         alls.forEach((all) =>{
             all.addEventListener('click', ()=> {
                 let relatedCatId = all.parentElement.parentElement.firstChild.id.substr(4)
-                window.location.href = `http://127.0.0.1:8000/store/category/all/${relatedCatId}`
+                window.location.href = `http://127.0.0.1:8000/category/all/${relatedCatId}`
             })
         })
 

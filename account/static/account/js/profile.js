@@ -93,7 +93,9 @@ changePassForm.addEventListener('submit', async function (e) {
         errorDiv.style.display = 'block'
     }
 })
-var tbodyTagChildren = document.getElementById('tbodyTag').childElementCount
+if (document.getElementById('tbodyTag')) {
+    var tbodyTagChildren = document.getElementById('tbodyTag').childElementCount
+}
 trash_icons = document.querySelectorAll('.delete_address')
 trash_icons.forEach((trash_icon) => {
     trash_icon.addEventListener('click', () => {
@@ -109,7 +111,7 @@ trash_icons.forEach((trash_icon) => {
                     let parent = trash_icon.parentElement.parentElement
                     parent.style.display = 'none'
                     tbodyTagChildren -= 1
-                    if (tbodyTagChildren <= 0){
+                    if (tbodyTagChildren <= 0) {
                         document.getElementById('address_table').style.display = 'none'
                         let h3Tag = document.createElement('h3')
                         h3Tag.innerHTML = 'There is no address submitted !!!'
@@ -120,3 +122,7 @@ trash_icons.forEach((trash_icon) => {
             })
     })
 })
+
+if (document.getElementById('load_setting')) {
+    document.getElementById('settingBut').click()
+}

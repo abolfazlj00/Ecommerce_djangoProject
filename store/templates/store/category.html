@@ -1,5 +1,6 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block loadCss %}
     <link rel="stylesheet" type="text/css" href="{% static 'store/css/category.css' %}">
 {% endblock %}
@@ -7,8 +8,9 @@
 {% block sidebar %}
 {% endblock %}
 {% block content %}
+
     <section class="category_view" id="category">
-        <h1 class="heading"> By <span>category</span></h1>
+        <h1 class="heading"> {% translate 'By' %} <span>{% translate 'category' %}</span></h1>
         {% if products %}
             <div class="box-container">
                 {% for product in products %}
@@ -19,33 +21,32 @@
                         <h3>{{ product.title }}</h3>
                         <div class="stars pro-stars" id="{{ product.id }}"></div>
                         <span class="catPrice">{{ product.price }}<b style="color: var(--black-color);"> T </b></span><br>
-                        <a data-product="{{ product.id }}" data-action="add" class="btn update-cart">Add To Cart</a>
+                        <a data-product="{{ product.id }}" data-action="add" class="btn update-cart">{% translate 'Add To Cart' %}</a>
                     </div>
                 {% endfor %}
             </div>
             <div class="arrows">
                 {% if products.has_previous %}
                     <a href="{% url 'store:deep_category' category.id %}?page={{ products.previous_page_number }}"> <<
-                        Previous</a>
+                        {% translate 'Previous' %}</a>
                 {% else %}
-                    <a id="pre_home" href="{% url 'store:home' %}">Home</a>
+                    <a id="pre_home" href="{% url 'store:home' %}">{% translate 'Home' %}</a>
                 {% endif %}
                 {% if products.has_next %}
-                    <a href="{% url 'store:deep_category' category.id %}?page={{ products.next_page_number }}"> Next
+                    <a href="{% url 'store:deep_category' category.id %}?page={{ products.next_page_number }}"> {% translate 'Next' %}
                         >> </a>
                 {% else %}
-                    <a id="nxt_home" href="{% url 'store:home' %}">Home</a>
+                    <a id="nxt_home" href="{% url 'store:home' %}">{% translate 'Home' %}</a>
                 {% endif %}
             </div>
         {% else %}
             <div class="no_pro">
-                <h1>There is no product for this category</h1>
-                <a href="{% url 'store:home' %}">Back To Home</a>
+                <h1>{% translate 'There is no product for this category' %}</h1>
+                <a href="{% url 'store:home' %}">{% translate 'Back To Home' %}</a>
             </div>
-
         {% endif %}
-
     </section>
+
 {% endblock %}
 {% block loadJs %}
     <script src="{% static 'store/js/cart.js' %}"></script>

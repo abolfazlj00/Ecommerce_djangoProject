@@ -1,5 +1,7 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block loadCss %}
     <link rel="stylesheet" type="text/css" href="{% static 'order/css/checkout.css' %}">
 {% endblock %}
@@ -13,33 +15,33 @@
                 <span class="pBar" id="progressBar"></span>
                 <div class="node n0 done nConfirm0">
                     <div class="main done m0 done nConfirm0"></div>
-                    <span class="text t0 done nConfirm0">Confirm</span>
+                    <span class="text t0 done nConfirm0">{% translate 'Confirm' %}</span>
                 </div>
                 <div class="node n1 nConfirm1">
                     <div class="main m1 nConfirm1"></div>
-                    <span class="text t1 nConfirm1">Address</span>
+                    <span class="text t1 nConfirm1">{% translate 'Address' %}</span>
                 </div>
                 <div class="node n2 nConfirm2">
                     <div class="main m2 nConfirm2"></div>
-                    <span class="text t2 nConfirm2">Payment</span>
+                    <span class="text t2 nConfirm2">{% translate 'Payment' %}</span>
                 </div>
                 <div class="node n3 nConfirm3">
                     <div class="main m3 nConfirm3"></div>
-                    <span class="text t3 nConfirm3">Complete</span>
+                    <span class="text t3 nConfirm3">{% translate 'Complete' %}</span>
                 </div>
             </div>
         </div>
 
         <div class="summary active" id="summary">
             <table>
-                <caption>Summary Of <span>Orders</span></caption>
+                <caption>{% translate 'Summary Of' %} <span>{% translate 'Orders' %}</span></caption>
                 <thead>
                 <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Unit Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total Price</th>
+                    <th scope="col">{% translate 'Image' %}</th>
+                    <th scope="col">{% translate 'Title' %}</th>
+                    <th scope="col">{% translate 'Unit Price' %}</th>
+                    <th scope="col">{% translate 'Quantity' %}</th>
+                    <th scope="col">{% translate 'Total Price' %}</th>
                 </tr>
                 </thead>
                 <tbody id="summary_tbody">
@@ -49,7 +51,7 @@
         </div>
         <div class="address" id="address">
             <table>
-                <caption>Your <span>Address</span></caption>
+                <caption>{% translate 'Your' %} <span>{% translate 'Address' %}</span></caption>
             </table>
             <div id="Useraddress">
                 {% for address in addresses %}
@@ -62,35 +64,35 @@
             </div>
             <div class="new_address_div">
                 <input type="radio" id="new" onchange="showAddressForm(this)" name="address_button">
-                <label for="new">Add new one</label>
+                <label for="new">{% translate 'Add new one' %}</label>
             </div>
 
             <form action="{% url 'customer:address' %}" class="new_address_form" id="add_new_address" method="post">
                 {% csrf_token %}
-                <label for="province">Province:</label><br>
+                <label for="province">{% translate 'Province:' %}</label><br>
                 <input type="text" name="province" id="province" required><br>
-                <label for="city">City:</label><br>
+                <label for="city">{% translate 'City:' %}</label><br>
                 <input type="text" name="city" id="city" required><br>
-                <label for="address">Address:</label><br>
+                <label for="address">{% translate 'Address:' %}</label><br>
                 <textarea type="text" rows="10" cols="20" name="address" id="address_text" required></textarea><br>
-                <label for="postal_code">Postal Code:</label><br>
+                <label for="postal_code">{% translate 'Postal Code:' %}</label><br>
                 <input type="number" name="postal_code" id="postal_code" required>
             </form>
         </div>
         <div class="payment" id="payment">
             <table>
-                <caption>Your <span>Payment</span></caption>
+                <caption>{% translate 'Your' %} <span>{% translate 'Payment' %}</span></caption>
             </table>
         </div>
         <div class="complete" id="complete">
             <table>
-                <caption>Your Orders is <span>Sending...</span></caption>
+                <caption>{% translate 'Your Orders is ' %}<span>{% translate 'Sending...' %}</span></caption>
             </table>
         </div>
 
         <div class="buttonHolder">
-            <div class="button b-back" id="back">Back To Cart</div>
-            <div class="button b-next" id="next">Next</div>
+            <div class="button b-back" id="back">{% translate 'Back To Cart' %}</div>
+            <div class="button b-next" id="next">{% translate 'Next' %}</div>
         </div>
     </section>
 {% endblock %}

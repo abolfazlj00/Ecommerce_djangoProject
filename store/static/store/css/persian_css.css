@@ -1,0 +1,135 @@
+section, header {
+    direction: rtl;
+}
+.icons, #search_input_form {
+    direction: ltr;
+}
+.btn {
+    font-size: 1.6rem;
+}
+.category_view .box-container {
+    direction: ltr;
+}
+
+.navbar {
+    direction: rtl;
+    left: -120%
+}
+.navbar.active{
+    left: auto;
+    right: 0;
+}
+.category .toggler, .category .all,.category .todo, .category .toggler-target {
+    margin-right: 1rem;
+    margin-left: auto;
+}
+.category .toggler::before,
+.navbar .links #categories::before,
+.category .all::before,
+.category .todo::before {
+    content: "";
+    display: inline-block;
+    margin-right: 0.5rem;
+    transition: none;
+}
+.navbar .links #categories::after, .category .toggler::after {
+    content: "\27A4";
+    display: inline-block;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease-in-out;
+}
+.category #categories.active::after, .category .toggler.active::after {
+    transform: rotate(
+90deg);
+}
+.category .all::after {
+    content: "\2605";
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+.category .todo::after {
+    content: "\2014";
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+.category .toggler,
+.category .all,
+.category .todo{
+    border-right: 2px dotted red;
+    border-left: none;
+}
+.category_view .no_pro a{
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+.register-login {
+    direction: ltr;
+}
+
+
+.cart_section .heading h1 {
+    float: right;
+}
+.cart_section .heading a.continue:link,
+.cart_section .heading a.continue:visited {
+    float: left ;
+}
+/*.cart_section .heading a.continue:after {*/
+/*    left: 0;*/
+/*}*/
+.cart_section .heading a.continue:hover:after,
+.cart_section .heading a.continue:focus:after,
+.cart_section .heading a.continue:active:after,
+.cart_section .btn:hover:after,
+.cart_section .btn:focus:after,
+.cart_section .btn:active:after {
+    right: 10px;
+}
+.cart_section .cart .items .cartSection .itemImg{
+    float: right;
+    padding-left: 1em;
+    padding-right: 0;
+}
+.cart_section .cart .items .cartSection input.qty{
+    margin: 1em 0 0 0.5em;
+}
+.cart_section .cart .items .cartSection p.stockStatus {
+    padding: 0.5em 1em 0 0;
+    margin-left: 0;
+    margin-right: 15px;
+}
+.cart_section .promoCode {
+    float: right;
+}
+#promo {
+    float: right;
+}
+.cart_section .promoCode .btn{
+    float: right;
+    border-radius: 1em 0 0 1em;
+}
+.cart_section .subtotal{
+    float: left;
+}
+.cart_section .subtotal .totalRow{
+    text-align: right;
+}
+.cart_section .subtotal .totalRow span{
+    text-align: left;
+    padding: 0;
+}
+.cart_section .subtotal .totalRow .value{
+    float: left;
+}
+.final_btn{
+    float: left;
+}
+
+.pBar {
+    left: auto;
+}
+
+
+
+

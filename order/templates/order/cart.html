@@ -1,5 +1,7 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block loadCss %}
     <link rel="stylesheet" type="text/css" href="{% static 'order/css/cart.css' %}">
 {% endblock %}
@@ -11,8 +13,8 @@
 
         <div class="wrap cf">
             <div class="heading cf">
-                <h1>My Cart</h1>
-                <a href="{% url 'store:home' %}" class="continue">Continue Shopping</a>
+                <h1>{% translate 'My Cart' %}</h1>
+                <a href="{% url 'store:home' %}" class="continue">{% translate 'Continue Shopping' %}</a>
             </div>
             <div class="cart">
                 <ul class="cartWrap" id="user_product_list">
@@ -21,37 +23,37 @@
             </div>
 
             <div class="promoCode"><label for="promo">
-                Have A Promo Code?
+                {% translate 'Have A Promo Code?' %}
             </label>
                 {% if user.is_authenticated %}
                     <form id="discount_code">
                         {% csrf_token %}
                         <input type="text" name="promo"
                                id="promo"
-                               placeholder="Enter Code..." required/>
-                        <input type="submit" class="btn" value="Submit">
+                               placeholder="{% translate 'Enter Code...' %}" required/>
+                        <input type="submit" class="btn" value="{% translate 'Submit' %}">
                     </form>
 
                 {% else %}
                     <input type="text" name="promo"
                            id="promo" disabled
-                           value="Login First..."/>
+                           value="{% translate 'Login First...' %}" />
                 {% endif %}
             </div>
 
             <div class="subtotal cf">
                 <ul>
-                    <li class="totalRow"><span class="label">Subtotal</span><span id="total_products_price"
+                    <li class="totalRow"><span class="label">{% translate 'Subtotal' %}</span><span id="total_products_price"
                                                                                   class="value"></span></li>
 
-                    <li class="totalRow"><span class="label">Shipping</span><span id="shipping_price"
+                    <li class="totalRow"><span class="label">{% translate 'Shipping' %}</span><span id="shipping_price"
                                                                                   class="value"></span></li>
 
-                    <li class="totalRow"><span class="label">Tax</span><span id="tax_price" class="value"></span></li>
-                    <li class="totalRow" ><span class="label">Discount Percent</span><span id="discount_percent" class="value">0</span></li>
-                    <li class="totalRow final"><span class="label">Total</span><span id="total_price"
+                    <li class="totalRow"><span class="label">{% translate 'Tax' %}</span><span id="tax_price" class="value"></span></li>
+                    <li class="totalRow" ><span class="label">{% translate 'Discount Percent' %}</span><span id="discount_percent" class="value">0</span></li>
+                    <li class="totalRow final"><span class="label">{% translate 'Total' %}</span><span id="total_price"
                                                                                      class="value"></span></li>
-                    <li class="totalRow"><a href="{% url 'order:checkout' %}" id="checkout" class="btn continue">Checkout</a>
+                    <li class="totalRow final_btn"><a href="{% url 'order:checkout' %}" id="checkout" class="btn continue">{% translate 'Checkout' %}</a>
                     </li>
                 </ul>
             </div>

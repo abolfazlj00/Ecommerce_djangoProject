@@ -6,6 +6,9 @@ from django.core.mail import send_mail
 from django.http import response, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from string import ascii_letters
+
+from django.utils.translation import activate
+
 from account.api.views import emailValidation, passwordValidation
 from account.models import CustomUser
 from django.conf import settings
@@ -77,6 +80,12 @@ def profile(request, editInfo_response=None):
     addresses = ShippingAddress.objects.filter(customer__user=request.user)
     context = {'addresses': addresses, 'editInfo_response': editInfo_response}
     return render(request, 'account/profile.html', context=context)
+
+
+@login_required
+def changeLang(request):
+    activate(request.GET.get('lang'))
+    return render(request, 'account/profile.html', context={'lang': True})
 
 
 @login_required
@@ -155,4 +164,4 @@ def resetPassword(request, token):
 def deleteAddress(request, address_id):
     user_address = ShippingAddress.objects.get(id=address_id)
     user_address.delete()
-    return JsonResponse({'data':'True'})
+    return JsonResponse({'data': 'True'})

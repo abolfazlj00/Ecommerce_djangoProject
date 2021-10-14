@@ -244,9 +244,9 @@
     font-size: 1.2rem;
     padding: 0.5em;
     float: left;
-    border: 1px solid #dadada;
-    background-color: var(--light-color);
-    color: #fff;
+    border: 1px solid var(--border-blue);
+    background-color: #fff;
+    color: #111;
 }
 
 #promo:active,
@@ -261,7 +261,7 @@
     padding: 0.5em 0.5em;
     border-radius: 0 1em 1em 0;
     text-align: center;
-    border: 1px solid #82ca9c;
+    border: 1px solid var(--border-blue);
     font-size: 1.2rem;
 }
 

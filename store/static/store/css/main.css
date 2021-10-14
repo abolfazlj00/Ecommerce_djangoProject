@@ -377,7 +377,12 @@ header.active {
     max-height: 300px;
     overflow-y: scroll;
 }
-
+.category .toggler,
+.category .all,
+.category .todo{
+    padding-left: 2px;
+    border-left : 2px dotted red;
+}
 @media (max-width: 991px) {
 
     html {

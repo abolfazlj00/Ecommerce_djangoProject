@@ -1,5 +1,7 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block loadCss %}
     <link rel="stylesheet" type="text/css" href="{% static 'account/css/profile.css' %}">
 {% endblock %}
@@ -18,7 +20,7 @@
                     <a onclick="tabs(2)" class="tab">
                         <i class="fa fa-key"></i>
                     </a>
-                    <a onclick="tabs(3)" class="tab">
+                    <a onclick="tabs(3)" id="settingBut" class="tab">
                         <i class="fa fa-cog"></i>
                     </a>
                 </nav>
@@ -28,11 +30,11 @@
                     {% csrf_token %}
                     <div class="profile tabShow active">
                         <input type="text" name="username" value="{{ user.username }}" hidden>
-                        <h1>Personal Info</h1>
+                        <h1>{% translate 'Personal Info' %}</h1>
                         {% if editInfo_response %}
                             {% if editInfo_response == 'True' %}
                                 <div class="for_edited">
-                                    <p>Your personal information edited successfully</p>
+                                    <p>{% translate 'Your personal information edited successfully' %}</p>
                                 </div>
                             {% else %}
                                 <div class="for_error">
@@ -40,38 +42,38 @@
                                 </div>
                             {% endif %}
                         {% endif %}
-                        <h2>First Name</h2>
+                        <h2>{% translate 'First Name' %}</h2>
                         <input type="text" class="input" name="first_name" value="{{ user.first_name }}">
-                        <h2>Last Name</h2>
+                        <h2>{% translate 'Last Name' %}</h2>
                         <input type="text" class="input" name="last_name" value="{{ user.last_name }}">
-                        <h2>Age</h2>
+                        <h2>{% translate 'Age' %}</h2>
                         {% if user.age %}
                             <input type="number" class="input" min="1" name="age" value="{{ user.age }}">
                         {% else %}
-                            <input type="number" class="input" min="1" name="age" placeholder="Enter your age">
+                            <input type="number" class="input" min="1" name="age" placeholder="{% translate 'Enter your age' %}">
                         {% endif %}
-                        <h2>Gender</h2>
+                        <h2>{% translate 'Gender' %}</h2>
                         <select name="gender" id="gender">
                             {% if user.gender == 'Male' %}
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                                <option value="Male">{% translate 'Male' %}</option>
+                                <option value="Female">{% translate 'Female' %}</option>
+                                <option value="Other">{% translate 'Other' %}</option>
                             {% elif user.gender == 'Female' %}
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                <option value="Other">Other</option>
+                                <option value="Female">{% translate 'Female' %}</option>
+                                <option value="Male">{% translate 'Male' %}</option>
+                                <option value="Other">{% translate 'Other' %}</option>
                             {% elif user.gender == 'Other' %}
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                <option value="Other">Other</option>
+                                <option value="Female">{% translate 'Female' %}</option>
+                                <option value="Male">{% translate 'Male' %}</option>
+                                <option value="Other">{% translate 'Other' %}</option>
                             {% else %}
-                                <option value="None">Not selected</option>
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                <option value="Other">Other</option>
+                                <option value="None">{% translate 'Not selected' %}</option>
+                                <option value="Female">{% translate 'Female' %}</option>
+                                <option value="Male">{% translate 'Male' %}</option>
+                                <option value="Other">{% translate 'Other' %}</option>
                             {% endif %}
                         </select>
-                        <h2>Email</h2>
+                        <h2>{% translate 'Email' %}</h2>
                         <input type="email" class="input" name="email" value="{{ user.email }}"><br>
                         <input type="submit" class="btn" value="UPDATE">
                     </div>
@@ -79,17 +81,17 @@
                 <form action="">
                     <div class="address tabShow" id="address_div">
 
-                        <h1>Address Information</h1>
+                        <h1>{% translate 'Address Information' %}</h1>
                         {% if addresses %}
                             <table id="address_table">
                                 <thead>
                                 <tr>
-                                    <th>Number</th>
-                                    <th>Province</th>
-                                    <th>City</th>
-                                    <th>Address</th>
-                                    <th>Postal-Code</th>
-                                    <th>Delete</th>
+                                    <th>{% translate 'Number' %}</th>
+                                    <th>{% translate 'Province' %}</th>
+                                    <th>{% translate 'City' %}</th>
+                                    <th>{% translate 'Address' %}</th>
+                                    <th>{% translate 'Postal-Code' %}</th>
+                                    <th>{% translate 'Delete' %}</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbodyTag">
@@ -106,8 +108,8 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            {% else %}
-                            <h3>There is no address submitted !!!</h3>
+                        {% else %}
+                            <h3>{% translate 'There is no address submitted !!!' %}</h3>
                         {% endif %}
                     </div>
                 </form>
@@ -115,34 +117,43 @@
                 <form id="change_pass" action="#" method="post">
                     {% csrf_token %}
                     <div class="Privacy tabShow">
-                        <h1>Security Info</h1>
+                        <h1>{% translate 'Security Info' %}</h1>
                         <div class="for_edited" id="resp_true" style="display: none">
-                            <p>Your personal information edited successfully</p>
+                            <p>{% translate 'Your password changed successfully' %}</p>
                         </div>
                         <div class="for_error" id="resp_error" style="display: none">
                             <p id="resp_error_p"></p>
                         </div>
-                        <h2>Password</h2>
+                        <h2>{% translate 'Password' %}</h2>
                         <input type="hidden" name="username" id="pass_username" value="{{ user.username }}">
                         <input type="password" class="input" name="password" id="password" required>
-                        <h2>Confirm Password</h2>
+                        <h2>{% translate 'Confirm Password' %}</h2>
                         <input type="password" class="input" name="confirm_password" id="confirm_password" required><br>
                         <input type="submit" id="pass_btn" class="btn" value="Update">
                     </div>
                 </form>
-                <form action="">
-                    <div class="profile tabShow">
-                        <h1>Setting</h1>
-                        <h2>Language</h2>
+                <div class="profile tabShow">
+                    <h1>{% translate 'Setting' %}</h1>
+                    <h2>{% translate 'Language' %}</h2>
+                    <form action="{% url 'account:change-lang' %}" method="get">
+                        {% csrf_token %}
                         <select name="lang" id="lang">
-                            <option value="en">English</option>
-                            <option value="fa">Persian</option>
+                            {% if LANGUAGE_CODE == 'en-us' %}
+                                <option value="en-us">{% translate 'English'%}</option>
+                                <option value="fa">{% translate 'Persian'%}</option>
+                            {% else %}
+                                <option value="fa">{% translate 'Persian'%}</option>
+                                <option value="en-us">{% translate 'English'%}</option>
+                            {% endif %}
                         </select><br>
-                        <button class="btn">Update</button>
-                    </div>
-                </form>
+                        <input class="btn" type="submit" value="Update"/>
+                    </form>
+                </div>
             </div>
         </div>
+        {% if lang %}
+            <input type="checkbox" name="loadSetting" id="load_setting" checked style="display: none">
+        {% endif %}
     </section>
 {% endblock %}
 {% block loadJs %}

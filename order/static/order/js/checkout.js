@@ -26,13 +26,21 @@ nextBtn.addEventListener('click', function () {
     if (state < stateMax) {
         if (state === 0) {
             sendUserOrder()
-            backBtn.innerHTML = 'Back'
+            if (lang_code === 'en-us'){
+                backBtn.innerHTML = 'Back'
+            }else {
+                backBtn.innerHTML = 'قبلی'
+            }
             document.getElementById('summary').classList.remove('active')
             document.getElementById('address').classList.add('active')
         }
         if (state === 1) {
             if (checkAddresses()) {
-                nextBtn.innerHTML = 'Confirm'
+                if (lang_code === 'en-us'){
+                    nextBtn.innerHTML = 'Confirm'
+                }else {
+                    nextBtn.innerHTML = 'تأیید نهایی'
+                }
                 document.getElementById('address').classList.remove('active')
                 document.getElementById('payment').classList.add('active')
             } else {
@@ -42,7 +50,11 @@ nextBtn.addEventListener('click', function () {
         }
         if (state === 2) {
             checkout()
-            backBtn.innerHTML = 'Home'
+            if (lang_code === 'en-us'){
+                backBtn.innerHTML = 'Home'
+            }else {
+                backBtn.innerHTML = 'خانه'
+            }
             document.getElementById('payment').classList.remove('active')
             document.getElementById('complete').classList.add('active')
         }
@@ -80,12 +92,20 @@ backBtn.addEventListener('click', function () {
         document.getElementById('total_cart').click()
     }
     if (state === 1) {
-        backBtn.innerHTML = 'Back To Cart'
+        if (lang_code === 'en-us') {
+            backBtn.innerHTML = 'Back To Cart'
+        } else {
+            backBtn.innerHTML = 'بازگشت به سبد خرید'
+        }
         document.getElementById('summary').classList.add('active')
         document.getElementById('address').classList.remove('active')
     }
     if (state === 2) {
-        nextBtn.innerHTML = 'Next'
+        if (lang_code === 'en-us'){
+            nextBtn.innerHTML = 'Next'
+        }else {
+            nextBtn.innerHTML = 'بعدی'
+        }
         document.getElementById('address').classList.add('active')
         document.getElementById('payment').classList.remove('active')
     }
@@ -214,8 +234,9 @@ function showAddressForm(radio) {
 }
 
 const newAddressForm = document.getElementById('add_new_address')
+
 // newAddressForm.addEventListener('submit', (e) => {
-async function sendAddress(){
+async function sendAddress() {
     const addressUrl = newAddressForm.getAttribute('action')
     const newAddressFormData = new FormData(newAddressForm)
     const newAddressFormDataSerialized = Object.fromEntries(newAddressFormData)

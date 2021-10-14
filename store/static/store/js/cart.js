@@ -1,12 +1,12 @@
 const proPrices = document.querySelectorAll('.proPrice')
-proPrices.forEach((proPrice)=>{
+proPrices.forEach((proPrice) => {
     let price = proPrice.innerHTML
     let newPrice = numberWithCommas(price)
     proPrice.innerHTML = newPrice.toString()
 })
 
 const catPrices = document.querySelectorAll('.catPrice')
-catPrices.forEach((catPrice)=>{
+catPrices.forEach((catPrice) => {
     catPrice.innerHTML = numberWithCommas(catPrice.innerHTML).toString()
 })
 
@@ -17,7 +17,11 @@ for (var i = 0; i < updateBtns.length; i++) {
         let updateBtn = updateBtns[i]
         let productUpdateBtn = updateBtn.dataset.product.toString()
         if (Object.keys(list).includes(productUpdateBtn) && list[productUpdateBtn] !== 0) {
-            updateBtn.innerHTML = 'Remove From Cart'
+            if (lang_code === 'en-us') {
+                updateBtn.innerHTML = 'Remove From Cart'
+            } else {
+                updateBtn.innerHTML = 'حذف از سبد'
+            }
             updateBtn.dataset.action = 'remove'
         }
     }
@@ -27,11 +31,19 @@ for (var i = 0; i < updateBtns.length; i++) {
         var action = this.dataset.action
         if (action === 'add') {
             document.getElementById('total_cart').innerHTML = (parseInt(document.getElementById('total_cart').innerHTML) + 1).toString()
-            this.innerHTML = 'Remove From Cart'
+            if (lang_code === 'en-us') {
+                this.innerHTML = 'Remove From Cart'
+            } else {
+                this.innerHTML = 'حذف از سبد'
+            }
             this.dataset.action = 'remove'
         } else {
             document.getElementById('total_cart').innerHTML -= (1).toString()
-            this.innerHTML = 'Add To Cart'
+            if (lang_code === 'en-us') {
+                this.innerHTML = 'Add To Cart'
+            } else {
+                this.innerHTML = 'اضافه به سبد'
+            }
             this.dataset.action = 'add'
         }
         updateUserOrder(productId, action)
