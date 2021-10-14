@@ -42,7 +42,8 @@ registerForm.addEventListener('submit', async function (e) {
             username.value = json['username']
             password.value = json['password']
         } else {
-            alert(json['resp'])
+            document.getElementById('reg_error_p').innerHTML = json['resp']
+            document.getElementById('error_div_reg').style.display = 'flex'
         }
     } catch (e) {
         console.log(e)
