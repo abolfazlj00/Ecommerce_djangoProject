@@ -169,6 +169,12 @@ checkoutBtn.addEventListener('click', function (e) {
     }
 })
 
+if (localStorage.getItem('discount')){
+    document.getElementById('promo').value = localStorage.getItem('discount')
+    document.getElementById('discount_percent').innerHTML = localStorage.getItem('amount')
+}
+
+
 const discountCodeForm = document.getElementById('discount_code')
 discountCodeForm.addEventListener('submit', async (e)=>{
     e.preventDefault()
@@ -181,8 +187,14 @@ discountCodeForm.addEventListener('submit', async (e)=>{
     }).then((data)=>{
         if (data.error){
             alert(data.error)
+            document.getElementById('discount_percent').innerHTML = 0
+            localStorage.removeItem('discount')
+            localStorage.removeItem('amount')
+            calcPrice()
         }else{
             document.getElementById('discount_percent').innerHTML = data.amount
+            localStorage.setItem('discount', code)
+            localStorage.setItem('amount', data.amount)
             calcPrice()
         }
     })
