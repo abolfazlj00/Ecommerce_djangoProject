@@ -112,12 +112,22 @@ fetch(url, {
                 var unitPrice = this.dataset.price
                 var quantity = this.value
                 if (parseInt(min) > parseInt(quantity)) {
-                    alert('Wrong Input for quantity !!!')
+                    if (lang_code === 'en-us') {
+                        alert('Wrong Input for quantity !!!')
+                    } else {
+                        alert('عدد درستی انتخاب نکردید.')
+                    }
+
                     this.value = 1
                     quantity = this.value
                 }
                 if (parseInt(quantity) > parseInt(max)) {
-                    alert('Not In Stock')
+                    if (lang_code === 'en-us') {
+                        alert('Not In Stock')
+                    } else {
+                        alert('در انبار موجود نیست.')
+                    }
+
                     this.value = 1
                     quantity = this.value
                 }
@@ -150,7 +160,7 @@ function calcPrice() {
     tax_price.innerHTML = `${tax}`
     const discount_percent = document.getElementById('discount_percent').innerHTML
     const total_price = document.getElementById('total_price')
-    let tot = (sum * (100 - discount_percent)/100) + tax + parseInt(shipping)
+    let tot = (sum * (100 - discount_percent) / 100) + tax + parseInt(shipping)
     total_price.innerHTML = numberWithCommas(tot)
 }
 
@@ -159,39 +169,49 @@ checkoutBtn.addEventListener('click', function (e) {
     const homeLogo = document.getElementById('home_logo')
     e.preventDefault()
     if (Object.keys(userOrders).length === 0) {
-        alert('Your cart is empty !!!')
+        if (lang_code === 'en-us') {
+            alert('Your cart is empty !!!')
+        } else {
+            alert('سبد خرید شما خالی است !!!')
+        }
+
         homeLogo.click()
     } else {
         if (login_user === 'AnonymousUser') {
-            alert('Please login first !!!')
+            if (lang_code === 'en-us') {
+                alert('Please login first !!!')
+            } else {
+                alert('ابتدا وارد سایت شوید.')
+            }
+
         }
         location.href = this.getAttribute('href')
     }
 })
 
-if (localStorage.getItem('discount')){
+if (localStorage.getItem('discount')) {
     document.getElementById('promo').value = localStorage.getItem('discount')
     document.getElementById('discount_percent').innerHTML = localStorage.getItem('amount')
 }
 
 
 const discountCodeForm = document.getElementById('discount_code')
-discountCodeForm.addEventListener('submit', async (e)=>{
+discountCodeForm.addEventListener('submit', async (e) => {
     e.preventDefault()
     let code = document.getElementById('promo').value
     const discountUrl = `http://127.0.0.1:8000/order/check-discount/${code}/`
     await fetch(discountUrl, {
         method: 'GET',
-    }).then((response)=>{
+    }).then((response) => {
         return response.json()
-    }).then((data)=>{
-        if (data.error){
+    }).then((data) => {
+        if (data.error) {
             alert(data.error)
             document.getElementById('discount_percent').innerHTML = 0
             localStorage.removeItem('discount')
             localStorage.removeItem('amount')
             calcPrice()
-        }else{
+        } else {
             document.getElementById('discount_percent').innerHTML = data.amount
             localStorage.setItem('discount', code)
             localStorage.setItem('amount', data.amount)
