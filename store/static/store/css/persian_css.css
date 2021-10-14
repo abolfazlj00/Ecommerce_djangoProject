@@ -129,7 +129,14 @@ section, header {
 .pBar {
     left: auto;
 }
-
+.forget >p{
+    float: right;
+}
+#send_email_link{
+    float: left;
+    margin-right: 8px;
+    margin-left: 0;
+}
 
 
 
