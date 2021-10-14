@@ -41,6 +41,8 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         if self.stock == 0:
             self.in_stock = False
+        else:
+            self.in_stock = True
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
