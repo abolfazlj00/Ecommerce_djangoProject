@@ -26,9 +26,9 @@ nextBtn.addEventListener('click', function () {
     if (state < stateMax) {
         if (state === 0) {
             sendUserOrder()
-            if (lang_code === 'en-us'){
+            if (lang_code === 'en-us') {
                 backBtn.innerHTML = 'Back'
-            }else {
+            } else {
                 backBtn.innerHTML = 'قبلی'
             }
             document.getElementById('summary').classList.remove('active')
@@ -36,9 +36,9 @@ nextBtn.addEventListener('click', function () {
         }
         if (state === 1) {
             if (checkAddresses()) {
-                if (lang_code === 'en-us'){
+                if (lang_code === 'en-us') {
                     nextBtn.innerHTML = 'Confirm'
-                }else {
+                } else {
                     nextBtn.innerHTML = 'تأیید نهایی'
                 }
                 document.getElementById('address').classList.remove('active')
@@ -50,9 +50,9 @@ nextBtn.addEventListener('click', function () {
         }
         if (state === 2) {
             checkout()
-            if (lang_code === 'en-us'){
+            if (lang_code === 'en-us') {
                 backBtn.innerHTML = 'Home'
-            }else {
+            } else {
                 backBtn.innerHTML = 'خانه'
             }
             document.getElementById('payment').classList.remove('active')
@@ -101,9 +101,9 @@ backBtn.addEventListener('click', function () {
         document.getElementById('address').classList.remove('active')
     }
     if (state === 2) {
-        if (lang_code === 'en-us'){
+        if (lang_code === 'en-us') {
             nextBtn.innerHTML = 'Next'
-        }else {
+        } else {
             nextBtn.innerHTML = 'بعدی'
         }
         document.getElementById('address').classList.add('active')
@@ -161,21 +161,29 @@ async function sendUserOrder() {
 }
 
 function checkout() {
-    localStorage.removeItem(login_user)
     document.getElementById('total_cart').innerHTML = '0'
     let addressId = localStorage.getItem('addressId').substr(8)
     const url_checkout = 'http://127.0.0.1:8000/order/checkout/'
+    var discount = ''
+    if (localStorage.getItem('discount')) {
+        discount = localStorage.getItem('discount')
+    }
     fetch(url_checkout, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrf__token,
         },
-        body: JSON.stringify({'address_id': addressId}),
+        body: JSON.stringify({'address_id': addressId, 'discount': discount}),
     })
         .then((response) => {
             return response.json()
-        })
+        }).then(() => {
+        localStorage.removeItem(login_user)
+        localStorage.removeItem('addressId')
+        localStorage.removeItem('discount')
+        localStorage.removeItem('amount')
+    })
 }
 
 const urlPro = 'http://127.0.0.1:8000/api/store/products/'
