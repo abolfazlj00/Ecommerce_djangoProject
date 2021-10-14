@@ -3,10 +3,9 @@ from string import ascii_letters
 
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.utils.translation import gettext as _
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
 from account.api.serializers import RegistrationSerializer, ChangePassSerializer
 from account.models import CustomUser
 from customer.models import Customer
@@ -15,11 +14,11 @@ from customer.models import Customer
 def usernameValidation(username):
     for letter in username:
         if letter not in ascii_letters and letter != '_' and letter not in '0123456789':
-            error = 'please use only letters (a-z,A-Z), numbers, or underline for username'
+            error = _('please use only letters (a-z,A-Z), numbers, or underline for username')
             return error
     try:
         if CustomUser.objects.get(username=username):
-            error = 'This username has already existed'
+            error = _('This username has already existed')
             return error
     except CustomUser.DoesNotExist:
         return 'True'
@@ -27,11 +26,11 @@ def usernameValidation(username):
 
 def passwordValidation(password):
     if len(password) < 8:
-        error = 'password is too short. It must be at least 8 characters'
+        error = _('password is too short. It must be at least 8 characters')
         return error
     for letter in password:
         if letter not in ascii_letters and letter not in '0123456789':
-            error = 'please use only letters (a-z,A-Z), numbers for password'
+            error = _('please use only letters (a-z,A-Z), numbers for password')
             return error
     return 'True'
 
@@ -39,11 +38,11 @@ def passwordValidation(password):
 def phoneValidation(phone):
     regex_for_phone = r"^(\+98?)?{?(0?9[0-9]{9,9}}?)$"
     if not re.search(regex_for_phone, phone):
-        error = "phone is not valid !"
+        error = _("phone is not valid !")
         return error
     try:
         if CustomUser.objects.get(phone=phone):
-            error = 'This phone has already existed'
+            error = _('This phone has already existed')
             return error
     except CustomUser.DoesNotExist:
         return 'True'
@@ -52,7 +51,7 @@ def phoneValidation(phone):
 def emailValidation(email):
     regex_for_email = r"^[a-zA-Z0-9]+[\._]?[a-zA-Z0-9]+[@]\w+[.]\w{2,3}$"
     if not re.search(regex_for_email, email):
-        error = "email is not valid !"
+        error = _("email is not valid !")
         return error
     return 'True'
 
