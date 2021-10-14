@@ -26,8 +26,8 @@ $ pip3 install -r requirements.txt
 $ cd core
 ```
 
-### Open and read .env_sample.txt 
-### back to the store folder
+### Open and read config_sample.txt 
+### back to the Ecommerce_djangoProject folder
 
 #####  Run makemigrations and migrate :
 ```bash
