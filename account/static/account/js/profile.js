@@ -81,7 +81,7 @@ changePassForm.addEventListener('submit', async function (e) {
             }
         } catch (e) {
             console.log(e)
-            if (lang_code === 'en') {
+            if (lang_code === 'en-us') {
                 alert('something wrong, try again')
             } else {
                 alert('مشکلی رخ داده است. دوباره امتحان کنید.')
@@ -121,7 +121,7 @@ trash_icons.forEach((trash_icon) => {
                         h3Tag.innerHTML = 'There is no address submitted !!!'
                         document.getElementById('address_div').appendChild(h3Tag)
                     }
-                    if (lang_code === 'en') {
+                    if (lang_code === 'en-us') {
                         alert('Your address deleted successfully !!!')
                     } else {
                         alert('آدرس شما با موفقیت حذف شد !!!')
