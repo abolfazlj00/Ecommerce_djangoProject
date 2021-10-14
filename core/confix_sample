@@ -1,3 +1,6 @@
+create a config.py file inside this file [Ecommerce_djangoProject/core/config.py]
+fill like this:
+s
 SECRET_KEY = '...'           -> str
 ENGINE = '...'               -> str
 NAME = '...'                 -> str
