@@ -34,6 +34,15 @@
     margin: 6px auto;
     font-size: 1.4rem;
 }
+.forget >p{
+    float: left;
+}
+#send_email_link{
+    color: var(--btn-orange);
+    cursor: pointer;
+    float: right;
+    margin-left: 8px;
+}
 .register-login .forms-container {
     position: absolute;
     width: 100%;

@@ -25,15 +25,18 @@
                         <h2 class="title">{% translate 'Sign in' %}</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" name="username" id="log-username" placeholder="{% translate 'Username' %}" required/>
+                            <input type="text" name="username" id="log-username"
+                                   placeholder="{% translate 'Username' %}" required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="password" id="log-password" placeholder="{% translate 'Password' %}" required/>
+                            <input type="password" name="password" id="log-password"
+                                   placeholder="{% translate 'Password' %}" required/>
                         </div>
                         {% if log_error %}
                             <div class="forget">
-                                <p>{% translate 'Forget password??' %} <a id="send_email_link">{% translate 'Send email' %}</a></p>
+                                <p>{% translate 'forget??' %}</p>
+                                <a id="send_email_link">{% translate 'Send email' %}</a>
                             </div>
                         {% endif %}
                         <input type="submit" value="{% translate 'Login' %}" class="btn solid"/>
@@ -56,16 +59,15 @@
                     <form action="{% url 'api_account:registration' %}" class="sign-up-form" id="register_form"
                           method="post">
                         {% csrf_token %}
-                        {% if reg_error %}
-                            <div class="for_error">
-                                <p>{{ reg_error }}</p>
-                            </div>
-                        {% endif %}
+                        <div class="for_error" id="error_div_reg" style="display: none">
+                            <p id="reg_error_p"></p>
+                        </div>
                         <input type="text" id="type" name="type" value="register" hidden>
                         <h2 class="title">{% translate 'Sign up' %}</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="username" name="username" placeholder="{% translate 'Username' %}" required/>
+                            <input type="text" id="username" name="username" placeholder="{% translate 'Username' %}"
+                                   required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-phone"></i>
@@ -73,19 +75,23 @@
                         </div>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" id="email" name="email" placeholder="{% translate 'Email (optional)' %}"/>
+                            <input type="email" id="email" name="email"
+                                   placeholder="{% translate 'Email (optional)' %}"/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="first_name" name="first_name" placeholder="{% translate 'Firstname' %}" required/>
+                            <input type="text" id="first_name" name="first_name"
+                                   placeholder="{% translate 'Firstname' %}" required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="last_name" name="last_name" placeholder="{% translate 'Lastname' %}" required/>
+                            <input type="text" id="last_name" name="last_name" placeholder="{% translate 'Lastname' %}"
+                                   required/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" id="password" name="password" placeholder="{% translate 'Password' %}" required/>
+                            <input type="password" id="password" name="password"
+                                   placeholder="{% translate 'Password' %}" required/>
                         </div>
                         <input type="submit" class="btn" id="register-btn" value="{% translate 'Sign up' %}"/>
                         <p class="social-text">{% translate 'Sign up with social platforms' %}</p>
