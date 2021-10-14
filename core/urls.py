@@ -22,14 +22,16 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # REST API
-    path('api/account/', include('account.api.urls')),
-    path('api/store/', include('store.api.urls')),
 ]
 urlpatterns += i18n_patterns(
     path('account/', include('account.urls')),
     path('', include('store.urls')),
     path('order/', include('order.urls')),
     path('customer/', include('customer.urls')),
+
+    # REST API
+    path('api/account/', include('account.api.urls')),
+    path('api/store/', include('store.api.urls')),
     prefix_default_language=False
+
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
