@@ -1,13 +1,11 @@
-import re
 import uuid
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.http import response, HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
-from string import ascii_letters
-
 from django.utils.translation import activate
+from django.utils.translation import gettext as _
 
 from account.api.views import emailValidation, passwordValidation
 from account.models import CustomUser
@@ -24,8 +22,9 @@ def loginUser(request, username, password):
             return redirect(request.POST['next'])
         return redirect('store:home')
     else:
+        log_error = _('incorrect username or password')
         return render(request, 'account/register-login.html', context={
-            'log_error': 'incorrect username or password'
+            'log_error': log_error
         })
 
 
@@ -38,7 +37,7 @@ def rgisterLogin(request):
 
 def ageValidation(age):
     if int(age) <= 0:
-        return 'Age must be a positive number'
+        return _('Age must be a positive number')
     return 'True'
 
 
@@ -99,7 +98,6 @@ def editProfilePersonalInfo(request):
         email = request.POST['email']
         edit_info_response = setInfo(request, username, first_name, last_name, age, gender, email)
         return profile(request, edit_info_response)
-        # return render(request, 'account/profile.html', context={'editInfo_response': edit_info_response})
 
 
 def secretEmail(email):
@@ -125,7 +123,7 @@ def sendEmail(request, username):
         user = CustomUser.objects.get(username=username)
         secret_user_email = secretEmail(user.email)
         if user.email == '':
-            return HttpResponse('There is not any email for this username !!!')
+            return HttpResponse(_('There is not any email for this username !!!'))
         else:
             token = str(uuid.uuid4())
             user.forget_pass_token = token
@@ -134,7 +132,7 @@ def sendEmail(request, username):
             return HttpResponse(f'An email sent to {secret_user_email}')
     except Exception as e:
         print(e)
-        return HttpResponse('This username is not exist !!!')
+        return HttpResponse(_('This username is not exist !!!'))
 
 
 def resetPassword(request, token=None):
@@ -145,12 +143,12 @@ def resetPassword(request, token=None):
             password = request.POST['password']
             confirm_password = request.POST['confirm_password']
             if password != confirm_password:
-                error = 'The password and its confirm do not match'
+                error = _('The password and its confirm do not match')
                 return render(request, 'account/reset_password.html', context={'error': error, 'user_obj': user_obj})
             if passwordValidation(password) == 'True':
                 user_obj.set_password(password)
                 user_obj.save()
-                message = 'Your password changed successfully :)'
+                message = _('Your password changed successfully :)')
                 return render(request, 'account/reset_password.html',
                               context={'message': message, 'user_obj': user_obj})
             return render(request, 'account/reset_password.html',
