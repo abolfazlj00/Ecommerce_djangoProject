@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 09:42+0330\n"
+"POT-Creation-Date: 2021-10-14 10:03+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,29 +22,29 @@ msgstr ""
 msgid "name"
 msgstr "نام"
 
-#: .\store\templates\store\base.html:70
+#: .\store\templates\store\base.html:69
 #: .\store\templates\store\category.html:33
 #: .\store\templates\store\category.html:39
 msgid "Home"
 msgstr "خانه"
 
-#: .\store\templates\store\base.html:71
+#: .\store\templates\store\base.html:70
 msgid "Profile"
 msgstr "پروفایل"
 
-#: .\store\templates\store\base.html:73
+#: .\store\templates\store\base.html:72
 msgid "Categories"
 msgstr "دسته بندی ها"
 
-#: .\store\templates\store\base.html:79
+#: .\store\templates\store\base.html:78
 msgid "History"
 msgstr "تاریخچه"
 
-#: .\store\templates\store\base.html:80
+#: .\store\templates\store\base.html:79
 msgid "About Us"
 msgstr "درباره ما"
 
-#: .\store\templates\store\base.html:92
+#: .\store\templates\store\base.html:91
 msgid "Copyright @2021 | Designed With by abolfazlj00"
 msgstr "است abolfazlj00 تمامی حقوق این سایت متعلق به"
 
@@ -77,10 +77,6 @@ msgstr "محصولی برای این دسته بندی ثبت نشده است"
 msgid "Back To Home"
 msgstr "بازگشت به خانه"
 
-#: .\store\templates\store\home.html:7
-msgid "home"
-msgstr "خانه"
-
 #: .\store\templates\store\home.html:14
 msgid "latest"
 msgstr "آخرین"
@@ -88,3 +84,6 @@ msgstr "آخرین"
 #: .\store\templates\store\home.html:14
 msgid "products"
 msgstr "محصولات"
+
+#~ msgid "home"
+#~ msgstr "خانه"

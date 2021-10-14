@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-13 09:42+0330\n"
+"POT-Creation-Date: 2021-10-14 10:03+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,8 +116,8 @@ msgid "Your password changed successfully"
 msgstr "رمزعبور شما با موفقیت ویرایش شد"
 
 #: .\account\templates\account\profile.html:127
-#: .\account\templates\account\register-login.html:32
-#: .\account\templates\account\register-login.html:88
+#: .\account\templates\account\register-login.html:34
+#: .\account\templates\account\register-login.html:94
 msgid "Password"
 msgstr "رمزعبور"
 
@@ -143,86 +143,114 @@ msgstr "انگلیسی"
 msgid "Persian"
 msgstr "فارسی"
 
-#: .\account\templates\account\register-login.html:24
-msgid "Login"
-msgstr "ورود"
-
 #: .\account\templates\account\register-login.html:25
-#: .\account\templates\account\register-login.html:125
+#: .\account\templates\account\register-login.html:131
 msgid "Sign in"
 msgstr "ورود"
 
-#: .\account\templates\account\register-login.html:28
-#: .\account\templates\account\register-login.html:68
+#: .\account\templates\account\register-login.html:29
+#: .\account\templates\account\register-login.html:69
 msgid "Username"
 msgstr "نام کاربری"
 
-#: .\account\templates\account\register-login.html:36
-#, fuzzy
-#| msgid "Confirm Password"
-msgid "Forget password??"
-msgstr "تأیید رمزعبور"
+#: .\account\templates\account\register-login.html:38
+msgid "forget??"
+msgstr "فراموش کردید؟؟"
 
-#: .\account\templates\account\register-login.html:36
+#: .\account\templates\account\register-login.html:39
 msgid "Send email"
 msgstr "فرستادن ایمیل"
 
-#: .\account\templates\account\register-login.html:40
+#: .\account\templates\account\register-login.html:42
+msgid "Login"
+msgstr "ورود"
+
+#: .\account\templates\account\register-login.html:43
 msgid "Sign in with social platforms"
 msgstr "ورود با شبکه های اجتماعی"
 
-#: .\account\templates\account\register-login.html:65
-#: .\account\templates\account\register-login.html:90
-#: .\account\templates\account\register-login.html:115
+#: .\account\templates\account\register-login.html:66
+#: .\account\templates\account\register-login.html:96
+#: .\account\templates\account\register-login.html:121
 msgid "Sign up"
 msgstr "ثبت نام"
 
-#: .\account\templates\account\register-login.html:72
+#: .\account\templates\account\register-login.html:74
 msgid "phone"
 msgstr "شماره همراه"
 
-#: .\account\templates\account\register-login.html:76
+#: .\account\templates\account\register-login.html:79
 msgid "Email (optional)"
 msgstr "ایمیل (اختیاری)"
 
-#: .\account\templates\account\register-login.html:80
+#: .\account\templates\account\register-login.html:84
 #, fuzzy
 #| msgid "First Name"
 msgid "Firstname"
 msgstr "نام"
 
-#: .\account\templates\account\register-login.html:84
+#: .\account\templates\account\register-login.html:88
 #, fuzzy
 #| msgid "Last Name"
 msgid "Lastname"
 msgstr "نام خانوادگی"
 
-#: .\account\templates\account\register-login.html:91
+#: .\account\templates\account\register-login.html:97
 msgid "Sign up with social platforms"
 msgstr "ثبت نام با شبکه های اجتماعی"
 
-#: .\account\templates\account\register-login.html:113
+#: .\account\templates\account\register-login.html:119
 msgid "New here ?"
 msgstr "تازه واردی ؟"
 
-#: .\account\templates\account\register-login.html:122
+#: .\account\templates\account\register-login.html:128
 msgid "One of us ?"
 msgstr "یکی از مایی ؟"
 
-#: .\account\templates\account\reset_password.html:14
+#: .\account\templates\account\reset_password.html:22
 #, fuzzy
 #| msgid "Password"
 msgid "password"
 msgstr "رمزعبور"
 
-#: .\account\templates\account\reset_password.html:15
+#: .\account\templates\account\reset_password.html:24
 #, fuzzy
 #| msgid "Confirm Password"
 msgid "confirm_password"
 msgstr "تأیید رمزعبور"
 
-#: .\account\templates\account\reset_password.html:16
+#: .\account\templates\account\reset_password.html:25
 #, fuzzy
-#| msgid "Confirm Password"
 msgid "Change Password"
 msgstr "تغییر رمزعبور"
+
+#: .\account\templates\account\reset_password.html:28
+msgid "Home"
+msgstr "خانه"
+
+#: .\account\views.py:25
+msgid "incorrect username or password"
+msgstr "نام کاربری یا رمزعبور اشتباه است"
+
+#: .\account\views.py:40
+msgid "Age must be a positive number"
+msgstr "سن باید یک عدد مثبت باشد"
+
+#: .\account\views.py:126
+msgid "There is not any email for this username !!!"
+msgstr "ایمیلی برای این نام کاربری ثبت نشده است !!!"
+
+#: .\account\views.py:135
+#, fuzzy
+msgid "This username is not exist !!!"
+msgstr "این نام کاربری وجود ندارد !!!"
+
+#: .\account\views.py:146
+msgid "The password and its confirm do not match"
+msgstr "رمزعبور و تأیید آن همخوانی ندارند"
+
+#: .\account\views.py:151
+#, fuzzy
+#| msgid "Your password changed successfully"
+msgid "Your password changed successfully :)"
+msgstr "رمزعبور شما با موفقیت تغییر پیدا کرد :)"
