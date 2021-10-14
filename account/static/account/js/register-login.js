@@ -46,7 +46,7 @@ registerForm.addEventListener('submit', async function (e) {
         }
     } catch (e) {
         console.log(e)
-        if (lang_code === 'en') {
+        if (lang_code === 'en-us') {
             alert('something wrong, try again')
         } else {
             alert('مشکلی رخ داده است. دوباره امتحان کنید.')
@@ -63,7 +63,7 @@ if (document.getElementById('send_email_link')) {
     sendEmailBtn.addEventListener('click', async function () {
         var inputUsername = document.getElementById('log-username').value
         if (inputUsername === '') {
-            if (lang_code === 'en') {
+            if (lang_code === 'en-us') {
                 alert('Enter your username to send you email')
             } else {
                 alert('نام کاربری خود را وارد کنید تا ایمیل برایتان فرستاده شود.')
