@@ -29,12 +29,19 @@ function createHtml(product) {
     bTag.style.color = 'var(--black-color)'
     bTag.style.margin = 'auto 10px'
     bTag.innerHTML = 'x '
+    if (lang_code !== 'en-us'){
+        bTag.style.fontSize = '2rem'
+    }
     firstP.append(bTag)
     firstP.append(`${product.price}`)
     secondDiv.appendChild(firstP)
     let secondP = document.createElement('p')
     secondP.classList.add('stockStatus')
-    secondP.innerHTML = 'In Stock'
+    if (lang_code === 'en-us') {
+        secondP.innerHTML = 'In Stock'
+    } else {
+        secondP.innerHTML = 'موجود'
+    }
     secondDiv.appendChild(secondP)
     firstDiv.appendChild(secondDiv)
     let thirdDiv = document.createElement('div')
