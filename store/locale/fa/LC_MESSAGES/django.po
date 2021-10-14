@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 10:03+0330\n"
+"POT-Creation-Date: 2021-10-14 11:37+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,10 +43,6 @@ msgstr "تاریخچه"
 #: .\store\templates\store\base.html:79
 msgid "About Us"
 msgstr "درباره ما"
-
-#: .\store\templates\store\base.html:91
-msgid "Copyright @2021 | Designed With by abolfazlj00"
-msgstr "است abolfazlj00 تمامی حقوق این سایت متعلق به"
 
 #: .\store\templates\store\category.html:13
 msgid "By"
@@ -84,6 +80,9 @@ msgstr "آخرین"
 #: .\store\templates\store\home.html:14
 msgid "products"
 msgstr "محصولات"
+
+#~ msgid "Copyright @2021 | Designed With by abolfazlj00"
+#~ msgstr "است abolfazlj00 تمامی حقوق این سایت متعلق به"
 
 #~ msgid "home"
 #~ msgstr "خانه"

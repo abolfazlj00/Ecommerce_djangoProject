@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 10:03+0330\n"
+"POT-Creation-Date: 2021-10-14 11:37+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\account\api\views.py:17
+msgid "please use only letters (a-z,A-Z), numbers, or underline for username"
+msgstr "لطفاً فقط از حروف انگلیسی و اعداد و _ برای نام کاربری استفاده کنید"
+
+#: .\account\api\views.py:21
+msgid "This username has already existed"
+msgstr "این نام کاربری قبلاً ثبت شده است"
+
+#: .\account\api\views.py:29
+msgid "password is too short. It must be at least 8 characters"
+msgstr "رمزعبور باید حداقل 8 کاراکتر باشد"
+
+#: .\account\api\views.py:33
+msgid "please use only letters (a-z,A-Z), numbers for password"
+msgstr "لطفاً فقط از حروف انگلیسی و اعداد برای رمزعبور استفاده کنید"
+
+#: .\account\api\views.py:41
+msgid "phone is not valid !"
+msgstr "شماره همراه معتبر نیست"
+
+#: .\account\api\views.py:45
+msgid "This phone has already existed"
+msgstr "این شماره همراه قبلاً ثبت شده است"
+
+#: .\account\api\views.py:54
+msgid "email is not valid !"
+msgstr "ایمیل معتبر نیست"
+
+#: .\account\api\views.py:115
+msgid "Wrong Input"
+msgstr "ورودی اشتباه است"
 
 #: .\account\templates\account\profile.html:33
 msgid "Personal Info"
@@ -75,6 +107,13 @@ msgstr "انتخاب نشده است"
 msgid "Email"
 msgstr "ایمیل"
 
+#: .\account\templates\account\profile.html:78
+#: .\account\templates\account\profile.html:115
+#: .\account\templates\account\profile.html:133
+#: .\account\templates\account\profile.html:150
+msgid "Update"
+msgstr "آپدیت"
+
 #: .\account\templates\account\profile.html:84
 msgid "Address Information"
 msgstr "اطلاعات آدرس"
@@ -107,39 +146,39 @@ msgstr "حذف"
 msgid "There is no address submitted !!!"
 msgstr "آدرسی ثبت نشده است"
 
-#: .\account\templates\account\profile.html:120
+#: .\account\templates\account\profile.html:121
 msgid "Security Info"
 msgstr "اطلاعات امنیتی"
 
-#: .\account\templates\account\profile.html:122
+#: .\account\templates\account\profile.html:123
 msgid "Your password changed successfully"
 msgstr "رمزعبور شما با موفقیت ویرایش شد"
 
-#: .\account\templates\account\profile.html:127
+#: .\account\templates\account\profile.html:128
 #: .\account\templates\account\register-login.html:34
 #: .\account\templates\account\register-login.html:94
 msgid "Password"
 msgstr "رمزعبور"
 
-#: .\account\templates\account\profile.html:130
+#: .\account\templates\account\profile.html:131
 msgid "Confirm Password"
 msgstr "تأیید رمزعبور"
 
-#: .\account\templates\account\profile.html:136
+#: .\account\templates\account\profile.html:137
 msgid "Setting"
 msgstr "تنظیمات"
 
-#: .\account\templates\account\profile.html:137
+#: .\account\templates\account\profile.html:138
 msgid "Language"
 msgstr "زبان"
 
-#: .\account\templates\account\profile.html:142
-#: .\account\templates\account\profile.html:146
+#: .\account\templates\account\profile.html:143
+#: .\account\templates\account\profile.html:147
 msgid "English"
 msgstr "انگلیسی"
 
-#: .\account\templates\account\profile.html:143
-#: .\account\templates\account\profile.html:145
+#: .\account\templates\account\profile.html:144
+#: .\account\templates\account\profile.html:146
 msgid "Persian"
 msgstr "فارسی"
 
