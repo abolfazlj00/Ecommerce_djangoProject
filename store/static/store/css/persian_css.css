@@ -1,12 +1,51 @@
+* {
+    font-family: "2  Kamran", sans-serif;
+}
+
 section, header {
     direction: rtl;
 }
+
 .icons, #search_input_form {
     direction: ltr;
 }
+
 .btn {
+    font-size: 2.2rem;
+}
+
+.category_view .box-container .box span,
+.category_view .box-container .box h3 {
+    font-size: 3rem;
+}
+
+.heading, .cart_section .heading h1 {
+    font-size: 4rem;
+}
+
+.fa, .fas {
+    font-size: 2rem;
+}
+
+header .icons div, header .icons a {
+    height: 4rem;
+    width: 4rem;
+    font-size: 1.6rem;
+    line-height: 4rem;
+}
+
+header #total_cart {
+    font-size: 2.8rem;
+}
+
+.navbar .user h3 {
     font-size: 1.6rem;
 }
+
+.navbar .links a {
+    font-size: 2.4rem;
+}
+
 .category_view .box-container {
     direction: ltr;
 }
@@ -15,14 +54,17 @@ section, header {
     direction: rtl;
     left: -120%
 }
-.navbar.active{
+
+.navbar.active {
     left: auto;
     right: 0;
 }
-.category .toggler, .category .all,.category .todo, .category .toggler-target {
+
+.category .toggler, .category .all, .category .todo, .category .toggler-target {
     margin-right: 1rem;
     margin-left: auto;
 }
+
 .category .toggler::before,
 .navbar .links #categories::before,
 .category .all::before,
@@ -32,33 +74,39 @@ section, header {
     margin-right: 0.5rem;
     transition: none;
 }
+
 .navbar .links #categories::after, .category .toggler::after {
     content: "\27A4";
     display: inline-block;
     margin-right: 0.5rem;
     transition: transform 0.3s ease-in-out;
 }
+
 .category #categories.active::after, .category .toggler.active::after {
     transform: rotate(
-90deg);
+            90deg);
 }
+
 .category .all::after {
     content: "\2605";
     display: inline-block;
     margin-right: 0.5rem;
 }
+
 .category .todo::after {
     content: "\2014";
     display: inline-block;
     margin-right: 0.5rem;
 }
+
 .category .toggler,
 .category .all,
-.category .todo{
+.category .todo {
     border-right: 2px dotted red;
     border-left: none;
 }
-.category_view .no_pro a{
+
+.category_view .no_pro a {
     margin-left: auto;
     margin-right: 2rem;
 }
@@ -67,17 +115,27 @@ section, header {
     direction: ltr;
 }
 
+.cart_section .cart .items .cartSection.qtyWrap p,
+.cart_section .cart .items .cartSection.prodTotal p,
+.cart_section .cart .items .cartSection p {
+    font-size: 2.6rem;
+}
 
 .cart_section .heading h1 {
     float: right;
 }
+
 .cart_section .heading a.continue:link,
 .cart_section .heading a.continue:visited {
-    float: left ;
+    float: left;
+    font-size: 1.9rem;
 }
-/*.cart_section .heading a.continue:after {*/
-/*    left: 0;*/
-/*}*/
+
+.cart_section .btn:link, .cart_section .btn:visited {
+    font-size: 1.9rem;
+    padding: 0.5em 1.5em;
+}
+
 .cart_section .heading a.continue:hover:after,
 .cart_section .heading a.continue:focus:after,
 .cart_section .heading a.continue:active:after,
@@ -86,57 +144,141 @@ section, header {
 .cart_section .btn:active:after {
     right: 10px;
 }
-.cart_section .cart .items .cartSection .itemImg{
+
+.cart_section .cart .items .cartSection .itemImg {
     float: right;
     padding-left: 1em;
     padding-right: 0;
 }
-.cart_section .cart .items .cartSection input.qty{
+
+.cart_section .cart .items .cartSection input.qty {
     margin: 1em 0 0 0.5em;
 }
+
 .cart_section .cart .items .cartSection p.stockStatus {
     padding: 0.5em 1em 0 0;
     margin-left: 0;
     margin-right: 15px;
 }
+
 .cart_section .promoCode {
     float: right;
 }
+
+.cart_section .promoCode label {
+    font-size: 2.4rem;
+}
+
 #promo {
     float: right;
+    font-size: 2.3rem;
+    padding: 0.1em 1.5em;
 }
-.cart_section .promoCode .btn{
+
+.cart_section .promoCode .btn {
     float: right;
-    border-radius: 1em 0 0 1em;
+    border-radius: 0.5em 0 0 0.5em;
+    font-size: 2.6rem;
+    padding: 0.04em 0;
 }
-.cart_section .subtotal{
+
+.cart_section .subtotal {
     float: left;
 }
-.cart_section .subtotal .totalRow{
+
+.cart_section .subtotal .totalRow {
     text-align: right;
+    font-size: 2rem;
 }
-.cart_section .subtotal .totalRow span{
+
+.cart_section .subtotal .totalRow span {
     text-align: left;
     padding: 0;
 }
-.cart_section .subtotal .totalRow .value{
+
+.cart_section .subtotal .totalRow .value {
     float: left;
+    font-size: 2.4rem;
 }
-.final_btn{
+
+.cart_section .subtotal .totalRow.final {
+    font-size: 2.6em;
+}
+
+.final_btn {
     float: left;
 }
 
 .pBar {
     left: auto;
 }
-.forget >p{
+
+.forget > p {
     float: right;
 }
-#send_email_link{
+
+#send_email_link {
     float: left;
     margin-right: 8px;
     margin-left: 0;
 }
 
+.for_error > p {
+    text-align: center;
+}
 
+.node > .text {
+    top: 1em;
+    font-size: 2.5rem;
+}
 
+.summary table caption,
+.address table caption,
+.payment table caption,
+.complete table caption {
+    font-size: 4rem;
+}
+
+.summary table th,
+.new_address_form,
+.profile-div table th{
+    font-size: 2.8rem;
+}
+
+.summary table td, #Useraddress, .new_address_div {
+    font-size: 2.5rem;
+}
+
+.buttonHolder .button {
+    padding: 0.5em 1.9em;
+    font-size: 2.5rem;
+    border-radius: 1.5em;
+}
+.new_address_form input {
+    padding: 0.9em;
+    font-size: 2.4rem;
+}
+.new_address_form textarea {
+    font-size: 2.5rem;
+}
+.profile-div h1{
+    font-size: 3rem;
+}
+.profile-div h2,
+.profile-div .input,
+.profile-div p,
+.profile-div select,
+.profile-div table td{
+    font-size: 2.4rem;
+}
+.profile-div .btn {
+    font-size: 2.8rem;
+    padding: 7px 2.9rem;
+}
+.profile-div .input{
+    padding: 7px 1.4rem;
+}
+
+.footer > p{
+    font-family: 'Roboto', sans-serif;
+}
